@@ -12,7 +12,7 @@ const CONFIG = {
         // 3. Add your portfolio URL to "Redirect URIs" in app settings
         //    e.g. https://magana272.github.io/ or http://localhost:5500/
         // 4. Paste your Client ID below (safe to expose — PKCE uses no secret)
-        clientId: '',
+        clientId: 'e7991a811d4b410696b93dc1f8921571',
     },
 
     about: [
