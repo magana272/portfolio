@@ -249,7 +249,11 @@ body {
     background: rgba(126, 231, 135, 0.12);
 }
 
-.sb-dl-accent {
+.sb-download-btn .dim {
+    color: var(--accent-green);
+}
+
+.sb-download-btn .sb-dl-accent {
     color: var(--accent-blue);
 }
 
