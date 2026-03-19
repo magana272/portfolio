@@ -61,6 +61,10 @@
                     <div class="sidebar-activity">&#9656; Deployed WhatToDo to AWS <span class="dim">2025</span></div>
                     <div class="sidebar-activity">&#9656; Built rate limiter in Go <span class="dim">jan</span></div>
                     <div class="sidebar-activity">&#9656; Published MSstats+ <span class="dim">2025</span></div>
+                    <button class="sb-download-btn" onclick="downloadResume()">
+                        <span><span class="dim">$</span> curl <span class="sb-dl-accent">resume</span>.pdf</span>
+                        <span class="sb-dl-arrow">&#8595;</span>
+                    </button>
                 </div>
             </aside>
         </div>
@@ -89,5 +93,24 @@
     <script src="js/commands.js"></script>
     <script src="js/terminal.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        function downloadResume() {
+            const url = 'https://magana272.github.io/portfolio/manuel_resume.pdf';
+            if (window.terminal) {
+                window.terminal.echoCmd('curl -o manuel_resume.pdf ' + url);
+                window.terminal.typeLines([
+                    '<span class="dim">  % Total    % Received % Xferd  Average Speed   Time</span>',
+                    '<span class="dim">  100  356k  100  356k    0     0   892k      0 --:--:--</span>',
+                    '<span class="highlight">✓</span> <span class="secondary">manuel_resume.pdf saved.</span>',
+                ], null, 35);
+            }
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'manuel_resume.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
 </body>
 </html>

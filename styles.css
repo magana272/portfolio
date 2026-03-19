@@ -221,6 +221,42 @@ body {
     padding: 3px 0;
 }
 
+.sb-download-btn {
+    width: 100%;
+    margin-top: 10px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    font-family: var(--font);
+    font-size: 12px;
+    padding: 5px 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color 0.15s, background 0.15s;
+    text-align: left;
+}
+
+.sb-download-btn:hover {
+    border-color: var(--accent-green);
+    background: rgba(126, 231, 135, 0.06);
+    color: var(--text);
+}
+
+.sb-download-btn:active {
+    background: rgba(126, 231, 135, 0.12);
+}
+
+.sb-dl-accent {
+    color: var(--accent-blue);
+}
+
+.sb-dl-arrow {
+    color: var(--accent-green);
+}
+
 
 /* ── Input Line ── */
 

@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Handle Spotify OAuth redirect (page reloads after user authorizes)
     const spotifyConnected = await spotify.handleCallbackIfNeeded();
 
+    window.terminal = terminal;
+
     sidebar.init();
     terminal.init(spotifyConnected);
 });
