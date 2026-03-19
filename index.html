@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuel Magana | Portfolio</title>
+    <meta name="description" content="Manuel Magana — Software Engineer. Terminal-style developer portfolio.">
+    <meta name="theme-color" content="#0b0f14">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%E2%9A%A1</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="terminal" id="terminal">
+        <!-- Title bar -->
+        <div class="terminal-header">
+            <div class="header-controls">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <div class="header-title">Portfolio Terminal &mdash; Manuel Magana</div>
+            <div class="header-spacer"></div>
+        </div>
+
+        <!-- Split content: main terminal + sidebar -->
+        <div class="terminal-content">
+            <main class="terminal-main">
+                <div class="terminal-body" id="terminal-body"></div>
+            </main>
+
+            <aside class="terminal-sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-heading">── system ─────────────</div>
+                    <div class="sidebar-row"><span class="sb-key">user</span><span class="sb-val">manuel</span></div>
+                    <div class="sidebar-row"><span class="sb-key">role</span><span class="sb-val">software engineer</span></div>
+                    <div class="sidebar-row"><span class="sb-key">location</span><span class="sb-val">san francisco, ca</span></div>
+                    <div class="sidebar-row"><span class="sb-key">edu</span><span class="sb-val">ms cs @ northeastern</span></div>
+                    <div class="sidebar-row"><span class="sb-key">status</span><span class="sb-val green">open to work</span></div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-heading">── session ────────────</div>
+                    <div class="sidebar-row"><span class="sb-key">time</span><span class="sb-val" id="sidebar-clock">--:--:--</span></div>
+                    <div class="sidebar-row"><span class="sb-key">uptime</span><span class="sb-val" id="sidebar-uptime">0m 0s</span></div>
+                    <div class="sidebar-row"><span class="sb-key">commands</span><span class="sb-val" id="sidebar-cmds">0</span></div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-heading">── links ──────────────</div>
+                    <div class="sidebar-row"><span class="sb-key">github</span><a class="sb-link" href="https://github.com/magana272" target="_blank" rel="noopener">/magana272</a></div>
+                    <div class="sidebar-row"><span class="sb-key">linkedin</span><a class="sb-link" href="https://linkedin.com/in/manuel-magana-359290160/" target="_blank" rel="noopener">/in/manuel-magana</a></div>
+                    <div class="sidebar-row"><span class="sb-key">email</span><span class="sb-val" style="word-break:break-all">manuel.ramon.magana@gmail.com</span></div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-heading">── activity ───────────</div>
+                    <div class="sidebar-activity">&#9656; Signal analytics platform <span class="dim">now</span></div>
+                    <div class="sidebar-activity">&#9656; Deployed WhatToDo to AWS <span class="dim">2025</span></div>
+                    <div class="sidebar-activity">&#9656; Built rate limiter in Go <span class="dim">jan</span></div>
+                    <div class="sidebar-activity">&#9656; Published MSstats+ <span class="dim">2025</span></div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Input row -->
+        <div class="terminal-input">
+            <span class="prompt-user">manuel</span><span class="prompt-sep">@</span><span class="prompt-host">portfolio</span><span class="prompt-sep">:</span><span class="prompt-dir">~</span><span class="prompt-dollar">$</span>
+            <input type="text" id="cmd-input" autocomplete="off" spellcheck="false" autofocus>
+        </div>
+
+        <!-- Status bar -->
+        <div class="terminal-status">
+            <span class="status-left">
+                <span class="status-indicator"></span>
+                <span id="status-mode">ready</span>
+            </span>
+            <span class="status-right">
+                tab: complete &nbsp;&middot;&nbsp; &#8593;&#8595;: history &nbsp;&middot;&nbsp; ctrl+l: clear
+            </span>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/spotify.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/commands.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
