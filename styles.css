@@ -202,10 +202,69 @@ li::marker {
     color: var(--rule);
 }
 
+/* ── Filters ── */
+
+.projects-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.projects-header h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    white-space: nowrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.filter-btn {
+    font-family: var(--body);
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: none;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.filter-btn.active {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+}
+
+.no-results {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+    padding: 12px 0;
+}
+
 /* ── Projects ── */
 
 .project {
     margin-bottom: 22px;
+    transition: opacity 0.2s;
+}
+
+.project[hidden] {
+    display: none;
 }
 
 .project:last-child {
@@ -340,6 +399,8 @@ footer {
 
     a { color: var(--text) !important; border: none !important; }
     .download-link { display: none; }
+    .filters { display: none; }
+    .project[hidden] { display: block !important; }
 
     .contact-row a::after {
         content: none;

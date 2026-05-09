@@ -82,123 +82,137 @@
         </section>
 
         <section>
-            <h2>Projects &mdash; Software Engineering</h2>
-
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-name">WhatToDo</span><br>
-                    <span class="project-tech">Python, FastAPI, Claude API, Docker, AWS</span>
+            <div class="projects-header">
+                <h2>Projects</h2>
+                <div class="filter-group" id="category-filters">
+                    <button class="filter-btn active" data-filter="category" data-value="all">All</button>
+                    <button class="filter-btn" data-filter="category" data-value="swe">Software Engineering</button>
+                    <button class="filter-btn" data-filter="category" data-value="ml">Machine Learning</button>
                 </div>
-                <ul>
-                    <li>Drafted and owned backend design for a 4-person team: 3-model SQLAlchemy schema on AWS RDS with JWT auth and bcrypt password hashing.</li>
-                    <li>Built a dual-provider AI engine with automatic failover between LLM providers.</li>
-                    <li>CI/CD via GitHub Actions, deployed to AWS App Runner/ECR.</li>
-                </ul>
-                <div class="project-links"><a href="https://github.com/Shiqiu17/CS5500-final-project">GitHub</a></div>
+            </div>
+            <div class="filter-group" id="lang-filters">
+                <button class="filter-btn active" data-filter="lang" data-value="all">All</button>
+                <button class="filter-btn" data-filter="lang" data-value="python">Python</button>
+                <button class="filter-btn" data-filter="lang" data-value="go">Go</button>
+                <button class="filter-btn" data-filter="lang" data-value="java">Java</button>
+                <button class="filter-btn" data-filter="lang" data-value="c">C</button>
             </div>
 
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-name">Physiological Signal Analytics Platform</span><br>
-                    <span class="project-tech">Python, FastAPI, DuckDB, Pydantic</span>
+            <div id="projects">
+                <div class="project" data-category="swe" data-lang="python">
+                    <div class="project-header">
+                        <span class="project-name">WhatToDo</span><br>
+                        <span class="project-tech">Python, FastAPI, Claude API, Docker, AWS</span>
+                    </div>
+                    <ul>
+                        <li>Drafted and owned backend design for a 4-person team: 3-model SQLAlchemy schema on AWS RDS with JWT auth and bcrypt password hashing.</li>
+                        <li>Built a dual-provider AI engine with automatic failover between LLM providers.</li>
+                        <li>CI/CD via GitHub Actions, deployed to AWS App Runner/ECR.</li>
+                    </ul>
+                    <div class="project-links"><a href="https://github.com/Shiqiu17/CS5500-final-project">GitHub</a></div>
                 </div>
-                <ul>
-                    <li>Two-layer system: Python ETL/analysis library for batch processing and a FastAPI REST API over DuckDB with offset pagination, composable filters, and Pydantic validation.</li>
-                    <li>Analysis endpoints for PCA, FFT, and spectral density supporting interactive exploration of physiological signals.</li>
-                </ul>
-                <div class="project-links"><a href="https://github.com/magana272/popanedb-backend">API</a><span class="sep">/</span><a href="https://github.com/magana272/POPANEpy">Library</a></div>
-            </div>
 
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-name">Rate Limiter Service</span><br>
-                    <span class="project-tech">Go, Redis, Docker</span>
+                <div class="project" data-category="swe" data-lang="python">
+                    <div class="project-header">
+                        <span class="project-name">Physiological Signal Analytics Platform</span><br>
+                        <span class="project-tech">Python, FastAPI, DuckDB, Pydantic</span>
+                    </div>
+                    <ul>
+                        <li>Two-layer system: Python ETL/analysis library for batch processing and a FastAPI REST API over DuckDB with offset pagination, composable filters, and Pydantic validation.</li>
+                        <li>Analysis endpoints for PCA, FFT, and spectral density supporting interactive exploration of physiological signals.</li>
+                    </ul>
+                    <div class="project-links"><a href="https://github.com/magana272/popanedb-backend">API</a><span class="sep">/</span><a href="https://github.com/magana272/POPANEpy">Library</a></div>
                 </div>
-                <ul>
-                    <li>High-performance Go reverse proxy with fixed window and token bucket rate limiting.</li>
-                    <li>Atomic Redis transactions prevent race conditions under 1,000+ concurrent requests.</li>
-                    <li>CSV-driven load testing harness for burst, steady-state, and multi-user traffic patterns.</li>
-                </ul>
-                <div class="project-links"><a href="https://github.com/magana272/Rate-Limiter-Service">GitHub</a></div>
-            </div>
 
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-name">Paxos Key-Value Store</span><br>
-                    <span class="project-tech">Java, RPC</span>
+                <div class="project" data-category="swe" data-lang="go">
+                    <div class="project-header">
+                        <span class="project-name">Rate Limiter Service</span><br>
+                        <span class="project-tech">Go, Redis, Docker</span>
+                    </div>
+                    <ul>
+                        <li>High-performance Go reverse proxy with fixed window and token bucket rate limiting.</li>
+                        <li>Atomic Redis transactions prevent race conditions under 1,000+ concurrent requests.</li>
+                        <li>CSV-driven load testing harness for burst, steady-state, and multi-user traffic patterns.</li>
+                    </ul>
+                    <div class="project-links"><a href="https://github.com/magana272/Rate-Limiter-Service">GitHub</a></div>
                 </div>
-                <ul>
-                    <li>Fault-tolerant distributed KV store using Paxos consensus with Proposer, Acceptor, and Learner roles over RPC.</li>
-                    <li>Dynamic cluster joins via RPC-based node discovery.</li>
-                    <li>Validated under chaos testing with 10% acceptor failure rate, leader crashes, and network partitions.</li>
-                </ul>
-                <div class="project-links"><a href="https://github.com/magana272/PAXOS-Key-Value-Store">GitHub</a></div>
-            </div>
 
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-name">CPU Scheduler Simulator</span><br>
-                    <span class="project-tech">C</span>
+                <div class="project" data-category="swe" data-lang="java">
+                    <div class="project-header">
+                        <span class="project-name">Paxos Key-Value Store</span><br>
+                        <span class="project-tech">Java, RPC</span>
+                    </div>
+                    <ul>
+                        <li>Fault-tolerant distributed KV store using Paxos consensus with Proposer, Acceptor, and Learner roles over RPC.</li>
+                        <li>Dynamic cluster joins via RPC-based node discovery.</li>
+                        <li>Validated under chaos testing with 10% acceptor failure rate, leader crashes, and network partitions.</li>
+                    </ul>
+                    <div class="project-links"><a href="https://github.com/magana272/PAXOS-Key-Value-Store">GitHub</a></div>
                 </div>
-                <ul>
-                    <li>Process scheduler implementing MLFQ, Round Robin, and SJF with preemption, priority boosting, and I/O wait handling via custom min-heap queues.</li>
-                    <li>Zero leaks (Valgrind-validated).</li>
-                </ul>
-                <div class="project-links"><a href="https://github.com/magana272/Scheduler">GitHub</a></div>
-            </div>
 
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-name">Staircase Concurrency Simulator</span><br>
-                    <span class="project-tech">C</span>
+                <div class="project" data-category="swe" data-lang="c">
+                    <div class="project-header">
+                        <span class="project-name">CPU Scheduler Simulator</span><br>
+                        <span class="project-tech">C</span>
+                    </div>
+                    <ul>
+                        <li>Process scheduler implementing MLFQ, Round Robin, and SJF with preemption, priority boosting, and I/O wait handling via custom min-heap queues.</li>
+                        <li>Zero leaks (Valgrind-validated).</li>
+                    </ul>
+                    <div class="project-links"><a href="https://github.com/magana272/Scheduler">GitHub</a></div>
                 </div>
-                <ul>
-                    <li>Multi-threaded simulator with semaphore-based synchronization enforcing direction constraints to prevent deadlock and starvation.</li>
-                    <li>RR and FIFO schedulers with unit and concurrency stress tests.</li>
-                </ul>
-                <div class="project-links"><a href="https://github.com/magana272/Stairs">GitHub</a></div>
-            </div>
-        </section>
 
-        <section>
-            <h2>Projects &mdash; Machine Learning</h2>
-
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-name">Cell Type Classification from scRNA-seq</span><br>
-                    <span class="project-tech">Python, PyTorch, NumPy, Pandas</span>
+                <div class="project" data-category="swe" data-lang="c">
+                    <div class="project-header">
+                        <span class="project-name">Staircase Concurrency Simulator</span><br>
+                        <span class="project-tech">C</span>
+                    </div>
+                    <ul>
+                        <li>Multi-threaded simulator with semaphore-based synchronization enforcing direction constraints to prevent deadlock and starvation.</li>
+                        <li>RR and FIFO schedulers with unit and concurrency stress tests.</li>
+                    </ul>
+                    <div class="project-links"><a href="https://github.com/magana272/Stairs">GitHub</a></div>
                 </div>
-                <ul>
-                    <li>Benchmarked 3 deep learning architectures (1D CNN, TOSICA-inspired Transformer, GraphSAGE GNN) on 76K-cell Allen Brain Atlas data across 17 classes, achieving 92.65% balanced accuracy.</li>
-                    <li>Engineered a sparse masked embedding layer (98.7% sparsity) projecting 8,822 genes into 300 Reactome pathway tokens.</li>
-                    <li>Built cross-platform transfer pipeline to SMART-seq data (47K cells) with confidence-based unknown cell detection.</li>
-                </ul>
-                <div class="project-links"><a href="https://github.com/magana272/Cell-Type-Classification">GitHub</a></div>
-            </div>
 
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-name">Emotion Recognition from Physiological Signals</span><br>
-                    <span class="project-tech">Python, TensorFlow/Keras, scikit-learn</span>
+                <div class="project" data-category="ml" data-lang="python">
+                    <div class="project-header">
+                        <span class="project-name">Cell Type Classification from scRNA-seq</span><br>
+                        <span class="project-tech">Python, PyTorch, NumPy, Pandas</span>
+                    </div>
+                    <ul>
+                        <li>Benchmarked 3 deep learning architectures (1D CNN, TOSICA-inspired Transformer, GraphSAGE GNN) on 76K-cell Allen Brain Atlas data across 17 classes, achieving 92.65% balanced accuracy.</li>
+                        <li>Engineered a sparse masked embedding layer (98.7% sparsity) projecting 8,822 genes into 300 Reactome pathway tokens.</li>
+                        <li>Built cross-platform transfer pipeline to SMART-seq data (47K cells) with confidence-based unknown cell detection.</li>
+                    </ul>
+                    <div class="project-links"><a href="https://github.com/magana272/Cell-Type-Classification">GitHub</a></div>
                 </div>
-                <ul>
-                    <li>Conv1D-BiLSTM hybrid classifier for binary emotion recognition from 6 biosignals (ECG, EDA, blood pressure, respiration, temperature).</li>
-                    <li>Signal preprocessing pipeline with sliding-window segmentation and per-channel standardization across 25+ GB of data.</li>
-                    <li>Implemented INT8 quantization targeting TinyML deployment on wearable microcontrollers.</li>
-                </ul>
-            </div>
 
-            <div class="project">
-                <div class="project-header">
-                    <span class="project-name">Deep Learning Coursework (CS7150)</span><br>
-                    <span class="project-tech">Python, PyTorch, TensorFlow</span>
+                <div class="project" data-category="ml" data-lang="python">
+                    <div class="project-header">
+                        <span class="project-name">Emotion Recognition from Physiological Signals</span><br>
+                        <span class="project-tech">Python, TensorFlow/Keras, scikit-learn</span>
+                    </div>
+                    <ul>
+                        <li>Conv1D-BiLSTM hybrid classifier for binary emotion recognition from 6 biosignals (ECG, EDA, blood pressure, respiration, temperature).</li>
+                        <li>Signal preprocessing pipeline with sliding-window segmentation and per-channel standardization across 25+ GB of data.</li>
+                        <li>Implemented INT8 quantization targeting TinyML deployment on wearable microcontrollers.</li>
+                    </ul>
                 </div>
-                <ul>
-                    <li>U-Net for brain tumor segmentation on BraTS 2020 MRI data.</li>
-                    <li>Transfer learning (VGG16, InceptionV3) for image classification.</li>
-                    <li>Generative models: GAN, DDPM diffusion, Flow Matching, RealNVP.</li>
-                    <li>RNN, Transformer, and VAE architectures for text generation and latent space modeling.</li>
-                </ul>
+
+                <div class="project" data-category="ml" data-lang="python">
+                    <div class="project-header">
+                        <span class="project-name">Deep Learning Coursework (CS7150)</span><br>
+                        <span class="project-tech">Python, PyTorch, TensorFlow</span>
+                    </div>
+                    <ul>
+                        <li>U-Net for brain tumor segmentation on BraTS 2020 MRI data.</li>
+                        <li>Transfer learning (VGG16, InceptionV3) for image classification.</li>
+                        <li>Generative models: GAN, DDPM diffusion, Flow Matching, RealNVP.</li>
+                        <li>RNN, Transformer, and VAE architectures for text generation and latent space modeling.</li>
+                    </ul>
+                </div>
+
+                <p class="no-results" id="no-results" hidden>No projects match the selected filters.</p>
             </div>
         </section>
 
@@ -224,5 +238,6 @@
             <p class="pub-detail">Co-author &middot; bioRxiv 2025 &middot; <a href="https://doi.org/10.1101/2025.09.11.675573">doi:10.1101/2025.09.11.675573</a></p>
         </section>
     </div>
+    <script src="filter.js"></script>
 </body>
 </html>
