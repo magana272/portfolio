@@ -3,115 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuel Magana | Portfolio</title>
-    <meta name="description" content="Manuel Magana — Software Engineer. Terminal-style developer portfolio.">
-    <meta name="theme-color" content="#0b0f14">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%E2%9A%A1</text></svg>">
+    <title>Manuel Magana &mdash; Software Engineer</title>
+    <meta name="description" content="Manuel Magana — Software Engineer based in the Bay Area. M.S. Computer Science, Northeastern. Previously Bioinformatics Scientist at Genentech. Building backend systems, distributed infrastructure, and data pipelines.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>M</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="terminal" id="terminal">
-        <!-- Title bar -->
-        <div class="terminal-header">
-            <div class="header-controls">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
+    <div class="page">
+        <header>
+            <h1>Manuel Magana</h1>
+            <div class="tagline">Software Engineer</div>
+            <div class="contact-row">
+                Daly City, CA<span class="sep">/</span>
+                <a href="mailto:manuel.ramon.magana@gmail.com">manuel.ramon.magana@gmail.com</a><span class="sep">/</span>
+                <a href="https://github.com/magana272">GitHub</a><span class="sep">/</span>
+                <a href="https://linkedin.com/in/manuel-magana-359290160/">LinkedIn</a>
             </div>
-            <div class="header-title">Portfolio Terminal &mdash; Manuel Magana</div>
-            <div class="header-spacer"></div>
-        </div>
+            <p class="summary">
+                Software engineer with a background in neurobiology and bioinformatics, now building backend systems, distributed infrastructure, and data pipelines. M.S. Computer Science from Northeastern. Previously at Genentech, where I designed production data tooling and large-scale ETL pipelines.
+            </p>
+            <a class="download-link" href="manuel_resume.pdf">Download Resume (PDF)</a>
+        </header>
 
-        <!-- Split content: main terminal + sidebar -->
-        <div class="terminal-content">
-            <main class="terminal-main">
-                <div class="terminal-body" id="terminal-body"></div>
-            </main>
+        <section>
+            <h2>Education</h2>
+            <div class="edu-entry">
+                <strong>M.S. Computer Science</strong> <span class="edu-detail">&mdash; Northeastern University, San Jose, CA (May 2026)</span><br>
+                <span class="edu-courses">Algorithms, Distributed Systems, Computer Networking, Software Engineering, Machine Learning, Deep Learning</span>
+            </div>
+            <div class="edu-entry">
+                <strong>B.A. Molecular and Cell Biology: Neurobiology</strong> <span class="edu-detail">&mdash; UC Berkeley (May 2021)</span><br>
+                <span class="edu-courses">Data Structures, Machine Structure, Principles &amp; Techniques of Data Science</span>
+            </div>
+        </section>
 
-            <aside class="terminal-sidebar">
-                <div class="sidebar-section">
-                    <div class="sidebar-heading">── system ─────────────</div>
-                    <div class="sidebar-row"><span class="sb-key">user</span><span class="sb-val">manuel</span></div>
-                    <div class="sidebar-row"><span class="sb-key">role</span><span class="sb-val">software engineer</span></div>
-                    <div class="sidebar-row"><span class="sb-key">location</span><span class="sb-val">san francisco, ca</span></div>
-                    <div class="sidebar-row"><span class="sb-key">edu</span><span class="sb-val">ms cs @ northeastern</span></div>
-                    <div class="sidebar-row"><span class="sb-key">status</span><span class="sb-val green">open to work</span></div>
+        <section>
+            <h2>Experience</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Bioinformatics Scientist</span> <span class="job-company">&mdash; Genentech</span><br>
+                    <span class="job-meta">Nov 2022 &ndash; Jul 2025 &middot; San Francisco, CA</span>
                 </div>
+                <ul>
+                    <li>Designed a data validation library in R, then collaborated with 2 computational scientists to port it to Python with unit tests and PR reviews; wrote scripts consuming input files via the library and containerized them with Docker for an internal workflow system used by 20+ scientists.</li>
+                    <li>Architected a coordinator-worker batch system with task queuing and concurrent execution, enabling parallel processing of large-scale analysis jobs.</li>
+                    <li>Built a PySpark pipeline to filter, clean, and visualize proteins of interest from a 200GB+ mass spectrometry dataset, unblocking a study that exceeded the team's existing R-based tooling capacity.</li>
+                    <li>Implemented features in an R Shiny dashboard with one other scientist, extending support beyond mass spec to additional data types so 4 team scientists could reliably repeat the same analysis across different datasets.</li>
+                    <li>Built automated benchmarking workflows across 4 proteomics platforms (OLINK, ELLA, ELISA, Mass Spectrometry), accelerating method selection from weeks to days.</li>
+                </ul>
+            </div>
 
-                <div class="sidebar-section">
-                    <div class="sidebar-heading">── session ────────────</div>
-                    <div class="sidebar-row"><span class="sb-key">time</span><span class="sb-val" id="sidebar-clock">--:--:--</span></div>
-                    <div class="sidebar-row"><span class="sb-key">uptime</span><span class="sb-val" id="sidebar-uptime">0m 0s</span></div>
-                    <div class="sidebar-row"><span class="sb-key">commands</span><span class="sb-val" id="sidebar-cmds">0</span></div>
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Research Technician</span> <span class="job-company">&mdash; Weill Cornell Medicine</span><br>
+                    <span class="job-meta">Jan 2022 &ndash; Jul 2022 &middot; New York, NY</span>
                 </div>
+                <ul>
+                    <li>Optimized proteomics data pipelines, increasing peptide identification rates and expanding usable experimental data for downstream analysis.</li>
+                    <li>Set up and managed compute environments (VMs, WSL, Anaconda) for proteomics software, unblocking postdoctoral researchers from IT bottlenecks.</li>
+                    <li>Developed a Python tool to extract peptide n-mers from FASTA files, automating a manual sequence analysis step used across multiple experiments.</li>
+                </ul>
+            </div>
 
-                <div class="sidebar-section">
-                    <div class="sidebar-heading">── links ──────────────</div>
-                    <div class="sidebar-row"><span class="sb-key">github</span><a class="sb-link" href="https://github.com/magana272" target="_blank" rel="noopener">/magana272</a></div>
-                    <div class="sidebar-row"><span class="sb-key">linkedin</span><a class="sb-link" href="https://linkedin.com/in/manuel-magana-359290160/" target="_blank" rel="noopener">/in/manuel-magana</a></div>
-                    <div class="sidebar-row"><span class="sb-key">email</span><span class="sb-val" style="word-break:break-all">manuel.ramon.magana@gmail.com</span></div>
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Junior Data Scientist</span> <span class="job-company">&mdash; Endless West</span><br>
+                    <span class="job-meta">Mar 2021 &ndash; Nov 2021 &middot; San Francisco, CA</span>
                 </div>
+                <ul>
+                    <li>Built ML pipelines (Logistic Regression, KNN, XGBoost, Random Forest) for sensory attribute prediction from chromatography data, enabling R&amp;D to prioritize synthesis targets by predicted flavor profile.</li>
+                    <li>Developed Python web scrapers using BeautifulSoup to extract and structure chemical property data from public databases, replacing hours of manual lookup per compound with a searchable local dataset.</li>
+                </ul>
+            </div>
+        </section>
 
-                <div class="sidebar-section">
-                    <div class="sidebar-heading">── activity ───────────</div>
-                    <div class="sidebar-activity">&#9656; Signal analytics platform <span class="dim">now</span></div>
-                    <div class="sidebar-activity">&#9656; Deployed WhatToDo to AWS <span class="dim">2025</span></div>
-                    <div class="sidebar-activity">&#9656; Built rate limiter in Go <span class="dim">jan</span></div>
-                    <div class="sidebar-activity">&#9656; Published MSstats+ <span class="dim">2025</span></div>
-                    <div class="sidebar-heading" style="margin-top:10px">── download resume ──────</div>
-                    <button class="sb-download-btn" onclick="downloadResume()">
-                        <span><span style="color:var(--accent-green)">$</span> curl <span style="color:var(--accent-blue)">resume</span>.pdf</span>
-                        <span style="color:var(--accent-green)">&#8595;</span>
-                    </button>
+        <section>
+            <h2>Projects &mdash; Software Engineering</h2>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">WhatToDo</span><br>
+                    <span class="project-tech">Python, FastAPI, Claude API, Docker, AWS</span>
                 </div>
-            </aside>
-        </div>
+                <ul>
+                    <li>Drafted and owned backend design for a 4-person team: 3-model SQLAlchemy schema on AWS RDS with JWT auth and bcrypt password hashing.</li>
+                    <li>Built a dual-provider AI engine with automatic failover between LLM providers.</li>
+                    <li>CI/CD via GitHub Actions, deployed to AWS App Runner/ECR.</li>
+                </ul>
+                <div class="project-links"><a href="https://github.com/Shiqiu17/CS5500-final-project">GitHub</a></div>
+            </div>
 
-        <!-- Input row -->
-        <div class="terminal-input">
-            <span class="prompt-user">manuel</span><span class="prompt-sep">@</span><span class="prompt-host">portfolio</span><span class="prompt-sep">:</span><span class="prompt-dir">~</span><span class="prompt-dollar">$</span>
-            <input type="text" id="cmd-input" autocomplete="off" spellcheck="false" autofocus>
-        </div>
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">Physiological Signal Analytics Platform</span><br>
+                    <span class="project-tech">Python, FastAPI, DuckDB, Pydantic</span>
+                </div>
+                <ul>
+                    <li>Two-layer system: Python ETL/analysis library for batch processing and a FastAPI REST API over DuckDB with offset pagination, composable filters, and Pydantic validation.</li>
+                    <li>Analysis endpoints for PCA, FFT, and spectral density supporting interactive exploration of physiological signals.</li>
+                </ul>
+                <div class="project-links"><a href="https://github.com/magana272/popanedb-backend">API</a><span class="sep">/</span><a href="https://github.com/magana272/POPANEpy">Library</a></div>
+            </div>
 
-        <!-- Status bar -->
-        <div class="terminal-status">
-            <span class="status-left">
-                <span class="status-indicator"></span>
-                <span id="status-mode">ready</span>
-            </span>
-            <span class="status-right">
-                tab: complete &nbsp;&middot;&nbsp; &#8593;&#8595;: history &nbsp;&middot;&nbsp; ctrl+l: clear
-            </span>
-        </div>
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">Rate Limiter Service</span><br>
+                    <span class="project-tech">Go, Redis, Docker</span>
+                </div>
+                <ul>
+                    <li>High-performance Go reverse proxy with fixed window and token bucket rate limiting.</li>
+                    <li>Atomic Redis transactions prevent race conditions under 1,000+ concurrent requests.</li>
+                    <li>CSV-driven load testing harness for burst, steady-state, and multi-user traffic patterns.</li>
+                </ul>
+                <div class="project-links"><a href="https://github.com/magana272/Rate-Limiter-Service">GitHub</a></div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">Paxos Key-Value Store</span><br>
+                    <span class="project-tech">Java, RPC</span>
+                </div>
+                <ul>
+                    <li>Fault-tolerant distributed KV store using Paxos consensus with Proposer, Acceptor, and Learner roles over RPC.</li>
+                    <li>Dynamic cluster joins via RPC-based node discovery.</li>
+                    <li>Validated under chaos testing with 10% acceptor failure rate, leader crashes, and network partitions.</li>
+                </ul>
+                <div class="project-links"><a href="https://github.com/magana272/PAXOS-Key-Value-Store">GitHub</a></div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">CPU Scheduler Simulator</span><br>
+                    <span class="project-tech">C</span>
+                </div>
+                <ul>
+                    <li>Process scheduler implementing MLFQ, Round Robin, and SJF with preemption, priority boosting, and I/O wait handling via custom min-heap queues.</li>
+                    <li>Zero leaks (Valgrind-validated).</li>
+                </ul>
+                <div class="project-links"><a href="https://github.com/magana272/Scheduler">GitHub</a></div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">Staircase Concurrency Simulator</span><br>
+                    <span class="project-tech">C</span>
+                </div>
+                <ul>
+                    <li>Multi-threaded simulator with semaphore-based synchronization enforcing direction constraints to prevent deadlock and starvation.</li>
+                    <li>RR and FIFO schedulers with unit and concurrency stress tests.</li>
+                </ul>
+                <div class="project-links"><a href="https://github.com/magana272/Stairs">GitHub</a></div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Projects &mdash; Machine Learning</h2>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">Cell Type Classification from scRNA-seq</span><br>
+                    <span class="project-tech">Python, PyTorch, NumPy, Pandas</span>
+                </div>
+                <ul>
+                    <li>Benchmarked 3 deep learning architectures (1D CNN, TOSICA-inspired Transformer, GraphSAGE GNN) on 76K-cell Allen Brain Atlas data across 17 classes, achieving 92.65% balanced accuracy.</li>
+                    <li>Engineered a sparse masked embedding layer (98.7% sparsity) projecting 8,822 genes into 300 Reactome pathway tokens.</li>
+                    <li>Built cross-platform transfer pipeline to SMART-seq data (47K cells) with confidence-based unknown cell detection.</li>
+                </ul>
+                <div class="project-links"><a href="https://github.com/magana272/Cell-Type-Classification">GitHub</a></div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">Emotion Recognition from Physiological Signals</span><br>
+                    <span class="project-tech">Python, TensorFlow/Keras, scikit-learn</span>
+                </div>
+                <ul>
+                    <li>Conv1D-BiLSTM hybrid classifier for binary emotion recognition from 6 biosignals (ECG, EDA, blood pressure, respiration, temperature).</li>
+                    <li>Signal preprocessing pipeline with sliding-window segmentation and per-channel standardization across 25+ GB of data.</li>
+                    <li>Implemented INT8 quantization targeting TinyML deployment on wearable microcontrollers.</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">Deep Learning Coursework (CS7150)</span><br>
+                    <span class="project-tech">Python, PyTorch, TensorFlow</span>
+                </div>
+                <ul>
+                    <li>U-Net for brain tumor segmentation on BraTS 2020 MRI data.</li>
+                    <li>Transfer learning (VGG16, InceptionV3) for image classification.</li>
+                    <li>Generative models: GAN, DDPM diffusion, Flow Matching, RealNVP.</li>
+                    <li>RNN, Transformer, and VAE architectures for text generation and latent space modeling.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-label">Languages</span>
+                <span class="skill-value">Python, Java, Go, C, R, SQL, Bash</span>
+                <span class="skill-label">Frameworks</span>
+                <span class="skill-value">FastAPI, SpringBoot, pytest, JUnit, Docker, GitHub Actions, CI/CD</span>
+                <span class="skill-label">Infrastructure</span>
+                <span class="skill-value">AWS (RDS, App Runner, ECR), Redis, PostgreSQL, DuckDB, Git</span>
+                <span class="skill-label">Libraries</span>
+                <span class="skill-value">pandas, PySpark, scikit-learn, PyTorch, TensorFlow/Keras</span>
+                <span class="skill-label">Laboratory</span>
+                <span class="skill-value">HPLC, LC-MS, GC-MS, QQQ, RapidFire 400, PCR</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Publication</h2>
+            <p class="pub-title">MSstats+ enhances differential analysis in proteomic experiments</p>
+            <p class="pub-detail">Co-author &middot; bioRxiv 2025 &middot; <a href="https://doi.org/10.1101/2025.09.11.675573">doi:10.1101/2025.09.11.675573</a></p>
+        </section>
     </div>
-
-    <script src="js/config.js"></script>
-    <script src="js/spotify.js"></script>
-    <script src="js/sidebar.js"></script>
-    <script src="js/commands.js"></script>
-    <script src="js/terminal.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        function downloadResume() {
-            const url = 'https://magana272.github.io/portfolio/manuel_resume.pdf';
-            if (window.terminal) {
-                window.terminal.echoCmd('curl -o manuel_resume.pdf ' + url);
-                window.terminal.typeLines([
-                    '<span class="dim">  % Total    % Received % Xferd  Average Speed   Time</span>',
-                    '<span class="dim">  100  356k  100  356k    0     0   892k      0 --:--:--</span>',
-                    '<span class="highlight">✓</span> <span class="secondary">manuel_resume.pdf saved.</span>',
-                ], null, 35);
-            }
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'manuel_resume.pdf';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-    </script>
 </body>
 </html>
