@@ -25,7 +25,7 @@
             <p class="summary">
                 Software engineer with a background in neurobiology and bioinformatics, now building backend systems, distributed infrastructure, and data pipelines. M.S. Computer Science from Northeastern. Previously at Genentech, where I designed production data tooling and large-scale ETL pipelines.
             </p>
-            <a class="download-link" href="manuel_resume.pdf">Download Resume (PDF)</a>
+            <a class="download-link" href="resumes_and_cvs/manuel_resume.pdf">Download Resume (PDF)</a>
         </header>
 
         <section>
@@ -42,43 +42,7 @@
 
         <section>
             <h2>Experience</h2>
-
-            <div class="job">
-                <div class="job-header">
-                    <span class="job-title">Bioinformatics Scientist</span> <span class="job-company">&mdash; Genentech</span><br>
-                    <span class="job-meta">Nov 2022 &ndash; Jul 2025 &middot; San Francisco, CA</span>
-                </div>
-                <ul>
-                    <li>Designed a data validation library in R, then collaborated with 2 computational scientists to port it to Python with unit tests and PR reviews; wrote scripts consuming input files via the library and containerized them with Docker for an internal workflow system used by 20+ scientists.</li>
-                    <li>Architected a coordinator-worker batch system with task queuing and concurrent execution, enabling parallel processing of large-scale analysis jobs.</li>
-                    <li>Built a PySpark pipeline to filter, clean, and visualize proteins of interest from a 200GB+ mass spectrometry dataset, unblocking a study that exceeded the team's existing R-based tooling capacity.</li>
-                    <li>Implemented features in an R Shiny dashboard with one other scientist, extending support beyond mass spec to additional data types so 4 team scientists could reliably repeat the same analysis across different datasets.</li>
-                    <li>Built automated benchmarking workflows across 4 proteomics platforms (OLINK, ELLA, ELISA, Mass Spectrometry), accelerating method selection from weeks to days.</li>
-                </ul>
-            </div>
-
-            <div class="job">
-                <div class="job-header">
-                    <span class="job-title">Research Technician</span> <span class="job-company">&mdash; Weill Cornell Medicine</span><br>
-                    <span class="job-meta">Jan 2022 &ndash; Jul 2022 &middot; New York, NY</span>
-                </div>
-                <ul>
-                    <li>Optimized proteomics data pipelines, increasing peptide identification rates and expanding usable experimental data for downstream analysis.</li>
-                    <li>Set up and managed compute environments (VMs, WSL, Anaconda) for proteomics software, unblocking postdoctoral researchers from IT bottlenecks.</li>
-                    <li>Developed a Python tool to extract peptide n-mers from FASTA files, automating a manual sequence analysis step used across multiple experiments.</li>
-                </ul>
-            </div>
-
-            <div class="job">
-                <div class="job-header">
-                    <span class="job-title">Junior Data Scientist</span> <span class="job-company">&mdash; Endless West</span><br>
-                    <span class="job-meta">Mar 2021 &ndash; Nov 2021 &middot; San Francisco, CA</span>
-                </div>
-                <ul>
-                    <li>Built ML pipelines (Logistic Regression, KNN, XGBoost, Random Forest) for sensory attribute prediction from chromatography data, enabling R&amp;D to prioritize synthesis targets by predicted flavor profile.</li>
-                    <li>Developed Python web scrapers using BeautifulSoup to extract and structure chemical property data from public databases, replacing hours of manual lookup per compound with a searchable local dataset.</li>
-                </ul>
-            </div>
+            <div id="experience"></div>
         </section>
 
         <section>
@@ -125,6 +89,8 @@
             <p class="pub-detail">Co-author &middot; bioRxiv 2025 &middot; <a href="https://doi.org/10.1101/2025.09.11.675573">doi:10.1101/2025.09.11.675573</a></p>
         </section>
     </div>
+    <script src="experience/experience.js"></script>
+    <script src="experience/experiences.js"></script>
     <script src="project/project.js"></script>
     <script src="project/projects.js"></script>
     <script src="project/filter.js"></script>
