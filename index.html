@@ -12,24 +12,34 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <a href="#education" class="skip-link">Skip to content</a>
     <div class="page">
         <header>
             <h1>Manuel Magana</h1>
             <div class="tagline">Software Engineer</div>
             <div class="contact-row">
                 Daly City, CA<span class="sep">/</span>
-                <a href="mailto:manuel.ramon.magana@gmail.com">manuel.ramon.magana@gmail.com</a><span class="sep">/</span>
+                <a href="mailto:manuel.ramon.magana@gmail.com">manuel.ramon.magana@gmail.com</a>
+            </div>
+            <div class="contact-row">
                 <a href="https://github.com/magana272">GitHub</a><span class="sep">/</span>
-                <a href="https://linkedin.com/in/manuel-magana-359290160/">LinkedIn</a>
+                <a href="https://linkedin.com/in/manuel-magana-359290160/">LinkedIn</a><span class="sep">/</span>
+                <a href="resumes_and_cvs/manuel_magana_resume.pdf">Resume</a><span class="sep">/</span>
+                <a href="resumes_and_cvs/CV.pdf">CV</a>
             </div>
             <p class="summary">
-                Software engineer with an M.S. in Computer Science from Northeastern and a background in bioinformatics. Previously at Genentech. Interested in backend systems and data pipelines.
+                M.S. Computer Science, Northeastern. B.A. Neurobiology, UC Berkeley. Spent 2.5 years at Genentech building PySpark pipelines, validation tooling, and dashboards for proteomics teams. Projects in backend systems, distributed infrastructure, and deep learning.
             </p>
-            <a class="download-link" href="resumes_and_cvs/manuel_resume.pdf">Download Resume (PDF)</a>
-            <a class="download-link" href="resumes_and_cvs/comprehensive_cv.pdf">Download CV (PDF)</a>
         </header>
 
-        <section>
+        <nav class="site-nav">
+            <a href="#education">Education</a>
+            <a href="#experience-section">Experience</a>
+            <a href="#projects-section">Projects</a>
+            <a href="#skills">Skills</a>
+        </nav>
+
+        <section id="education">
             <h2>Education</h2>
             <div class="edu-entry">
                 <strong>M.S. Computer Science</strong> <span class="edu-detail">&mdash; Northeastern University, San Jose, CA (May 2026)</span><br>
@@ -41,16 +51,19 @@
             </div>
         </section>
 
-        <section>
-            <h2>Experience</h2>
+        <section id="experience-section">
+            <div class="section-header">
+                <h2>Experience</h2>
+                <button class="expand-all-btn">Expand all</button>
+            </div>
             <div id="experience"></div>
         </section>
 
-        <section>
+        <section id="projects-section">
             <div class="projects-header">
                 <h2>Projects</h2>
+                <button class="expand-all-btn">Expand all</button>
                 <div class="filter-group" id="category-filters">
-                    <button class="filter-btn active" data-filter="category" data-value="all">All</button>
                     <button class="filter-btn" data-filter="category" data-value="swe">Software Engineering</button>
                     <button class="filter-btn" data-filter="category" data-value="ml">Machine Learning</button>
                 </div>
@@ -68,18 +81,14 @@
             </div>
         </section>
 
-        <section>
+        <section id="skills">
             <h2>Technical Skills</h2>
             <div class="skills-grid">
                 <span class="skill-label">Languages</span>
                 <span class="skill-value">Python, Java, Go, C, R, SQL, Bash</span>
-                <span class="skill-label">Frameworks</span>
-                <span class="skill-value">FastAPI, SpringBoot, pytest, JUnit, Docker, GitHub Actions, CI/CD</span>
-                <span class="skill-label">Infrastructure</span>
-                <span class="skill-value">AWS (RDS, App Runner, ECR), Redis, PostgreSQL, DuckDB, Git</span>
-                <span class="skill-label">Libraries</span>
-                <span class="skill-value">pandas, PySpark, scikit-learn, PyTorch, TensorFlow/Keras</span>
-                <span class="skill-label">Laboratory</span>
+                <span class="skill-label">Frameworks, Libraries, and Tools</span>
+                <span class="skill-value">FastAPI, SpringBoot, pytest, JUnit, Cucumber, AWS, Git, Redis, MongoDB, DuckDB, pandas, PySpark, scikit-learn, PyTorch, TensorFlow/Keras, Docker, Gradle, GitHub Actions, CI/CD</span>
+                <span class="skill-label">Laboratory <em class="skill-aside">— I was a scientist at one point.</em></span>
                 <span class="skill-value">HPLC, LC-MS, GC-MS, QQQ, RapidFire 400, PCR</span>
             </div>
         </section>
@@ -95,5 +104,6 @@
     <script src="project/project.js"></script>
     <script src="project/projects.js"></script>
     <script src="project/filter.js"></script>
+    <script src="site.js"></script>
 </body>
 </html>
