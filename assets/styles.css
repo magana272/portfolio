@@ -872,8 +872,8 @@ li::marker { color: var(--ink-soft); }
     .f-actions { order: 2; justify-content: flex-start; gap: 16px 24px; }
 }
 
-/* Nav collapses to a hamburger */
-@media (max-width: 700px) {
+/* Nav collapses to a hamburger before the four wide links can overflow the bar */
+@media (max-width: 820px) {
     .nav-toggle { display: flex; }
 
     .nav-links {
@@ -916,7 +916,6 @@ li::marker { color: var(--ink-soft); }
     .proj-ext,
     .proj-more,
     .pub-detail a,
-    .nav-links a,
     .expand-all-btn {
         min-height: 44px;
         display: inline-flex;
