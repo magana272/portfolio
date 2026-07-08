@@ -4,106 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manuel Magana &mdash; Software Engineer</title>
-    <meta name="description" content="Manuel Magana — Software Engineer based in the Bay Area. M.S. Computer Science, Northeastern. Previously Bioinformatics Scientist at Genentech. Building backend systems, distributed infrastructure, and data pipelines.">
+    <meta name="description" content="Manuel Magana — Software Engineer. M.S. Computer Science, Northeastern. B.A. Neurobiology, UC Berkeley. 2.5 years at Genentech building PySpark pipelines, validation tooling, and dashboards. Projects in backend systems, distributed infrastructure, and deep learning.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>M</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    <a href="#education" class="skip-link">Skip to content</a>
-    <div class="page">
-        <header>
-            <h1>Manuel Magana</h1>
-            <div class="tagline">Software Engineer</div>
-            <div class="contact-row">
-                Daly City, CA<span class="sep">/</span>
-                <a href="mailto:manuel.ramon.magana@gmail.com">manuel.ramon.magana@gmail.com</a>
+    <a href="#projects-section" class="skip-link">Skip to content</a>
+
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="nav-home" href="#about">Manuel Magana</a>
+            <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+            <div class="nav-links" id="nav-menu">
+                <a href="#projects-section">Work</a>
+                <a href="#experience-section">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#skills">Skills</a>
             </div>
-            <div class="contact-row">
-                <a href="https://github.com/magana272">GitHub</a><span class="sep">/</span>
-                <a href="https://linkedin.com/in/manuel-magana-359290160/">LinkedIn</a><span class="sep">/</span>
-                <a href="resumes_and_cvs/manuel_magana_resume.pdf">Resume</a><span class="sep">/</span>
-                <a href="resumes_and_cvs/CV.pdf">CV</a>
-            </div>
-            <p class="summary">
-                M.S. Computer Science, Northeastern. B.A. Neurobiology, UC Berkeley. Spent 2.5 years at Genentech building PySpark pipelines, validation tooling, and dashboards for proteomics teams. Projects in backend systems, distributed infrastructure, and deep learning.
+        </div>
+    </nav>
+
+    <header id="about" class="hero band screen">
+        <div class="wrap">
+            <p class="hero-kicker">Software Engineer &middot; Daly City, CA</p>
+            <h1>Manuel<br>Magana</h1>
+            <p class="hero-lead">
+                M.S. Computer Science, Northeastern. B.A. Neurobiology, UC Berkeley. Spent 2.5 years at Genentech building PySpark pipelines, validation tooling, and dashboards for proteomics teams. Now building backend systems, distributed infrastructure, and deep-learning projects.
             </p>
-        </header>
-
-        <nav class="site-nav">
-            <a href="#education">Education</a>
-            <a href="#experience-section">Experience</a>
-            <a href="#projects-section">Projects</a>
-            <a href="#skills">Skills</a>
-        </nav>
-
-        <section id="education">
-            <h2>Education</h2>
-            <div class="edu-entry">
-                <strong>M.S. Computer Science</strong> <span class="edu-detail">&mdash; Northeastern University, San Jose, CA (May 2026)</span><br>
-                <span class="edu-courses">Algorithms, Distributed Systems, Computer Networking, Software Engineering, Machine Learning, Deep Learning</span>
+            <div class="hero-actions">
+                <a class="btn btn-accent" href="#projects-section">View work</a>
+                <a class="btn" href="resumes_and_cvs/manuel_magana_resume.pdf">Résumé</a>
+                <span class="hero-links">
+                    <a href="mailto:manuel.ramon.magana@gmail.com">Email</a>
+                    <a href="https://github.com/magana272">GitHub</a>
+                    <a href="https://linkedin.com/in/manuel-magana-359290160/">LinkedIn</a>
+                    <a href="resumes_and_cvs/CV.pdf">CV</a>
+                </span>
             </div>
-            <div class="edu-entry">
-                <strong>B.A. Molecular and Cell Biology: Neurobiology</strong> <span class="edu-detail">&mdash; UC Berkeley (May 2021)</span><br>
-                <span class="edu-courses">Data Structures, Machine Structure, Principles &amp; Techniques of Data Science</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Each project renders as its own full-height colour band. -->
+        <section id="projects-section" class="work-sections">
+            <div id="work"></div>
+        </section>
+
+        <section id="experience-section" class="band screen">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="kicker">Experience</span>
+                    <button class="expand-all-btn">Expand all</button>
+                </div>
+                <div id="experience"></div>
             </div>
         </section>
 
-        <section id="experience-section">
-            <div class="section-header">
-                <h2>Experience</h2>
-                <button class="expand-all-btn">Expand all</button>
-            </div>
-            <div id="experience"></div>
-        </section>
-
-        <section id="projects-section">
-            <div class="projects-header">
-                <h2>Projects</h2>
-                <button class="expand-all-btn">Expand all</button>
-                <div class="filter-group" id="category-filters">
-                    <button class="filter-btn" data-filter="category" data-value="swe">Software Engineering</button>
-                    <button class="filter-btn" data-filter="category" data-value="ml">Machine Learning</button>
+        <section id="education" class="band screen">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="kicker">Education</span>
+                </div>
+                <div class="edu-entry">
+                    <strong>M.S. Computer Science</strong> <span class="edu-detail">&mdash; Northeastern University, San Jose, CA (May 2026)</span><br>
+                    <span class="edu-courses">Algorithms, Distributed Systems, Computer Networking, Software Engineering, Machine Learning, Deep Learning</span>
+                </div>
+                <div class="edu-entry">
+                    <strong>B.A. Molecular and Cell Biology: Neurobiology</strong> <span class="edu-detail">&mdash; UC Berkeley (May 2021)</span><br>
+                    <span class="edu-courses">Data Structures, Machine Structure, Principles &amp; Techniques of Data Science</span>
                 </div>
             </div>
-            <div class="filter-group" id="lang-filters">
-                <button class="filter-btn active" data-filter="lang" data-value="all">All</button>
-                <button class="filter-btn" data-filter="lang" data-value="python">Python</button>
-                <button class="filter-btn" data-filter="lang" data-value="go">Go</button>
-                <button class="filter-btn" data-filter="lang" data-value="java">Java</button>
-                <button class="filter-btn" data-filter="lang" data-value="c">C</button>
-            </div>
-
-            <div id="projects">
-                <p class="no-results" id="no-results" hidden>No projects match the selected filters.</p>
-            </div>
         </section>
 
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <span class="skill-label">Languages</span>
-                <span class="skill-value">Python, Java, Go, C, R, SQL, Bash</span>
-                <span class="skill-label">Frameworks, Libraries, and Tools</span>
-                <span class="skill-value">FastAPI, SpringBoot, pytest, JUnit, Cucumber, AWS, Git, Redis, MongoDB, DuckDB, pandas, PySpark, scikit-learn, PyTorch, TensorFlow/Keras, Docker, Gradle, GitHub Actions, CI/CD</span>
-                <span class="skill-label">Laboratory <em class="skill-aside">— I was a scientist at one point.</em></span>
-                <span class="skill-value">HPLC, LC-MS, GC-MS, QQQ, RapidFire 400, PCR</span>
+        <section id="skills" class="band screen">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="kicker">Technical Skills</span>
+                </div>
+                <div class="skills-grid">
+                    <span class="skill-label">Languages</span>
+                    <span class="skill-value">Python, Java, Go, C, R, SQL, Bash</span>
+                    <span class="skill-label">Frameworks, Libraries, and Tools</span>
+                    <span class="skill-value">FastAPI, SpringBoot, pytest, JUnit, Cucumber, AWS, Git, Redis, MongoDB, DuckDB, pandas, PySpark, scikit-learn, PyTorch, TensorFlow/Keras, Docker, Gradle, GitHub Actions, CI/CD</span>
+                    <span class="skill-label">Laboratory <em class="skill-aside">— I was a scientist at one point.</em></span>
+                    <span class="skill-value">HPLC, LC-MS, GC-MS, QQQ, RapidFire 400, PCR</span>
+                </div>
             </div>
         </section>
 
-        <section>
-            <h2>Publication</h2>
-            <p class="pub-title">MSstats+ enhances differential analysis in proteomic experiments</p>
-            <p class="pub-detail">Co-author &middot; bioRxiv 2025 &middot; <a href="https://doi.org/10.1101/2025.09.11.675573">doi:10.1101/2025.09.11.675573</a></p>
+        <section id="publication" class="band screen">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="kicker">Publication</span>
+                </div>
+                <p class="pub-title">MSstats+ enhances differential analysis in proteomic experiments</p>
+                <p class="pub-detail">Co-author &middot; bioRxiv 2025 &middot; <a href="https://doi.org/10.1101/2025.09.11.675573">doi:10.1101/2025.09.11.675573</a></p>
+            </div>
         </section>
-    </div>
-    <script src="experience/experience.js"></script>
-    <script src="experience/experiences.js"></script>
-    <script src="project/project.js"></script>
-    <script src="project/projects.js"></script>
-    <script src="project/filter.js"></script>
-    <script src="site.js"></script>
+    </main>
+
+    <footer class="band band-foot">
+        <div class="wrap footer-inner">
+            <p class="footer-name">Manuel Magana</p>
+            <p class="footer-contact">
+                <a href="mailto:manuel.ramon.magana@gmail.com">Email</a>
+                <a href="https://github.com/magana272">GitHub</a>
+                <a href="https://linkedin.com/in/manuel-magana-359290160/">LinkedIn</a>
+            </p>
+            <a class="footer-top" href="#about">Back to top &uarr;</a>
+        </div>
+    </footer>
+
+    <script src="data/experience/experience.js"></script>
+    <script src="data/experience/experiences.js"></script>
+    <script src="data/project/project.js"></script>
+    <script src="data/project/projects.js"></script>
+    <script src="assets/site.js"></script>
 </body>
 </html>
