@@ -2,7 +2,7 @@ var PROJECTS = [
     new Project({
         name: 'PayPath',
         featured: true,
-        tint: '#7cd097',
+        tint: '#0c5038',
         ink: '#0e5734',
         category: 'swe',
         lang: 'go',
@@ -17,7 +17,7 @@ var PROJECTS = [
             { label: 'Live', url: 'https://pay-path-mu.vercel.app/' },
             { label: 'GitHub', url: 'https://github.com/magana272/PayPath' }
         ],
-        description: 'Know where every paycheck goes — taxes, bills, debt, and what\'s left.',
+        description: 'Take control of your debt — and know where every paycheck goes after taxes and bills.',
         cover: 'media/img/paypathimg/bill_calendar.png',
         media: [
             'media/img/paypathimg/bill_calendar.png',
@@ -76,7 +76,7 @@ var PROJECTS = [
     new Project({
         name: 'DADA-85',
         featured: true,
-        tint: '#eb9a63',
+        tint: '#7d3410',
         ink: '#8a3a0b',
         category: 'swe',
         lang: 'typescript',
@@ -158,7 +158,7 @@ var PROJECTS = [
     new Project({
         name: 'Trak',
         featured: true,
-        tint: '#84b2ee',
+        tint: '#123a6b',
         ink: '#1b3d7c',
         category: 'swe',
         lang: 'java',
@@ -223,7 +223,7 @@ var PROJECTS = [
     new Project({
         name: 'WhatToDo',
         featured: true,
-        tint: '#b493ee',
+        tint: '#3c1f6e',
         ink: '#472a84',
         category: 'swe',
         lang: 'python',
@@ -290,7 +290,7 @@ var PROJECTS = [
     }),
     new Project({
         name: 'Physiological Signal Analytics Platform',
-        tint: '#69c9c3',
+        tint: '#7a1d2e',
         ink: '#0c4c4e',
         category: 'swe',
         lang: 'python',
@@ -308,6 +308,7 @@ var PROJECTS = [
         description: 'Query, filter, and run PCA, FFT, and spectral analyses over physiological signals through one API.',
         cover: 'media/img/PhysiologicalSignalAnalyticsPlatform/emotions.png',
         fit: 'contain',
+        mediaBg: '#111214',
         media: ['media/img/PhysiologicalSignalAnalyticsPlatform/emotions.png'],
         caseStudy: {
             problem: 'Physiological signal datasets are large and awkward to explore. Researchers needed to query raw signals and derived features without writing analysis code from scratch each time.',
@@ -344,7 +345,7 @@ var PROJECTS = [
     }),
     new Project({
         name: 'Paxos Key-Value Store',
-        tint: '#95a3ee',
+        tint: '#232a63',
         ink: '#2b3468',
         category: 'swe',
         lang: 'java',
@@ -395,7 +396,7 @@ var PROJECTS = [
     }),
     new Project({
         name: 'Cell Type Classification from scRNA-seq',
-        tint: '#ec93bd',
+        tint: '#4d1c5c',
         ink: '#79264e',
         category: 'ml',
         lang: 'python',
@@ -448,7 +449,7 @@ var PROJECTS = [
     }),
     new Project({
         name: 'Emotion Recognition from Physiological Signals',
-        tint: '#efad5b',
+        tint: '#6d4d11',
         ink: '#7f400d',
         category: 'ml',
         lang: 'python',
@@ -462,6 +463,10 @@ var PROJECTS = [
         ],
         links: [],
         description: 'Can your heartbeat reveal how you feel? Detecting emotion from biosignals.',
+        cover: 'media/img/PhysioSignals.png',
+        fit: 'contain',
+        mediaBg: '#111214',
+        media: ['media/img/PhysioSignals.png'],
         caseStudy: {
             problem: 'Can physiological signals alone reveal emotional state? The task was binary emotion recognition (Neutral vs. Threat) from biosignals, under heavy class imbalance.',
             approach: 'Built the model, the signal preprocessing pipeline, and an INT8-quantized baseline aimed at wearable deployment.',

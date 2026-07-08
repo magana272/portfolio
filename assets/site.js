@@ -1,23 +1,6 @@
 (function () {
     var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Entrance animations (skip if user prefers reduced motion)
-    if (!prefersReducedMotion) {
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.feature, .pcard, .job, .edu-entry, .skills-grid, .pub-title').forEach(function (el) {
-            el.classList.add('reveal');
-            observer.observe(el);
-        });
-    }
-
     // Only play looping project videos while they're on screen — the DADA-85
     // clip is heavy, so we don't want it decoding off-screen. Skip autoplay
     // entirely when the user prefers reduced motion: the poster frame stands in,

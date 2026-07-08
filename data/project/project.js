@@ -16,7 +16,8 @@ class Project {
         this.name = opts.name;
         this.featured = !!opts.featured;
         this.tint = opts.tint || '#f4f4f2';
-        this.ink = opts.ink || '#111214';
+        this.ink = opts.ink || '#111214';       // dark accent, used on the light case-study page
+        this.fg = opts.fg || '#f4f0e8';          // light text on the dark jewel panel (index)
         this.category = opts.category;
         this.lang = opts.lang;
         this.tech = opts.tech;
@@ -29,6 +30,9 @@ class Project {
         // 'cover' fills the frame (screenshots); 'contain' shows the whole image
         // without cropping (charts, diagrams).
         this.fit = opts.fit || 'cover';
+        // Frame colour behind a 'contain' image — default white suits light
+        // figures; set dark for figures with a black background.
+        this.mediaBg = opts.mediaBg || '';
         this.poster = opts.poster || '';
         this.mono = opts.mono || '';
         this.caseStudy = opts.caseStudy || null;
@@ -138,7 +142,9 @@ class Project {
     }
 
     styleVars() {
-        return '--tint:' + this.tint + ';--pink:' + this.ink;
+        var vars = '--tint:' + this.tint + ';--pink:' + this.ink + ';--panel-fg:' + this.fg;
+        if (this.mediaBg) vars += ';--media-bg:' + this.mediaBg;
+        return vars;
     }
 
     // Full-height alternating project panel on a soft tinted colour band.
