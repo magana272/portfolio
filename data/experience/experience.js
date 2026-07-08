@@ -20,8 +20,10 @@ class Experience {
         div.innerHTML =
             '<div class="card-toggle">' +
                 '<div class="job-header">' +
-                    '<span class="job-title">' + this.title + '</span> ' +
-                    '<span class="job-company">&mdash; ' + this.company + '</span><br>' +
+                    '<h3 class="job-heading">' +
+                        '<span class="job-title">' + this.title + '</span> ' +
+                        '<span class="job-company">&mdash; ' + this.company + '</span>' +
+                    '</h3>' +
                     '<span class="job-meta">' + this.start + ' &ndash; ' + this.end + ' &middot; ' + this.location + '</span>' +
                 '</div>' +
                 '<span class="chevron" aria-hidden="true"></span>' +

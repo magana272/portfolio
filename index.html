@@ -5,14 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manuel Magana &mdash; Software Engineer</title>
     <meta name="description" content="Manuel Magana — Software Engineer. M.S. Computer Science, Northeastern. B.A. Neurobiology, UC Berkeley. 2.5 years at Genentech building PySpark pipelines, validation tooling, and dashboards. Projects in backend systems, distributed infrastructure, and deep learning.">
+    <link rel="canonical" href="https://magana272.github.io/portfolio/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Manuel Magana — Software Engineer">
+    <meta property="og:description" content="Software engineer building backend systems, distributed infrastructure, and deep-learning projects. Ex-Genentech.">
+    <meta property="og:url" content="https://magana272.github.io/portfolio/">
+    <meta property="og:image" content="https://magana272.github.io/portfolio/media/img/paypathimg/bill_calendar.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manuel Magana — Software Engineer">
+    <meta name="twitter:description" content="Software engineer building backend systems, distributed infrastructure, and deep-learning projects. Ex-Genentech.">
+    <meta name="twitter:image" content="https://magana272.github.io/portfolio/media/img/paypathimg/bill_calendar.png">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>M</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@600&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    <a href="#projects-section" class="skip-link">Skip to content</a>
+    <a href="#about" class="skip-link">Skip to content</a>
 
     <nav class="site-nav">
         <div class="nav-inner">
@@ -31,7 +43,7 @@
         </div>
     </nav>
 
-    <header id="about" class="hero band screen">
+    <header id="about" class="hero band screen" tabindex="-1">
         <div class="wrap">
             <p class="hero-kicker">Software Engineer &middot; Daly City, CA</p>
             <h1>Manuel<br>Magana</h1>
@@ -53,40 +65,45 @@
 
     <main>
         <!-- Each project renders as its own full-height colour band. -->
-        <section id="projects-section" class="work-sections">
+        <section id="projects-section" class="work-sections" aria-labelledby="work-heading">
+            <div class="wrap work-intro">
+                <div class="section-head">
+                    <h2 class="kicker" id="work-heading">Selected Work</h2>
+                </div>
+            </div>
             <div id="work"></div>
         </section>
 
-        <section id="experience-section" class="band screen">
+        <section id="experience-section" class="band screen" aria-labelledby="experience-heading">
             <div class="wrap">
                 <div class="section-head">
-                    <span class="kicker">Experience</span>
+                    <h2 class="kicker" id="experience-heading">Experience</h2>
                     <button class="expand-all-btn">Expand all</button>
                 </div>
                 <div id="experience"></div>
             </div>
         </section>
 
-        <section id="education" class="band screen">
+        <section id="education" class="band screen" aria-labelledby="education-heading">
             <div class="wrap">
                 <div class="section-head">
-                    <span class="kicker">Education</span>
+                    <h2 class="kicker" id="education-heading">Education</h2>
                 </div>
                 <div class="edu-entry">
-                    <strong>M.S. Computer Science</strong> <span class="edu-detail">&mdash; Northeastern University, San Jose, CA (May 2026)</span><br>
+                    <h3 class="edu-degree">M.S. Computer Science</h3> <span class="edu-detail">&mdash; Northeastern University, San Jose, CA (May 2026)</span><br>
                     <span class="edu-courses">Algorithms, Distributed Systems, Computer Networking, Software Engineering, Machine Learning, Deep Learning</span>
                 </div>
                 <div class="edu-entry">
-                    <strong>B.A. Molecular and Cell Biology: Neurobiology</strong> <span class="edu-detail">&mdash; UC Berkeley (May 2021)</span><br>
+                    <h3 class="edu-degree">B.A. Molecular and Cell Biology: Neurobiology</h3> <span class="edu-detail">&mdash; UC Berkeley (May 2021)</span><br>
                     <span class="edu-courses">Data Structures, Machine Structure, Principles &amp; Techniques of Data Science</span>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="band screen">
+        <section id="skills" class="band screen" aria-labelledby="skills-heading">
             <div class="wrap">
                 <div class="section-head">
-                    <span class="kicker">Technical Skills</span>
+                    <h2 class="kicker" id="skills-heading">Technical Skills</h2>
                 </div>
                 <div class="skills-grid">
                     <span class="skill-label">Languages</span>
@@ -99,12 +116,12 @@
             </div>
         </section>
 
-        <section id="publication" class="band screen">
+        <section id="publication" class="band screen" aria-labelledby="publication-heading">
             <div class="wrap">
                 <div class="section-head">
-                    <span class="kicker">Publication</span>
+                    <h2 class="kicker" id="publication-heading">Publication</h2>
                 </div>
-                <p class="pub-title">MSstats+ enhances differential analysis in proteomic experiments</p>
+                <h3 class="pub-title">MSstats+ enhances differential analysis in proteomic experiments</h3>
                 <p class="pub-detail">Co-author &middot; bioRxiv 2025 &middot; <a href="https://doi.org/10.1101/2025.09.11.675573">doi:10.1101/2025.09.11.675573</a></p>
             </div>
         </section>

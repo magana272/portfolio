@@ -26,6 +26,9 @@ class Project {
         this.takeaway = opts.takeaway || '';
         this.media = [].concat(opts.media || []);
         this.cover = opts.cover || '';
+        // 'cover' fills the frame (screenshots); 'contain' shows the whole image
+        // without cropping (charts, diagrams).
+        this.fit = opts.fit || 'cover';
         this.poster = opts.poster || '';
         this.mono = opts.mono || '';
         this.caseStudy = opts.caseStudy || null;
@@ -73,7 +76,10 @@ class Project {
         if (src) {
             if (this.isVideo(src)) {
                 var poster = this.poster ? ' poster="' + projectEsc(this.poster) + '"' : '';
-                return '<video src="' + encodeURI(src) + '"' + poster + ' autoplay muted loop playsinline preload="metadata"></video>';
+                // No `autoplay` attribute and preload="none": playback is driven by
+                // site.js only when motion is allowed and the clip is on screen, so
+                // reduced-motion users see the poster and never fetch the heavy file.
+                return '<video src="' + encodeURI(src) + '"' + poster + ' muted loop playsinline preload="none"></video>';
             }
             return '<img src="' + projectEsc(src) + '" alt="' + projectEsc(this.name) + ' preview" loading="lazy">';
         }
@@ -150,7 +156,7 @@ class Project {
 
         section.innerHTML =
             '<div class="wrap feature-inner">' +
-                '<a class="feature-media' + (this.hasMedia() ? '' : ' is-gen') + '" href="' + href + '" tabindex="-1" aria-hidden="true">' +
+                '<a class="feature-media' + (this.hasMedia() ? '' : ' is-gen') + (this.fit === 'contain' ? ' is-contain' : '') + '" href="' + href + '" tabindex="-1" aria-hidden="true">' +
                     this.mediaEl() +
                 '</a>' +
                 '<div class="f-head">' +
@@ -180,7 +186,7 @@ class Project {
         var ext = this.extLinksHtml();
 
         article.innerHTML =
-            '<a class="pcard-cover' + (this.hasMedia() ? '' : ' is-gen') + '" href="' + href + '" tabindex="-1" aria-hidden="true">' +
+            '<a class="pcard-cover' + (this.hasMedia() ? '' : ' is-gen') + (this.fit === 'contain' ? ' is-contain' : '') + '" href="' + href + '" tabindex="-1" aria-hidden="true">' +
                 this.mediaEl() +
             '</a>' +
             '<div class="pcard-body">' +

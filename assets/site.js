@@ -19,9 +19,11 @@
     }
 
     // Only play looping project videos while they're on screen — the DADA-85
-    // clip is heavy, so we don't want it decoding off-screen.
+    // clip is heavy, so we don't want it decoding off-screen. Skip autoplay
+    // entirely when the user prefers reduced motion: the poster frame stands in,
+    // and the multi-megabyte clip is never even fetched.
     var videos = document.querySelectorAll('.feature-media video, .pcard-cover video');
-    if (videos.length && 'IntersectionObserver' in window) {
+    if (!prefersReducedMotion && videos.length && 'IntersectionObserver' in window) {
         var vObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 var v = entry.target;

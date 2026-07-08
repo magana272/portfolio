@@ -9,13 +9,14 @@
     --accent-deep: #b0311b;
     --accent-ink: #b52f18;      /* accent for small text — AA on every band */
 
-    /* full-bleed section band backgrounds (bold) */
+    /* full-bleed section band backgrounds — softened so the red accent still
+       reads as the loudest thing on the page, and so muted text clears AA */
     --band-about:  #ecdcc0;
     --band-work:   #ffffff;
-    --band-exp:    #b9d2f2;
-    --band-edu:    #bfe6cd;
-    --band-skills: #d9c8f4;
-    --band-pub:    #f4d2bd;
+    --band-exp:    #cdddf0;
+    --band-edu:    #d2e8d9;
+    --band-skills: #e0d6f0;
+    --band-pub:    #f1ddce;
 
     --display: 'Jost', system-ui, -apple-system, sans-serif;
     --body: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
@@ -266,6 +267,7 @@ header[id], section[id], .feature[id] { scroll-margin-top: 0; }
 }
 
 .btn:hover { background: var(--ink); color: #fff; }
+.btn:active { transform: translateY(1px); }
 
 .btn-accent {
     background: var(--accent);
@@ -274,6 +276,9 @@ header[id], section[id], .feature[id] { scroll-margin-top: 0; }
 }
 
 .btn-accent:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+
+.expand-all-btn:active,
+.nav-toggle:active { transform: translateY(1px); }
 
 .hero-links {
     display: flex;
@@ -368,6 +373,10 @@ header[id], section[id], .feature[id] { scroll-margin-top: 0; }
 
 .work-sections { background: var(--bg); }
 
+/* Section intro sitting above the full-height project panels */
+.work-intro { padding-block: clamp(96px, 13vh, 150px) 0; }
+.work-intro .section-head { margin-bottom: 0; }
+
 .feature {
     background: var(--tint);
     min-height: 100vh;
@@ -411,6 +420,17 @@ header[id], section[id], .feature[id] { scroll-margin-top: 0; }
 
 .feature:hover .feature-media img,
 .feature:hover .feature-media video { transform: scale(1.03); }
+
+/* Figure/diagram covers: fit the whole image inside the frame, never crop */
+.feature-media.is-contain,
+.pcard-cover.is-contain { background: #fff; }
+
+.feature-media.is-contain img,
+.pcard-cover.is-contain img {
+    object-fit: contain;
+    object-position: center;
+    padding: 5%;
+}
 
 .feature-kicker {
     font-family: var(--mono);
@@ -706,6 +726,7 @@ header[id], section[id], .feature[id] { scroll-margin-top: 0; }
 
 .card.collapsed .card-body { max-height: 0; opacity: 0; margin-top: 0; }
 
+.job-heading { font-size: 1rem; font-weight: 400; line-height: 1.35; }
 .job-title { font-family: var(--display); font-weight: 600; font-size: 1.2rem; letter-spacing: -0.01em; }
 .job-company { font-family: var(--body); font-weight: 500; color: var(--ink-mid); }
 .job-meta { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); letter-spacing: 0.01em; }
@@ -736,13 +757,13 @@ li::marker { color: var(--ink-soft); }
 
 .edu-entry { margin-bottom: 20px; }
 .edu-entry:last-child { margin-bottom: 0; }
-.edu-entry strong { font-family: var(--display); font-weight: 600; font-size: 1.2rem; }
+.edu-degree { display: inline; font-family: var(--display); font-weight: 600; font-size: 1.2rem; }
 .edu-detail { color: var(--ink-mid); font-size: 0.95rem; }
 .edu-courses {
     display: block;
     font-family: var(--mono);
     font-size: 0.74rem;
-    color: var(--ink-soft);
+    color: var(--ink-mid);      /* AA on the education band (5.5:1) */
     margin-top: 6px;
     line-height: 1.5;
 }
@@ -773,7 +794,7 @@ li::marker { color: var(--ink-soft); }
     letter-spacing: 0;
     font-weight: 400;
     font-size: 0.8rem;
-    color: var(--ink-soft);
+    color: var(--ink-mid);      /* AA on the skills band (5:1) */
 }
 
 /* ── Publication ── */
@@ -864,7 +885,29 @@ li::marker { color: var(--ink-soft); }
 
     .nav-links a { padding: 15px clamp(20px, 4vw, 40px); font-size: 0.82rem; color: var(--ink); }
     .nav-links a::after { display: none; }
-    .nav-links a.active { color: var(--accent-ink); }
+    /* Active item marked by weight + a leading accent bar, not colour alone */
+    .nav-links a.active {
+        color: var(--accent-ink);
+        font-weight: 600;
+        box-shadow: inset 3px 0 0 var(--accent);
+    }
+}
+
+/* ── Touch targets — enlarge inline links to 44px on touch devices only,
+   leaving the desktop mouse layout visually unchanged ── */
+@media (pointer: coarse) {
+    .hero-links a,
+    .footer-contact a,
+    .footer-top,
+    .proj-ext,
+    .proj-more,
+    .pub-detail a,
+    .nav-links a,
+    .expand-all-btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
 }
 
 @media (max-width: 600px) {

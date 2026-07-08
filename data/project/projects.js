@@ -305,7 +305,10 @@ var PROJECTS = [
             { label: 'API', url: 'https://github.com/magana272/popanedb-backend' },
             { label: 'Library', url: 'https://github.com/magana272/POPANEpy' }
         ],
-        description: 'Query, filter, and analyze biosignals without writing a single line of code.',
+        description: 'Query, filter, and run PCA, FFT, and spectral analyses over physiological signals through one API.',
+        cover: 'media/img/PhysiologicalSignalAnalyticsPlatform/emotions.png',
+        fit: 'contain',
+        media: ['media/img/PhysiologicalSignalAnalyticsPlatform/emotions.png'],
         caseStudy: {
             problem: 'Physiological signal datasets are large and awkward to explore. Researchers needed to query raw signals and derived features without writing analysis code from scratch each time.',
             approach: 'Designed a two-layer system — a reusable analysis library and a production API over it — so the same logic serves batch scripts and interactive tools.',
@@ -354,6 +357,9 @@ var PROJECTS = [
         ],
         links: [{ label: 'GitHub', url: 'https://github.com/magana272/PAXOS-Key-Value-Store' }],
         description: 'A key-value store that stays consistent even when nodes crash.',
+        cover: 'media/img/paxos/paxos.png',
+        fit: 'contain',
+        media: ['media/img/paxos/paxos.png'],
         caseStudy: {
             problem: 'A key-value store should stay correct even when nodes crash or the network splits. That requires real distributed consensus, not a single-writer shortcut.',
             approach: 'Implemented a fault-tolerant KV store on Paxos with full Proposer / Acceptor / Learner roles over RPC, plus a membership protocol for dynamic clusters.',
@@ -403,6 +409,9 @@ var PROJECTS = [
         ],
         links: [{ label: 'GitHub', url: 'https://github.com/magana272/Cell-Type-Classification' }],
         description: 'Classify 76K brain cells across 17 types using gene expression alone.',
+        cover: 'media/img/celltypeClass/fig_mpan_results.png',
+        fit: 'contain',
+        media: ['media/img/celltypeClass/fig_mpan_results.png'],
         caseStudy: {
             problem: 'Annotating cell types from single-cell RNA sequencing is slow and manual. The question was which deep learning architecture does it best, and whether the model can stay interpretable.',
             approach: 'Benchmarked three architectures end to end, engineered a biologically interpretable embedding, and tested whether the model transfers across sequencing platforms.',
