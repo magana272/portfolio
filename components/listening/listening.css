@@ -1,0 +1,98 @@
+/* ── Listening & Watching (band body rendered by components/listening/listening.js) ── */
+
+/* Big editorial ranked lists */
+.lw-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 84px);
+    margin-top: clamp(24px, 4vw, 42px);
+}
+
+.lw-col-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 12px;
+    margin-bottom: clamp(12px, 2vw, 20px);
+    border-bottom: 1px solid rgba(244, 240, 232, 0.16);
+}
+
+.lw-label {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--on-dark-soft);
+}
+
+.lw-link {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--on-dark);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(244, 240, 232, 0.3);
+    transition: border-color 0.15s;
+}
+.lw-link:hover { border-bottom-color: var(--on-dark); }
+
+.lw-list { list-style: none; padding: 0; margin: 0; counter-reset: lw; }
+
+.lw-list li {
+    counter-increment: lw;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: clamp(8px, 1.2vw, 15px) 0;
+    border-top: 1px solid rgba(244, 240, 232, 0.1);
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.45rem, 3vw, 2.3rem);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    color: var(--on-dark);
+}
+
+.lw-list li::before {
+    content: counter(lw, decimal-leading-zero);
+    flex: none;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--on-dark-soft);
+    transform: translateY(-0.15em);
+}
+
+.lw-year {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--on-dark-soft);
+    align-self: center;
+}
+
+/* Artist rows carry a thumbnail beside the name */
+.lw-list--img li { align-items: center; font-size: clamp(1.2rem, 2.3vw, 1.8rem); }
+
+.lw-thumb {
+    flex: none;
+    width: clamp(42px, 4vw, 54px);
+    height: clamp(42px, 4vw, 54px);
+    border-radius: 8px;
+    object-fit: cover;
+    background: rgba(244, 240, 232, 0.06);
+}
+
+.lw-poster {
+    flex: none;
+    width: clamp(40px, 3.6vw, 48px);
+    aspect-ratio: 2 / 3;
+    border-radius: 6px;
+    object-fit: cover;
+    background: rgba(244, 240, 232, 0.06);
+}
+
+@media (max-width: 700px) {
+    .lw-grid { grid-template-columns: 1fr; gap: clamp(36px, 9vw, 52px); }
+}

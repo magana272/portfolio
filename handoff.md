@@ -94,9 +94,14 @@ Rules that keep it coherent:
   about-me, jiu-jitsu, listening) are empty `<section id>` elements whose
   bodies `HomePage.layout()` mounts from their components + `content/` data —
   the same pattern as the project/experience panels. Only photography keeps a
-  small static head in the HTML (its mosaic is JS-filled). CSS for these bands
-  still lives in `styles/education-skills.css` and `styles/life.css` (not yet
-  co-located).
+  small static head in the HTML (its mosaic is JS-filled).
+- **Component CSS is co-located:** each band's styles live next to its JS
+  (`components/education/education.css`, `skills/`, `me/`, `jiujitsu/`,
+  `listening/`). `styles/` now holds only genuinely global/page sheets (base,
+  hero, footer, responsive, print) plus the shared `.life-note` utility (moved
+  into `base.css`, since photography's static head and the jiu-jitsu component
+  both use it). `styles/main.css` `@import`s the component sheets in band
+  order.
 - **CSS:** `styles/main.css` `@import`s global files from `styles/` and each
   component's stylesheet from its folder, in the same cascade order as the old
   13-link set (photo-mosaic.css sits where its rules sat inside life.css).

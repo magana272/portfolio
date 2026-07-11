@@ -1,0 +1,33 @@
+/* ── Skills (band body rendered by components/skills/skills.js) ── */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: clamp(18px, 3.5vh, 40px) 32px;
+}
+
+/* Heading stays pinned at the top of the panel; the grid floats to the vertical
+   centre by soaking up the free space above and below it (the wrap is a
+   full-height flex column). */
+#skills .skills-grid { margin-block: auto; }
+
+.skill-label {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--on-dark);
+    padding-top: 2px;
+}
+
+.skill-value { color: var(--on-dark-soft); font-size: 1rem; line-height: 1.55; }
+
+.skill-aside {
+    font-family: var(--body);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--on-dark-soft);
+}

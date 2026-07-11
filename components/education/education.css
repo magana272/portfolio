@@ -1,4 +1,4 @@
-/* ── Education ── */
+/* ── Education (band body rendered by components/education/education.js) ── */
 
 .edu-entry { margin-bottom: 20px; }
 .edu-entry:last-child { margin-bottom: 0; }
@@ -37,40 +37,6 @@
     border-top: 1px solid rgba(244, 240, 232, 0.16);
 }
 
-/* ── Skills ── */
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: 210px 1fr;
-    gap: clamp(18px, 3.5vh, 40px) 32px;
-}
-
-/* Heading stays pinned at the top of the panel; the grid floats to the vertical
-   centre by soaking up the free space above and below it (the wrap is a
-   full-height flex column). */
-#skills .skills-grid { margin-block: auto; }
-
-.skill-label {
-    font-family: var(--mono);
-    font-weight: 500;
-    font-size: 0.76rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--on-dark);
-    padding-top: 2px;
-}
-
-.skill-value { color: var(--on-dark-soft); font-size: 1rem; line-height: 1.55; }
-
-.skill-aside {
-    font-family: var(--body);
-    text-transform: none;
-    letter-spacing: 0;
-    font-weight: 400;
-    font-size: 0.8rem;
-    color: var(--on-dark-soft);
-}
-
 /* ── Publication ── */
 
 .pub-title { font-family: var(--display); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; color: var(--on-dark); max-width: 34rem; }
@@ -79,4 +45,3 @@
 .pub-detail { font-family: var(--mono); font-size: 0.8rem; color: var(--on-dark-soft); margin-top: 8px; overflow-wrap: anywhere; max-width: 34rem; }
 .pub-detail a { color: var(--on-dark); text-decoration: none; border-bottom: 1px solid currentColor; }
 .pub-detail a:hover { opacity: 0.7; }
-
