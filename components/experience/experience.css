@@ -136,7 +136,14 @@
     margin-bottom: 10px;
 }
 
+/* Wrapping flex row (like .feature-tech): the spans carry no whitespace, so a
+   plain inline paragraph has no break opportunities and long stacks overflow
+   the phone viewport. Flex items wrap at every term instead. */
 .exp-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 8px;
     font-family: var(--mono);
     font-size: 0.82rem;
     line-height: 1.7;
@@ -144,7 +151,7 @@
 }
 
 .exp-tech-list .t { white-space: nowrap; }
-.exp-tech-list .dot { color: var(--on-dark-soft); margin-inline: 7px; }
+.exp-tech-list .dot { color: var(--on-dark-soft); }
 
 @media (max-width: 760px) {
     /* Stack on phones: box full-width edge to edge, tech list below it, drop
@@ -154,5 +161,6 @@
     .exp-aside { align-items: flex-start; text-align: left; padding-inline: clamp(16px, 5vw, 32px); margin-top: clamp(20px, 5vw, 32px); }
     .exp-bignum { display: none; }
     .exp-tech { margin: 0; max-width: none; }
+    .exp-tech-list { justify-content: flex-start; }
 }
 

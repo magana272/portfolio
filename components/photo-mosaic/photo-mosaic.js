@@ -4,7 +4,7 @@
 // toggle. pages/index.js calls initPhotoMosaic(PHOTOS).
 import { reducedMotion } from '../../lib/core.js';
 
-var BASE = 'static/media/img/photography/web/pngs/';
+var FULL = 'static/media/img/photography/web/full/';
 var WEBP = 'static/media/img/photography/web/webp/';
 
 export function initPhotoMosaic(photos) {
@@ -14,13 +14,13 @@ export function initPhotoMosaic(photos) {
         photos.forEach(function (p, i) {
             var a = document.createElement('a');
             a.className = 'photo' + (p.s ? ' ' + p.s : '');
-            a.href = BASE + p.n + '.png';
+            a.href = FULL + p.n + '.webp';
             a.setAttribute('data-index', i);
             var img = document.createElement('img');
-            // Light webp first; the full png swaps in when the tile nears the
-            // viewport (see lib/media-loader.js).
+            // Light webp first; the full-view webp swaps in when the tile
+            // nears the viewport (see lib/media-loader.js).
             img.src = WEBP + p.n + '.webp';
-            img.dataset.full = BASE + p.n + '.png';
+            img.dataset.full = FULL + p.n + '.webp';
             img.alt = p.a || '35mm film photograph';
             img.loading = 'lazy';
             if (p.w && p.h) { img.width = p.w; img.height = p.h; }

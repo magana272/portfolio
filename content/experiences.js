@@ -1,5 +1,4 @@
-// Experience content — pure data. Each entry is an Experience (see
-// components/experience/experience.js); the home page renders them in pages/index.js.
+
 import { Experience } from '../components/experience/experience.js';
 
 export const EXPERIENCES = [

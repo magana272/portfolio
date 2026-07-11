@@ -1,10 +1,10 @@
 // Off-the-clock content — pure data. The me collage that components/me/me.js
 // renders into the #about-me band.
 //   n = file stem under static/media/img/me/web/ (same stem for the light
-//   .webp and the full .png the media loader swaps in); w/h = pixel dims so
-//   the browser knows each aspect ratio up front; a = optional alt text.
+//   webp/ thumb and the full/ webp the media loader swaps in); w/h = pixel
+//   dims so the browser knows each aspect ratio up front; a = optional alt text.
 export const ME = {
-    lead: "Software engineer in Los Angeles, by way of a neurobiology degree at Berkeley and a few years at Genentech. When I'm not building, I'm shooting 35mm around the city, training no-gi jiu-jitsu, and keeping a running tab of films and records.",
+    lead: "Most of my time goes to software. The rest goes to trying not to get choked unconscious by the 15-year-old or the father of three at jiu-jitsu, watching movies or listening to music.",
     photos: [
     { n: "001191160005", w: 1200, h: 795, a: "At UC Berkeley's Sather Gate in a graduation stole" },
     { n: "251123_184051", w: 1200, h: 807, a: "In a photobooth with friends" },

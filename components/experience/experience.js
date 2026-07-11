@@ -1,6 +1,3 @@
-// Experience model: one role's data plus the logic to render it as a
-// full-height panel. Content lives in content/experiences.js. Constructed from
-// an options object, mirroring Project, so call sites read as named fields.
 import { slugify, padNum, formatTechList } from '../../lib/core.js';
 
 export class Experience {

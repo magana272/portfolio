@@ -27,7 +27,7 @@
     --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
     --nav-h: 60px;
-    --maxw: 1080px;
+    --maxw: 100wh;
 
     /* Menu orb — fixed literals, not --ink, because .dd-page remaps --ink to a
        light tone and the menu must stay dark-on-yellow everywhere. */
@@ -103,7 +103,6 @@ body:not(.dd-page) { overflow-x: clip; }
    while media (photos, grids) shrink via vh caps so nothing overflows. One
    rule for every panel — no per-section padding tweaks. */
 .screen {
-    min-height: 100vh;
     min-height: 100dvh;
     display: flex;
     align-items: stretch;

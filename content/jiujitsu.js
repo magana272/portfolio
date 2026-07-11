@@ -6,7 +6,7 @@ export const JIUJITSU = {
     title: 'El Ni&ntilde;o Training Center',
     photo: {
         src: 'static/media/img/jiujitsu/web/IMG_4501-web.jpg',
-        full: 'static/media/img/jiujitsu/web/pngs/IMG_4501.png',
+        full: 'static/media/img/jiujitsu/web/full/IMG_4501.webp',
         w: 1125, h: 1500,
         alt: 'After training at the jiu-jitsu gym with teammates'
     },
