@@ -40,11 +40,21 @@ class DeepDivePage extends Page {
         this.project = project;
         document.title = project.name + ' · Deep Dive';
 
-        // Wash the whole deep dive in the project's signature jewel colour;
-        // accents stay light (handled by the .dd-page token remap in the
-        // stylesheet). The menu is themed separately in onNavReady().
+        // Wash the whole deep dive in the project's signature jewel colour, then
+        // pull its orb theme onto the page accents so the deep dive wears the
+        // same palette as its home band and orb, not a flat cream accent. The
+        // bright flood is the accent that pops on the dark tint (--dd-accent
+        // feeds --pink, which drives every dd-* accent); the band's hover/active
+        // colour rides the "back" link. The menu orb is themed in onNavReady().
+        var page = document.body.style;
         if (project.tint) {
-            document.body.style.setProperty('--tint', project.tint);
+            page.setProperty('--tint', project.tint);
+        }
+        if (project.theme) {
+            if (project.theme.accent) page.setProperty('--dd-accent', project.theme.accent);
+            var accent = project.theme.hover || project.theme.accent;
+            page.setProperty("--ink", project.theme.flood)
+            page.setProperty("--ink-mid", project.theme.flood)
         }
 
         this.root.innerHTML = new DeepDive(project, cs).html();
@@ -74,7 +84,6 @@ class DeepDivePage extends Page {
             });
         });
     }
-
     // Theme the menu once the orb exists with the SAME theme this project's
     // band wears on the home page (Project.theme is its SECTIONTHEME entry), so
     // the orb matches everywhere the project appears. The deep-dive page is
@@ -83,6 +92,7 @@ class DeepDivePage extends Page {
     onNavReady() {
         if (this.project && this.project.theme) {
             this.menu.applyTheme(this.project.theme);
+            
         }
     }
 }

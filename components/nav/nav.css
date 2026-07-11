@@ -117,15 +117,19 @@
     transition: clip-path 0.45s cubic-bezier(0.55, 0, 0.35, 1), visibility 0s, background-color 0.35s ease;
 }
 
-/* .nav-overlay.is-open { overflow-y: auto; } */
+/* Once open, the overlay scrolls its own overflow — on short screens the full
+   menu is taller than the viewport, and the page behind is scroll-locked, so
+   without this the links below the fold are unreachable. overscroll-behavior
+   keeps that scroll from chaining to the page. */
+.nav-overlay.is-open { overflow-y: auto; overscroll-behavior: contain; }
 
 html.menu-open { overflow: hidden; }
 
 /* Everything hangs off the right edge, under the orb, so the cursor barely
    has to travel after the hold — no maxw column, the window edge is the edge. */
 .nav-menu {
-    min-height: 100%;
-    padding: clamp(20px, 6vh, 130px) clamp(10px, 2vw, 40px) clamp(18px, 3vh, 42px);
+    min-height: 100dvh;
+    padding: clamp(20px, 6dvh, 130px) clamp(10px, 2vw, 40px) clamp(18px, 3dvh, 42px);
     display: flex;
     flex-direction: column;
     /* Centre the menu on tall screens, but fall back to top-aligned when the

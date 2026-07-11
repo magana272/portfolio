@@ -22,7 +22,7 @@ export const SECTIONTHEME = {
     // ── Sections (keyed by Section.title) ──
     'About': { flood: '#2528a6', ink: '#ecdcc0', hot: '#8dfaa1', hover: '#ffd21e', active: '#ffd21e' },                   // cream band → royal blue flood
     'Education': { flood: '#ff5f8f', ink: '#0a5c3e', hot: '#ffffff', hover: 'var(--band-edu)', active: 'var(--band-edu)' }, // emerald band → rose pink flood
-    'Skills': { flood: '#c8f542', ink: '#5b21c0', hot: '#173404', hover: 'var(--band-skills)', active: 'var(--band-skills)' }, // violet band → lime flood
+    'Skills': { flood: '#c8f542', ink: '#5b21c0', hot: '#173404', hover:'#548a30', active: '#5fd114' }, // violet band → lime flood
     'Off the clock': { flood: '#ff8c1a', ink: '#141018', hot: '#2528a6', hover: '#2528a6', active: '#2528a6' },           // near-black band → bright orange flood
     'Photography': { flood: '#f4f0e8', ink: '#141018' },                                                                  // near-black band → film white flood
     'Jiu-Jitsu': { flood: '#ff5f8f', ink: '#141018', hot: '#ffffff', hover: '#ffffff', active: '#ffffff' },              // near-black band → rose pink flood

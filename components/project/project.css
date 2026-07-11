@@ -15,7 +15,7 @@
 }
 
 .feature-inner {
-    width: 100%;
+    width:100dvw;;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto minmax(0, 1fr) auto;
@@ -53,7 +53,7 @@
 /* Figure/diagram covers: fit the whole image inside the frame, never crop.
    Frame defaults to white (light figures); dark figures set --media-bg. */
 .feature-media.is-contain,
-.pcard-cover.is-contain { background: var(--media-bg, #fff); }
+.pcard-cover.is-contain { background: var(--media-bg, "--tint"); }
 
 .feature-media.is-contain img,
 .pcard-cover.is-contain img {

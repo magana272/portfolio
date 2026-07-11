@@ -15,7 +15,7 @@
    panel still fills the screen the way the desktop grid's flexing middle row
    does. The v1/v2 grid-column/grid-row placements go inert once the inner is a
    flex column; only their align-self needs neutralising. */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
     .feature-inner {
         display: flex;
         flex-direction: column;

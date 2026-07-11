@@ -13,7 +13,12 @@
     --ink-soft: #cdc8be;
     --line: rgba(244, 240, 232, 0.16);
     --surface: rgba(244, 240, 232, 0.07);
-    --pink: #f4f0e8;
+    /* The single accent channel for every dd-* accent (labels, links, the
+       section rule, the note bar). DeepDivePage sets --dd-accent inline from the
+       project's orb theme (its bright flood, which pops on the dark tint); with
+       no theme it stays cream. The print rule below overrides --pink to black
+       directly, so it wins there regardless of --dd-accent. */
+    --pink: var(--dd-accent, #f4f0e8);
 }
 
 /* No fixed nav bar anymore — just the floating orb, so a normal top breathing
@@ -56,6 +61,7 @@
     letter-spacing: -0.035em;
     margin-bottom: clamp(18px, 3vw, 26px);
     max-width: 18ch;
+    color: var(--ink)
 }
 
 .dd-lead {

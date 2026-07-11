@@ -162,9 +162,9 @@ export class DeepDive {
     // The whole case study, hero over the two-column layout. Every deep dive
     // renders this same structure so the "Learn more" pages stay consistent.
     html() {
-        return this.heroHtml() +
-            '<div class="dd-layout">' +
+        return '<div class="dd-layout">' +
                 '<main class="dd-main">' +
+                    this.heroHtml() +
                     this.galleryHtml() +
                     this.noteHtml() +
                     this.highlightsHtml() +

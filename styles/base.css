@@ -105,8 +105,9 @@ body:not(.dd-page) { overflow-x: clip; }
 .screen {
     min-height: 100vh;
     min-height: 100dvh;
-    /* display: flex; */
-    /* flex-direction: row; */
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
     justify-content: flex-start;
     padding-block: clamp(72px, 10vh, 120px) clamp(40px, 7vh, 80px);
     scroll-snap-align: start;
@@ -116,9 +117,11 @@ body:not(.dd-page) { overflow-x: clip; }
    leftover space falls below it (so short panels can shrink into place). */
 .screen > .wrap {
     flex: 1;
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* justify-content: flex-end; */
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
     min-height: 0;
 }
 
