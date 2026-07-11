@@ -25,7 +25,7 @@ export function initScrollSpy(sections, menu) {
     // Every colour band in document order, first-match-wins from the bottom:
     // static sections carry their theme on their Section, tinted bands
     // (projects, experience) get their computed complement. Panels are built
-    // before this runs (see pages/home/home.js), so the bands exist by now.
+    // before this runs (see pages/index.js), so the bands exist by now.
     var themeSpots = Array.prototype.slice.call(
         document.querySelectorAll('header[id], main section[id], #work .feature, #experience .exp')
     ).map(function (el) {

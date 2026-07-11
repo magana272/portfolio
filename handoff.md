@@ -34,12 +34,12 @@ it is plain buildless ESM; there is no framework or bundler.
 index.html                          home route (root; GitHub Pages requirement)
 pages/
   page.js                           class Page — the shared boot sequence (base class)
-  home/home.js                      class HomePage extends Page — panels + features + spy
+  index.js                          class HomePage extends Page — mounts the bands, panels, spy
   project/project.html              deep-dive route (<base href="../../">)
   project/project.js                class DeepDivePage extends Page — pairs ?id with
                                     its copy, delegates markup to the DeepDive model
   project.html                      redirect stub → project/project.html (+ query)
-components/                         one folder per component, JS + CSS co-located
+components/                         one folder per component, JS (+ CSS) co-located
   nav/nav.html                      shell partial (orb + overlay + empty lists)
   nav/nav.js                        class Menu — builds links from sections, hold-to-open,
                                     applyTheme() (the ONLY writer of --orb-*)
@@ -51,6 +51,11 @@ components/                         one folder per component, JS + CSS co-locate
   deep-dive/deep-dive.js + .css     class DeepDive (case study → markup, one method per block)
   pager/pager.js + pager.css        section pager triangles (home)
   photo-mosaic/photo-mosaic.js+.css masonry + FLIP expand + JJ tags (photos injected by HomePage)
+  education/education.js            renderEducation(EDUCATION) → #education body
+  skills/skills.js                 renderSkills(SKILLS) → #skills body
+  me/me.js                         renderMe(ME) → #about-me collage body
+  jiujitsu/jiujitsu.js             renderJiujitsu(JIUJITSU) → #jiujitsu body
+  listening/listening.js           renderListening(LISTENING) → #listening body
 lib/
   core.js                           shared helpers (esc, slugify, padNum, complement, triad,
                                     isVideo, reducedMotion, formatTechList)
@@ -60,6 +65,7 @@ content/                            pure data
   sections.js                       SECTIONS — the nav/band source of truth (labels, order,
                                     backgrounds, orb themes, Projects jump-list)
   projects.js  experiences.js  deep-dives.js  photos.js
+  education.js  skills.js  me.js  jiujitsu.js  listening.js   (the five content bands)
 styles/
   main.css                          the only <link>; @imports everything in cascade order
   base.css  hero.css  education-skills.css  life.css  footer.css
@@ -70,16 +76,27 @@ static/                             images, video, PDFs
 Rules that keep it coherent:
 - **Dependencies point downward:** `pages → components / content → lib`.
   Components never import `content/` (pages inject data — e.g.
-  `initPhotoMosaic(PHOTOS)`); `content/` constructs component classes
-  (`content/projects.js` builds `Project`s).
+  `initPhotoMosaic(PHOTOS)`, `renderEducation(EDUCATION)`); `content/`
+  constructs component classes (`content/projects.js` builds `Project`s).
 - **No `window.*` globals**; every page loads a single
   `<script type="module">` entry and the browser pulls in the import graph.
-- **Class layer:** `Page.init()` owns the boot order (paint the Section bands →
-  subclass `render()` → await the nav partial → build the `Menu` → subclass
-  `onNavReady()`). `SECTIONS` is the single source of truth for the menu and
-  bands on BOTH pages; the deep-dive page passes `linkPrefix: 'index.html'`
-  and the Menu prefixes the hrefs it generates (`data-link-prefix` is unused
-  but still supported by `lib/includes.js`).
+- **Class layer — the Page lifecycle:** `Page.init()` runs `layout()` (build
+  the DOM: base paints the Section bands, subclass mounts its components and
+  panels) → `render()` (wire behaviour over that structure: media loader,
+  pager, deep-dive outline) → await the nav partial → build the `Menu` →
+  `onNavReady()` (nav-dependent: scroll spy, menu theming). `Page.mount(id,
+  html)` fills a section shell, a no-op when the id isn't on the page.
+  `SECTIONS` is the single source of truth for the menu and bands on BOTH
+  pages; the deep-dive page passes `linkPrefix: 'index.html'` and the Menu
+  prefixes the hrefs it generates (`data-link-prefix` is unused but still
+  supported by `lib/includes.js`).
+- **`index.html` is a thin shell:** the five content bands (education, skills,
+  about-me, jiu-jitsu, listening) are empty `<section id>` elements whose
+  bodies `HomePage.layout()` mounts from their components + `content/` data —
+  the same pattern as the project/experience panels. Only photography keeps a
+  small static head in the HTML (its mosaic is JS-filled). CSS for these bands
+  still lives in `styles/education-skills.css` and `styles/life.css` (not yet
+  co-located).
 - **CSS:** `styles/main.css` `@import`s global files from `styles/` and each
   component's stylesheet from its folder, in the same cascade order as the old
   13-link set (photo-mosaic.css sits where its rules sat inside life.css).
@@ -98,7 +115,26 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ---
 
-## What changed in the Next-style restructure (2026-07-10, latest)
+## What changed in the layout()/index.js pass (2026-07-10, latest)
+1. `pages/home/home.js` → `pages/index.js` (Next home-route convention);
+   `index.html`'s script src and all comment refs updated.
+2. **`Page.layout()` added.** The lifecycle is now `layout()` (build DOM
+   structure) → `render()` (wire behaviour) → nav → Menu → `onNavReady()`.
+   Base `layout()` paints the bands; `HomePage.layout()` also mounts the five
+   content bands + builds the panels; `render()` keeps only the behaviours
+   (mosaic/media/pager). `DeepDivePage` split the same way (build case study
+   in `layout()`, outline wiring in `render()`). New helper `Page.mount()`.
+3. **`index.html` slimmed 230 → 117 lines.** The education, skills, about-me
+   (53-photo collage), jiu-jitsu, and listening bodies moved to
+   `content/{education,skills,me,jiujitsu,listening}.js` + a render component
+   each under `components/`; `index.html` now holds empty `<section>` shells
+   that `HomePage.layout()` fills. Photography's small static head stayed.
+4. Verified: every component renders DOM-equivalent to the original section
+   markup (whitespace-normalized, significant inter-tag spaces asserted
+   separately), all 53 collage photos present, syntax + import graph + HTTP
+   sweep green.
+
+## What changed in the Next-style restructure (2026-07-10, earlier)
 1. Moved the whole tree into `pages/ components/ lib/ content/ styles/` (map
    above); `assets/` and `partials/` are gone. All moves were `git mv` on top
    of a snapshot commit, so history tracks the renames.

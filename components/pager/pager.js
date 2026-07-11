@@ -1,7 +1,7 @@
 // Section pager (home page) — the two triangles jump between full-height panels.
 // Down (green) goes to the next panel's top. Up (red) snaps to the CURRENT
 // panel's top when you're scrolled past it, then to the previous panel — so
-// scrolling up always lands flush at a section top. pages/home.js calls
+// scrolling up always lands flush at a section top. pages/index.js calls
 // initPager().
 import { reducedMotion } from '../../lib/core.js';
 

@@ -1,10 +1,10 @@
-// Deep-dive page controller and entry point: DeepDivePage extends Page.
+// Deep-dive route controller and entry point: DeepDivePage extends Page.
 // Looks up the project from the ?id=<slug> query param, pairs it with its
 // case-study copy, and hands the rendering to the DeepDive model
-// (models/deep-dive.js). The base Page owns the shared boot sequence; the menu
-// is built from the same SECTIONS list with links prefixed back to index.html,
-// and once the orb exists onNavReady() washes it in the project's colours via
-// Menu.applyTheme().
+// (components/deep-dive/deep-dive.js). The base Page owns the shared boot
+// order; the menu is built from the same SECTIONS list with links prefixed
+// back to index.html, and once the orb exists onNavReady() washes it in the
+// project's colours via Menu.applyTheme().
 import { PROJECTS } from '../../content/projects.js';
 import { DEEP_DIVES } from '../../content/deep-dives.js';
 import { SECTIONS } from '../../content/sections.js';
@@ -18,7 +18,13 @@ class DeepDivePage extends Page {
         this.project = null;
     }
 
-    render() {
+    // Structure: resolve the slug and build the case study into #deep-dive (or
+    // the not-found notice). super.layout() paints bands, a no-op here since
+    // the home sections aren't on this page.
+    layout() {
+        super.layout();
+        this.root = document.getElementById('deep-dive');
+
         var params = new URLSearchParams(window.location.search);
         var id = params.get('id');
         var project = PROJECTS.filter(function (p) { return p.slug === id; })[0];
@@ -26,10 +32,8 @@ class DeepDivePage extends Page {
         // by slug, so the home page never loads it.
         var cs = project ? DEEP_DIVES[project.slug] : null;
 
-        var root = document.getElementById('deep-dive');
-
         if (!project || !cs) {
-            this.renderNotFound(root, id);
+            this.renderNotFound(this.root, id);
             return;
         }
 
@@ -43,8 +47,7 @@ class DeepDivePage extends Page {
             document.body.style.setProperty('--tint', project.tint);
         }
 
-        root.innerHTML = new DeepDive(project, cs).html();
-        this.wireOutline(root);
+        this.root.innerHTML = new DeepDive(project, cs).html();
     }
 
     renderNotFound(root, id) {
@@ -57,10 +60,11 @@ class DeepDivePage extends Page {
             '</div>';
     }
 
-    // Smooth-scroll the sidebar outline links (base href would otherwise send
-    // them to the home page).
-    wireOutline(root) {
-        root.querySelectorAll('.dd-outline a').forEach(function (a) {
+    // Behaviour: smooth-scroll the sidebar outline links (base href would
+    // otherwise send them to the home page). A no-op on the not-found notice,
+    // which has no outline.
+    render() {
+        this.root.querySelectorAll('.dd-outline a').forEach(function (a) {
             a.addEventListener('click', function (e) {
                 var target = document.getElementById(a.getAttribute('href').slice(1));
                 if (target) {

@@ -1,7 +1,7 @@
 // Photography mosaic (home page). Builds the grid from the photos data HomePage passes in; clicking
 // a photo expands it in place, and the grid reflows while the other photos
 // animate to their new positions (FLIP). Also wires the jiu-jitsu photo's tag
-// toggle. pages/home/home.js calls initPhotoMosaic(PHOTOS).
+// toggle. pages/index.js calls initPhotoMosaic(PHOTOS).
 import { reducedMotion } from '../../lib/core.js';
 
 var BASE = 'static/media/img/photography/web/pngs/';
