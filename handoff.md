@@ -45,7 +45,7 @@ components/                         one folder per component, JS (+ CSS) co-loca
                                     applyTheme() (the ONLY writer of --orb-*)
   nav/nav.css                       orb + overlay + menu styles (uses --orb-hover/--orb-active)
   nav/scroll-spy.js                 active-section spy; themes the orb via menu.applyTheme()
-  section/section.js + section.css  class Section (id, title, group, background, theme, sublist)
+  section/section.js + section.css  class Section (id, title, group, background, theme, tag, sublistGroup)
   project/project.js + project.css  class Project (data + renderFeature; href() → deep dive)
   experience/experience.js + .css   class Experience (data + render)
   deep-dive/deep-dive.js + .css     class DeepDive (case study → markup, one method per block)
@@ -63,13 +63,13 @@ lib/
   media-loader.js                   on-screen video + progressive image upgrades (home)
 content/                            pure data
   sections.js                       SECTIONS — the nav/band source of truth (labels, order,
-                                    backgrounds, orb themes, Projects jump-list)
+                                    backgrounds, orb themes); each project is a
+                                    group:'project' Section built from PROJECTS
   projects.js  experiences.js  deep-dives.js  photos.js
   education.js  skills.js  me.js  jiujitsu.js  listening.js   (the five content bands)
 styles/
   main.css                          the only <link>; @imports everything in cascade order
-  base.css  hero.css  education-skills.css  life.css  footer.css
-  responsive.css  print.css         global / page-band styles
+  base.css  hero.css  footer.css  responsive.css  print.css   global / page sheets only
 static/                             images, video, PDFs
 ```
 
@@ -120,7 +120,20 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ---
 
-## What changed in the co-location + menu-colour pass (2026-07-10, latest)
+## What changed in the each-project-is-a-Section pass (2026-07-10, latest)
+1. Each project band is now its own `Section` (`group: 'project'`, id
+   `work-<slug>`, tint-derived theme, tagline as its `tag`), built from
+   `PROJECTS` in `content/sections.js`.
+2. The Projects heading declares `sublistGroup: 'project'`; `Menu.sublistHtml`
+   nests every project Section under it as the numbered jump-list. The old
+   `Section.sublist` array + the `projectSublist` builder are gone (replaced by
+   `tag` + `sublistGroup` on the model).
+3. Rendered menu is byte-identical (Projects heading + the same 8 sub-links);
+   the scroll spy now themes each project band from its Section's theme instead
+   of re-reading `--tint` off the DOM. Verified sublist output, main-list
+   numbering, and per-band one-per-menu hover/active.
+
+## What changed in the co-location + menu-colour pass (2026-07-10, earlier)
 1. **Component CSS co-located:** `styles/education-skills.css` → `education/` +
    `skills/`; `styles/life.css` → `me/` + `jiujitsu/` + `listening/`; shared
    `.life-note` moved to `styles/base.css`. `styles/main.css` imports the

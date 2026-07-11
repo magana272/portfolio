@@ -41,15 +41,19 @@ export class Menu {
     }
 
     // A section's nested jump-list (the Projects band lists its panels),
-    // rendered from the Section's sublist entries.
+    // rendered from the child Sections in the heading's sublistGroup (the
+    // projects heading nests every group 'project' Section). Numbering runs
+    // within the group.
     sublistHtml(section) {
         var menu = this;
-        if (!section.sublist.length) return '';
-        return '<ul class="nav-menu-sub">' + section.sublist.map(function (item) {
-            return '<li><a href="' + menu.prefix + '#' + item.anchor + '">' +
-                    '<span class="nav-sub-num">' + item.num + '</span>' +
-                    '<span class="nav-sub-name">' + esc(item.name) + '</span>' +
-                    '<span class="nav-sub-tag">' + esc(item.tag) + '</span>' +
+        if (!section.sublistGroup) return '';
+        var kids = this.sections.filter(function (s) { return s.group === section.sublistGroup; });
+        if (!kids.length) return '';
+        return '<ul class="nav-menu-sub">' + kids.map(function (s, i) {
+            return '<li><a href="' + menu.prefix + '#' + s.id + '">' +
+                    '<span class="nav-sub-num">' + padNum(i + 1) + '</span>' +
+                    '<span class="nav-sub-name">' + esc(s.title) + '</span>' +
+                    '<span class="nav-sub-tag">' + esc(s.tag) + '</span>' +
                 '</a></li>';
         }).join('') + '</ul>';
     }

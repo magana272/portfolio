@@ -3,7 +3,9 @@
 // the menu wears while the band is on screen. The instances live in
 // content/sections.js; the Page paints them, the Menu builds its links from
 // them, and the scroll spy themes the orb from them — no other copy of any of
-// that data exists.
+// that data exists. Each project band is itself a Section (group 'project'),
+// so the projects heading nests them as its jump-list rather than duplicating
+// them as a separate array.
 import { complement, triad } from '../../lib/core.js';
 
 export class Section {
@@ -11,8 +13,9 @@ export class Section {
         this.id = opts.id;                        // element id, also the #anchor
         this.title = opts.title;                  // menu label
         // Which menu cluster the section belongs to: 'main' (the numbered
-        // list), 'off' (the off-the-clock cluster), or 'off-label' (the
-        // cluster's heading link).
+        // list), 'off' (the off-the-clock cluster), 'off-label' (the cluster's
+        // heading link), or 'project' (a project band nested under the
+        // projects heading).
         this.group = opts.group || 'main';
         this.background = opts.background || '';  // the band's colour
         // Orb theme for this band: {flood, ink, hot, hover, active}. flood is
@@ -21,9 +24,13 @@ export class Section {
         // (the band accent). Omitted keys fall back to the :root defaults
         // (yellow flood, near-black ink, deep red accent).
         this.theme = opts.theme || null;
-        // Optional jump-list nested under the section's menu link: entries of
-        // {anchor, num, name, tag} (the Projects band lists its panels).
-        this.sublist = opts.sublist || [];
+        // Small tag shown beside this section's name when it appears as a
+        // nested sub-link (a project's tagline / category).
+        this.tag = opts.tag || '';
+        // If set, the Menu nests every Section in this group under this
+        // section's menu link as a numbered jump-list (the projects heading
+        // sets sublistGroup: 'project').
+        this.sublistGroup = opts.sublistGroup || '';
     }
 
     el() {

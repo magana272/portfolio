@@ -14,16 +14,21 @@
 // red accent, which also covers hover/active).
 import { Section } from '../components/section/section.js';
 import { PROJECTS } from './projects.js';
-import { padNum } from '../lib/core.js';
 
-// The Projects band carries the menu's jump-list: one entry per project panel.
-var projectSublist = PROJECTS.map(function (p, i) {
-    return {
-        anchor: 'work-' + p.slug,
-        num: padNum(i + 1),
-        name: p.name,
-        tag: p.tagline || p.catLabel()
-    };
+// Each project band is its own Section (group 'project'), built from the
+// PROJECTS data: id matches the panel Project.renderFeature() creates
+// (#work-<slug>), the theme is computed from the project's tint, and the tag is
+// its menu jump-list label. The projects heading below nests these via
+// sublistGroup: 'project'. The panel paints and lays out its own body
+// (Project.renderFeature); the Section carries only the nav/orb metadata.
+var projectSections = PROJECTS.map(function (p) {
+    return new Section({
+        id: 'work-' + p.slug,
+        title: p.name,
+        group: 'project',
+        tag: p.tagline || p.catLabel(),
+        theme: Section.themeFromTint(p.tint)
+    });
 });
 
 export const SECTIONS = [
@@ -35,9 +40,10 @@ export const SECTIONS = [
     new Section({
         id: 'projects-section', title: 'Projects',
         background: 'var(--band-work)',
-        sublist: projectSublist
-        // no theme: each project band themes the orb from its own --tint
+        sublistGroup: 'project'   // nests the project Sections below as the jump-list
     }),
+    // Each project band, in document order (inside #projects-section).
+    ...projectSections,
     new Section({
         id: 'experience-section', title: 'Experience',
         background: 'var(--band-exp)'
