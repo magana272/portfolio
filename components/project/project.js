@@ -11,6 +11,11 @@ export class Project {
     constructor(opts) {
         this.name = opts.name;
         this.tint = opts.tint || '#f10202';
+        // Orb theme for this project's band. Either a full theme object
+        // ({flood, ink, hot, hover, active}) to hand-tune the menu colours, or
+        // left off to derive from the tint. Section.theme() accepts either; the
+        // project band's Section (content/sections.js) is built from it.
+        this.theme = opts.theme || this.tint;
         this.ink = opts.ink || '#111214';       // dark accent, used on the light deep-dive page
         this.fg = opts.fg || '#f4f0e8';          // light text on the dark jewel panel (index)
         this.category = opts.category;

@@ -44,10 +44,21 @@ export class Section {
         if (el && this.background) el.style.background = this.background;
     }
 
-    // Computed theme for tinted bands (projects, roles), which carry --tint
-    // instead of a hand-tuned theme: the tint's complement floods, the tint
-    // itself inks the links, and the triad's third hue is the accent — worn by
-    // the numbers/tags (hot) and, one per menu, the hover/active links.
+    // Orb theme from a spec: a full {flood, ink, hot, hover, active} object is
+    // used as-is (hand-tuned menu colours), a tint colour string is expanded
+    // via themeFromTint, and anything falsy yields no theme (the :root default
+    // orb). This is what a project band's Section is built from —
+    // Section.theme(project.theme) — so a project can either hand-tune its orb
+    // or fall back to its tint.
+    static theme(spec) {
+        if (!spec) return null;
+        return typeof spec === 'string' ? Section.themeFromTint(spec) : spec;
+    }
+
+    // Computed theme for a tinted band from a single tint colour: the tint's
+    // complement floods, the tint itself inks the links, and the triad's third
+    // hue is the accent — worn by the numbers/tags (hot) and, one per menu, the
+    // hover/active links.
     static themeFromTint(tint) {
         var flood = complement(tint);
         if (!flood) return null;

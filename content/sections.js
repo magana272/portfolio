@@ -17,8 +17,9 @@ import { PROJECTS } from './projects.js';
 
 // Each project band is its own Section (group 'project'), built from the
 // PROJECTS data: id matches the panel Project.renderFeature() creates
-// (#work-<slug>), the theme is computed from the project's tint, and the tag is
-// its menu jump-list label. The projects heading below nests these via
+// (#work-<slug>), the orb theme comes from the project's own theme (a hand-
+// tuned object, or its tint when it doesn't set one), and the tag is its menu
+// jump-list label. The projects heading below nests these via
 // sublistGroup: 'project'. The panel paints and lays out its own body
 // (Project.renderFeature); the Section carries only the nav/orb metadata.
 var projectSections = PROJECTS.map(function (p) {
@@ -27,7 +28,7 @@ var projectSections = PROJECTS.map(function (p) {
         title: p.name,
         group: 'project',
         tag: p.tagline || p.catLabel(),
-        theme: Section.themeFromTint(p.tint)
+        theme: Section.theme(p.theme)
     });
 });
 

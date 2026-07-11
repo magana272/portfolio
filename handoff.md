@@ -121,8 +121,13 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 ---
 
 ## What changed in the each-project-is-a-Section pass (2026-07-10, latest)
-1. Each project band is now its own `Section` (`group: 'project'`, id
-   `work-<slug>`, tint-derived theme, tagline as its `tag`), built from
+0. Each project carries its own orb `theme` (`Project.theme`, defaulting to its
+   tint but overridable with a full `{flood, ink, hot, hover, active}` object).
+   `Section.theme(spec)` accepts either a theme object (used as-is) or a tint
+   string (expanded via `themeFromTint`); the project Section is built with
+   `Section.theme(p.theme)`.
+1. Each project band is its own `Section` (`group: 'project'`, id
+   `work-<slug>`, theme from `Project.theme`, tagline as its `tag`), built from
    `PROJECTS` in `content/sections.js`.
 2. The Projects heading declares `sublistGroup: 'project'`; `Menu.sublistHtml`
    nests every project Section under it as the numbered jump-list. The old
