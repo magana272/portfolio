@@ -22,15 +22,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@600&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- One stylesheet entry; it @imports the split-by-concern set in cascade
-         order (see assets/css/main.css). -->
-    <link rel="stylesheet" href="assets/css/main.css">
+         order (see styles/main.css). -->
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <a href="#about" class="skip-link">Skip to content</a>
 
     <!-- Shared navigation component (orb + overlay menu), injected from
-         partials/nav.html by assets/js/includes.js. -->
-    <div data-include="partials/nav.html"></div>
+         components/nav/nav.html by lib/includes.js. -->
+    <div data-include="components/nav/nav.html"></div>
 
     <div class="section-pager">
         <button class="pager-btn" type="button" data-dir="-1" aria-label="Previous section">
@@ -259,7 +259,7 @@
     </footer>
 
     <!-- One ES-module entry point; its imports pull in the rest of the graph
-         (core, models, content, features) in dependency order. -->
-    <script type="module" src="assets/js/pages/home.js"></script>
+         (lib, components, content) in dependency order. -->
+    <script type="module" src="pages/home/home.js"></script>
 </body>
 </html>

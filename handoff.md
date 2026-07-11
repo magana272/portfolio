@@ -23,89 +23,71 @@ There is still no build/bundler — the browser loads the modules directly.
 
 ---
 
-## Architecture (after this session's reorganization)
+## Architecture (Next-style layout, zero dependencies)
 
-The project was reorganized from a loose pile of globally-scoped scripts into a
-layered, buildless structure.
-
-### JavaScript — ES modules, one entry point per page, class-based pages
-- Each HTML page loads a **single** `<script type="module">`
-  (`assets/js/pages/home.js` or `assets/js/pages/project.js`); the browser pulls
-  in the rest of the import graph.
-- Dependencies point downward only: `pages → features/content → models → core`.
-- **No `window.*` globals.** `core.js` exports named helpers
-  (`esc, slugify, padNum, complement, triad, isVideo, reducedMotion,
-  formatTechList`) that everything imports.
-- **Class layer (added 2026-07-10):** `Page` is the base class every page
-  controller extends (`HomePage`, `DeepDivePage`). `Page.init()` owns the
-  shared boot order: paint the Section bands → subclass `render()` → await the
-  nav partial → build the `Menu` → subclass `onNavReady()`. A page is: data
-  (its `Section[]` + link prefix) plus those two hooks.
-- **`SECTIONS` (content/sections.js) is the single source of truth** for the
-  home bands: document order, menu label + cluster, band background colour,
-  the orb theme triple, and (on the Projects band) the `sublist` — the menu's
-  project jump-list entries, built from `PROJECTS`. The Menu builds its links
-  AND the jump-list from it on BOTH pages, the scroll spy themes the orb from
-  it, and each Section paints its own band background (the old per-id
-  background rules are gone from the CSS).
-- **`Menu` (features/menu.js) is a class** and the only writer of the `--orb-*`
-  custom properties (`applyTheme({flood, ink, hot})`). The orb-theming block
-  that used to be duplicated in scroll-spy.js and pages/project.js now has one
-  copy here.
+The tree is shaped like a Next.js app — routes under `pages/`, co-located
+components under `components/<name>/` (JS + CSS + markup together), shared
+helpers in `lib/`, pure data in `content/`, global styles in `styles/` — but
+it is plain buildless ESM; there is no framework or bundler.
 
 ```
-assets/js/
-  core.js                 shared helpers (named exports)
-  includes.js             HTML-partial loader; exports `ready` (a Promise)
-  models/
-    section.js            class Section (id, title, group, background, orb theme, sublist)
-    project.js            class Project (data + renderFeature)
-    experience.js         class Experience (data + render)
-    deep-dive.js          class DeepDive (project + case-study copy → page markup,
-                          one method per block: summary, media, highlights, ...)
-  content/                pure data
-    sections.js           SECTIONS (array of Section — the nav/band source of truth)
-    projects.js           PROJECTS (array of Project)
-    experiences.js        EXPERIENCES
-    deep-dives.js         DEEP_DIVES (case-study copy, keyed by slug)
-    photos.js             PHOTOS (photography mosaic)
-  features/
-    menu.js               class Menu — builds links from sections, hold-to-open,
-                          applyTheme() (the only writer of --orb-*)
-    scroll-spy.js         active-section spy; themes the orb via menu.applyTheme()
-    media-loader.js       on-screen video + progressive images (home)
-    photo-mosaic.js       masonry + FLIP expand + JJ tags (home)
-    pager.js              section pager triangles (home)
-  pages/
-    page.js               class Page — the shared boot sequence (base class)
-    home.js               class HomePage extends Page — panels + features + spy
-    project.js            class DeepDivePage extends Page — pairs ?id with its
-                          copy, delegates markup to the DeepDive model
+index.html                          home route (root; GitHub Pages requirement)
+pages/
+  page.js                           class Page — the shared boot sequence (base class)
+  home/home.js                      class HomePage extends Page — panels + features + spy
+  project/project.html              deep-dive route (<base href="../../">)
+  project/project.js                class DeepDivePage extends Page — pairs ?id with
+                                    its copy, delegates markup to the DeepDive model
+  project.html                      redirect stub → project/project.html (+ query)
+components/                         one folder per component, JS + CSS co-located
+  nav/nav.html                      shell partial (orb + overlay + empty lists)
+  nav/nav.js                        class Menu — builds links from sections, hold-to-open,
+                                    applyTheme() (the ONLY writer of --orb-*)
+  nav/nav.css                       orb + overlay + menu styles (incl. --item-hover rules)
+  nav/scroll-spy.js                 active-section spy; themes the orb via menu.applyTheme()
+  section/section.js + section.css  class Section (id, title, group, background, theme, sublist)
+  project/project.js + project.css  class Project (data + renderFeature; href() → deep dive)
+  experience/experience.js + .css   class Experience (data + render)
+  deep-dive/deep-dive.js + .css     class DeepDive (case study → markup, one method per block)
+  pager/pager.js + pager.css        section pager triangles (home)
+  photo-mosaic/photo-mosaic.js+.css masonry + FLIP expand + JJ tags (photos injected by HomePage)
+lib/
+  core.js                           shared helpers (esc, slugify, padNum, complement, triad,
+                                    isVideo, reducedMotion, formatTechList)
+  includes.js                       HTML-partial loader; exports `ready` (a Promise)
+  media-loader.js                   on-screen video + progressive image upgrades (home)
+content/                            pure data
+  sections.js                       SECTIONS — the nav/band source of truth (labels, order,
+                                    backgrounds, orb themes, Projects jump-list)
+  projects.js  experiences.js  deep-dives.js  photos.js
+styles/
+  main.css                          the only <link>; @imports everything in cascade order
+  base.css  hero.css  education-skills.css  life.css  footer.css
+  responsive.css  print.css         global / page-band styles
+static/                             images, video, PDFs
 ```
 
-### Reusable markup — HTML partials
-- Shared markup lives under `partials/`. `partials/nav.html` is now just the
-  **shell** (orb button, overlay, kicker, empty link containers, footer links);
-  the Menu class fills `.nav-menu-links` and `.nav-menu-off` from `SECTIONS`.
-- A page marks the slot with `<div data-include="partials/nav.html">`;
-  `assets/js/includes.js` fetches the file and swaps it in.
-- Cross-page links: the deep-dive page no longer uses `data-link-prefix` (the
-  partial has no `#anchor` links left) — `DeepDivePage` passes
-  `linkPrefix: 'index.html'` and the Menu prefixes the hrefs it generates.
-  The `data-link-prefix` mechanism still exists in `includes.js` for future
-  partials.
-- `Page.init()` awaits `includes.js`'s exported `ready` promise before
-  building the Menu / wiring nav-dependent behaviour.
-
-### CSS — split by concern, one entry file
-`assets/css/main.css` is the only stylesheet either page links; it `@import`s
-the 13 concern files in **cascade order**:
-`base, nav, hero, sections, projects, experience, education-skills, life,
-footer, responsive, print, deep-dive, pager`.
-Band backgrounds (`#education`, `.life-panel`, the hero, `.work-sections`) no
-longer live in the CSS — each Section applies its own `background` from
-`content/sections.js` at boot (the values still reference the `--band-*`
-tokens in `base.css`).
+Rules that keep it coherent:
+- **Dependencies point downward:** `pages → components / content → lib`.
+  Components never import `content/` (pages inject data — e.g.
+  `initPhotoMosaic(PHOTOS)`); `content/` constructs component classes
+  (`content/projects.js` builds `Project`s).
+- **No `window.*` globals**; every page loads a single
+  `<script type="module">` entry and the browser pulls in the import graph.
+- **Class layer:** `Page.init()` owns the boot order (paint the Section bands →
+  subclass `render()` → await the nav partial → build the `Menu` → subclass
+  `onNavReady()`). `SECTIONS` is the single source of truth for the menu and
+  bands on BOTH pages; the deep-dive page passes `linkPrefix: 'index.html'`
+  and the Menu prefixes the hrefs it generates (`data-link-prefix` is unused
+  but still supported by `lib/includes.js`).
+- **CSS:** `styles/main.css` `@import`s global files from `styles/` and each
+  component's stylesheet from its folder, in the same cascade order as the old
+  13-link set (photo-mosaic.css sits where its rules sat inside life.css).
+  Band backgrounds are Section data, not per-id CSS rules; the `--band-*`
+  palette tokens stay in `styles/base.css`.
+- **Routes:** the deep-dive URL moved to `pages/project/project.html`;
+  `Project.href()` points there, and the stub at `pages/project.html`
+  redirects old links, preserving `?id=` and `#hash`.
 
 ### Static assets
 Images, videos, and PDFs live under `static/`:
@@ -115,6 +97,22 @@ Images, videos, and PDFs live under `static/`:
 Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_cvs/…`.
 
 ---
+
+## What changed in the Next-style restructure (2026-07-10, latest)
+1. Moved the whole tree into `pages/ components/ lib/ content/ styles/` (map
+   above); `assets/` and `partials/` are gone. All moves were `git mv` on top
+   of a snapshot commit, so history tracks the renames.
+2. Deep-dive route co-located at `pages/project/project.html`
+   (`<base href="../../">`); redirect stub kept at the old
+   `pages/project.html` URL; `Project.href()` updated.
+3. `initPhotoMosaic(photos)` now takes its data as a parameter (components
+   never import content); `HomePage` passes `PHOTOS`.
+4. The masonry block moved from `life.css` into
+   `components/photo-mosaic/photo-mosaic.css`, imported at the same cascade
+   position; rules byte-identical.
+5. Verified: node syntax checks, full import-graph resolution, HTTP 200 sweep,
+   stub redirect, and the menu/deep-dive equivalence harnesses (all 8 case
+   studies byte-identical through the new paths).
 
 ## What changed in the class-refactor session (2026-07-10, later)
 1. **Class architecture:** new `Page` base class (`pages/page.js`) owning the
@@ -177,13 +175,10 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
   the menu is currently the original **flush-right with ragged numbers**. Revisit
   if column-aligned numbers are still wanted — the tricky part is the nested
   "Work" sub-list, whose long project names are wider than the main labels.
-- **Nothing is committed yet.** `git status` shows the old files as deleted and
-  `assets/css/`, `assets/js/`, `partials/`, `static/` as untracked. Because the
-  media/resumes move + the JS reshuffle happened in the working tree, git sees
-  deletes + adds rather than renames. Recommend committing to snapshot the new
-  structure (and `git add` the new dirs).
+- **Commits:** the class refactor is snapshotted in `42b7e5e`; the Next-style
+  restructure is its own follow-up commit (renames tracked via `git mv`).
 - **Menu label:** item 02 reads "Projects"; it now lives in
-  `assets/js/content/sections.js` (the partial no longer carries labels).
+  `content/sections.js` (the partial no longer carries labels).
 - **Band paint timing:** section backgrounds are applied by JS at boot. On a
   slow first load the bands could flash white for a beat before the module
   executes. If that's ever visible, the fix is inlining a tiny critical style
@@ -210,5 +205,5 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ## Deploy
 GitHub Pages. CI (`.gitlab-ci.yml`, if used) copies every top-level directory
-into `public/`, so `static/`, `partials/`, `assets/` deploy automatically — no
-path allowlist to maintain.
+into `public/`, so `pages/`, `components/`, `lib/`, `content/`, `styles/`, and
+`static/` deploy automatically — no path allowlist to maintain.

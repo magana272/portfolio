@@ -1,0 +1,48 @@
+// Photography mosaic content — pure data. components/photo-mosaic/photo-mosaic.js builds the
+// grid from this array.
+//   n = file stem (no extension); s = optional feature-tile size class;
+//   a = optional alt text; w/h = webp pixel dims, so tiles get their aspect
+//   ratio (and masonry row span) before anything downloads.
+export const PHOTOS = [
+    { n: 'elscaltor_edit', s: 'pm-lg', w: 1400, h: 928, a: 'Escalators at the Shattuck & Center St station, Berkeley' },
+    { n: 'knife', w: 1400, h: 928, a: 'A knife resting on a car roof, San Francisco' },
+    { n: '001166650009', s: 'pm-wide', w: 1400, h: 928, a: 'An Art Deco building with a green lawn' },
+    { n: '001166650020', s: 'pm-tall', w: 927, h: 1400, a: '35mm film photograph, portrait orientation' },
+    { n: 'washer', w: 1400, h: 928, a: 'Washing machines lined up outside in the sun' },
+    { n: '001158820011', w: 1400, h: 928, a: 'People on a hazy beach, black and white' },
+    { n: 'IMG_0637', s: 'pm-wide', w: 1400, h: 733 },
+    { n: '001166650013', s: 'pm-lg', w: 1400, h: 928, a: 'Vintage camper vans parked in a lot' },
+    { n: '001158820012 copy', s: 'pm-wide', w: 1400, h: 928, a: 'Two friends watching the ocean at dusk, black and white' },
+    { n: 'IMG_0578', w: 1400, h: 928, a: 'Hand-painted picture frames leaning against a shed' },
+    { n: 'IMG_0470', w: 1400, h: 928 },
+    { n: '001166620015 copy', s: 'pm-lg', w: 1400, h: 928, a: 'A graduate in a Cal stole sitting on a fallen log over a creek' },
+    { n: '001166650011', w: 1400, h: 928 },
+    { n: '001166650015', s: 'pm-tall', w: 1400, h: 928 },
+    { n: 'IMG_0659', w: 1400, h: 928 },
+    { n: '001158820014 copy', w: 1400, h: 928, a: 'Silhouettes in a sunlit kitchen, black and white' },
+    { n: '001166640025', s: 'pm-wide', w: 1400, h: 928 },
+    { n: '001166650012', s: 'pm-lg', w: 1400, h: 928 },
+    { n: '001166640023', w: 1400, h: 928, a: 'White cowboy boots beside a bed' },
+    { n: '001166650019', w: 1400, h: 928 },
+    { n: 'IMG_0443', w: 1400, h: 928 },
+    { n: '001167460019 copy 2', s: 'pm-wide', w: 1400, h: 928, a: 'Tennis players seen through trees and a chain-link fence, black and white' },
+    { n: 'IMG_0540', s: 'pm-tall', w: 1400, h: 928 },
+    { n: 'IMG_0582', s: 'pm-wide', w: 1400, h: 928 },
+    { n: 'IMG_0583', w: 1400, h: 928 },
+    { n: '001191170031 copy', s: 'pm-wide', w: 1400, h: 928, a: 'Two people on a hilltop bench beneath a wide sky' },
+    { n: '002474050027 copy', w: 1400, h: 928, a: 'Hands opening a fresh box of 35mm film' },
+    { n: 'IMG_0638', s: 'pm-wide', w: 1400, h: 733 },
+    { n: 'IMG_0643', s: 'pm-lg', w: 1400, h: 928 },
+    { n: '001191180009', w: 1400, h: 928, a: 'A Berkeley graduation gown draped over a desk chair' },
+    { n: 'IMG_0667', w: 1400, h: 928 },
+    { n: 'lindsey_woods', s: 'pm-lg', w: 1400, h: 942, a: 'Hiking a shaded trail through mossy oaks' },
+    { n: 'IMG_0669', s: 'pm-tall', w: 1400, h: 928 },
+    { n: 'IMG_0673', w: 1400, h: 928 },
+    { n: 'IMG_0450', s: 'pm-lg', w: 1400, h: 928, a: 'Carrying a white electric guitar down a sunlit hallway' },
+    { n: 'IMG_0452', s: 'pm-wide', w: 1400, h: 928, a: 'Sitting by window blinds, a white electric guitar on the carpet' },
+    { n: 'IMG_0457', w: 1400, h: 928, a: 'The Bay Bridge under an overcast sky' },
+    { n: 'IMG_0467', w: 1400, h: 928, a: 'A scruffy little dog with its tongue out, held in someone\'s arms' },
+    { n: 'IMG_0485', s: 'pm-wide', w: 1400, h: 928, a: 'A small plane crossing a pink dusk sky' },
+    { n: 'IMG_0486', w: 1400, h: 928, a: 'A domed clock tower against grey clouds' },
+    { n: 'IMG_0525', s: 'pm-lg', w: 1400, h: 928, a: 'Lounging in a green armchair with a white electric guitar' }
+];

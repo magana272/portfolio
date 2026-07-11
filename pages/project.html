@@ -2,35 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Resolve all relative paths from the site root, since this file lives in /pages. -->
-    <base href="../">
+    <!-- Redirect stub: the deep-dive route moved to pages/project/project.html
+         (Next-style co-location). This keeps previously shared
+         /pages/project.html?id=... links working, query string included. -->
     <title>Deep Dive &middot; Manuel Magana</title>
-    <meta name="description" content="Project deep dive · Manuel Magana.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>M</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Same single stylesheet entry as the home page (see assets/css/main.css).
-         The path resolves from the site root via <base href="../"> above. -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <meta name="robots" content="noindex">
+    <script>location.replace('project/project.html' + location.search + location.hash);</script>
 </head>
-<body class="dd-page">
-    <a href="#deep-dive" class="skip-link">Skip to content</a>
-
-    <!-- Shared navigation shell (see partials/nav.html). The Menu class builds
-         the links from SECTIONS with an index.html prefix so they point home
-         (see DeepDivePage in assets/js/pages/project.js). -->
-    <div data-include="partials/nav.html"></div>
-
-    <div class="page">
-        <a class="dd-back" href="#projects-section">&larr; All projects</a>
-
-        <article id="deep-dive"></article>
-    </div>
-    <!-- One ES-module entry point (the deep-dive controller); its imports pull
-         in core, models, content and the menu feature. Module import paths
-         resolve against this file, not <base href="../">. -->
-    <script type="module" src="assets/js/pages/project.js"></script>
+<body>
+    <noscript>
+        <p>This page has moved. <a href="project/project.html">Continue to the deep dive</a>.</p>
+    </noscript>
 </body>
 </html>

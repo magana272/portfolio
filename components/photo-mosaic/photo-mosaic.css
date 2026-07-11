@@ -1,0 +1,62 @@
+/* ── Photography mosaic (extracted from life.css; rules unchanged) ── */
+
+/* Near-full-bleed asymmetric masonry — tiles keep each photo's aspect ratio.
+   Rows are a fine 8px unit; photos.js sets each tile's row span from its
+   image's natural dimensions, so photos are never cropped or letterboxed.
+   The static span below is a placeholder until the images load. */
+.photo-mosaic {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 8px;
+    grid-auto-flow: dense;
+    gap: 8px;
+    margin-top: clamp(22px, 3vw, 36px);
+    padding: 0 8px;
+}
+
+.photo {
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    background: rgba(244, 240, 232, 0.05);
+    min-height: 0;
+    grid-row: span 12;
+}
+
+.photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.photo:hover img { transform: scale(1.04); }
+
+.pm-lg,
+.pm-wide { grid-column: span 2; }
+
+@media (max-width: 700px) {
+    .photo-mosaic { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .photo img { transition: none; }
+    .photo:hover img { transform: none; }
+}
+
+/* Click a photo to expand it in place; the grid reflows around it */
+.photo { cursor: zoom-in; }
+
+.photo.expanded {
+    grid-column: span 3;
+    position: relative;
+    z-index: 2;
+    cursor: zoom-out;
+}
+
+.photo.expanded:hover img { transform: none; }
+
+@media (max-width: 700px) {
+    .photo.expanded { grid-column: span 2; }
+}
