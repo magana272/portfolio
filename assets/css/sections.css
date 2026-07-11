@@ -1,0 +1,47 @@
+/* ── Sections ── */
+/* Band backgrounds are Section data (assets/js/content/sections.js); each
+   Section paints its own band when the page boots. */
+
+.section-head {
+    /* display: flex; */
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    /* flex-wrap: wrap; */
+    margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.kicker {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--on-dark);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.kicker-num { color: var(--accent-ink); }
+
+.section-note {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+}
+
+.subhead {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    margin: clamp(40px, 6vw, 68px) 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.subhead::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+

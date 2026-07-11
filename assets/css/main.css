@@ -1,0 +1,17 @@
+/* Single stylesheet entry point — both pages link only this file, so the
+   split-by-concern set below is declared once instead of being repeated in
+   every <head>. Imports are listed in cascade order (base first), the same
+   order the pages used to link them. */
+@import url('base.css');
+@import url('nav.css');
+@import url('hero.css');
+@import url('sections.css');
+@import url('projects.css');
+@import url('experience.css');
+@import url('education-skills.css');
+@import url('life.css');
+@import url('footer.css');
+@import url('responsive.css');
+@import url('print.css');
+@import url('deep-dive.css');
+@import url('pager.css');

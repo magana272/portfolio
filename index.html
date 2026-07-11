@@ -3,61 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuel Magana &mdash; Software Engineer</title>
-    <meta name="description" content="Manuel Magana — Software Engineer. M.S. Computer Science, Northeastern. B.A. Neurobiology, UC Berkeley. Nearly three years at Genentech building validation tooling, PySpark pipelines, and dashboards. Projects in backend systems, distributed infrastructure, and deep learning.">
+    <title>Manuel Magana &middot; Software Engineer</title>
+    <meta name="description" content="Manuel Magana, Software Engineer. M.S. Computer Science, Northeastern. B.A. Neurobiology, UC Berkeley. Nearly three years at Genentech building validation tooling, PySpark pipelines, and dashboards. Projects in backend systems, distributed infrastructure, and deep learning.">
     <link rel="canonical" href="https://magana272.github.io/portfolio/">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Manuel Magana — Software Engineer">
+    <meta property="og:title" content="Manuel Magana · Software Engineer">
     <meta property="og:description" content="Software engineer building backend systems, distributed infrastructure, and deep-learning projects. Ex-Genentech.">
     <meta property="og:url" content="https://magana272.github.io/portfolio/">
-    <meta property="og:image" content="https://magana272.github.io/portfolio/media/img/paypathimg/bill_calendar.png">
+    <meta property="og:image" content="https://magana272.github.io/portfolio/static/media/img/paypathimg/bill_calendar.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Manuel Magana — Software Engineer">
+    <meta name="twitter:title" content="Manuel Magana · Software Engineer">
     <meta name="twitter:description" content="Software engineer building backend systems, distributed infrastructure, and deep-learning projects. Ex-Genentech.">
-    <meta name="twitter:image" content="https://magana272.github.io/portfolio/media/img/paypathimg/bill_calendar.png">
+    <meta name="twitter:image" content="https://magana272.github.io/portfolio/static/media/img/paypathimg/bill_calendar.png">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>M</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@600&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/styles.css">
+    <!-- One stylesheet entry; it @imports the split-by-concern set in cascade
+         order (see assets/css/main.css). -->
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
     <a href="#about" class="skip-link">Skip to content</a>
 
-    <nav class="site-nav">
-        <div class="nav-inner">
-            <a class="nav-home" href="#about">Manuel Magana</a>
-            <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
-                <span class="nav-toggle-bar"></span>
-                <span class="nav-toggle-bar"></span>
-                <span class="nav-toggle-bar"></span>
-            </button>
-            <div class="nav-links" id="nav-menu">
-                <a href="#projects-section">Work</a>
-                <a href="#experience-section">Experience</a>
-                <a href="#education">Education</a>
-                <a href="#skills">Skills</a>
-            </div>
-        </div>
-    </nav>
+    <!-- Shared navigation component (orb + overlay menu), injected from
+         partials/nav.html by assets/js/includes.js. -->
+    <div data-include="partials/nav.html"></div>
+
+    <div class="section-pager">
+        <button class="pager-btn" type="button" data-dir="-1" aria-label="Previous section">
+            <span class="pager-tri pager-tri--up" aria-hidden="true"></span>
+        </button>
+        <button class="pager-btn" type="button" data-dir="1" aria-label="Next section">
+            <span class="pager-tri pager-tri--down" aria-hidden="true"></span>
+        </button>
+    </div>
 
     <header id="about" class="hero band screen" tabindex="-1">
         <div class="wrap">
             <p class="hero-kicker">Software Engineer &middot; Los Angeles, CA</p>
             <h1>Manuel<br>Magana</h1>
             <p class="hero-lead">
-                M.S. Computer Science, Northeastern. B.A. Neurobiology, UC Berkeley. Spent nearly three years at Genentech building validation tooling, PySpark pipelines over 200GB+ datasets, and dashboards for proteomics teams. Now building backend systems, distributed infrastructure, and deep-learning projects.
+                I'm a <strong class="lead-key">software engineer</strong> in Los Angeles who builds because I can't help it, one month a fault-tolerant <strong class="lead-key">key-value store</strong>, the next a calculator that lives inside a 3D room. These days it's <strong class="lead-key">backend systems</strong>, <strong class="lead-key">full-stack apps</strong>, and <strong class="lead-key">deep learning</strong>.
             </p>
             <div class="hero-actions">
                 <a class="btn btn-accent" href="#projects-section">View work</a>
-                <a class="btn" href="resumes_and_cvs/manuel_magana_resume.pdf">Résumé</a>
                 <span class="hero-links">
-                    <a href="mailto:manuel.ramon.magana@gmail.com">Email</a>
+                    <span class="contact-email">manuel.ramon.magana@gmail.com</span>
                     <a href="https://github.com/magana272">GitHub</a>
                     <a href="https://linkedin.com/in/manuel-magana-359290160/">LinkedIn</a>
-                    <a href="resumes_and_cvs/CV.pdf">CV</a>
+                    <a href="static/resumes_and_cvs/CV.pdf">CV</a>
                 </span>
             </div>
         </div>
@@ -70,14 +67,9 @@
             <div id="work"></div>
         </section>
 
-        <section id="experience-section" class="band screen" aria-labelledby="experience-heading">
-            <div class="wrap">
-                <div class="section-head">
-                    <h2 class="kicker" id="experience-heading">Experience</h2>
-                    <button class="expand-all-btn">Expand all</button>
-                </div>
-                <div id="experience"></div>
-            </div>
+        <section id="experience-section" class="exp-sections" aria-labelledby="experience-heading">
+            <h2 class="sr-only" id="experience-heading">Experience</h2>
+            <div id="experience"></div>
         </section>
 
         <section id="education" class="band screen" aria-labelledby="education-heading">
@@ -86,13 +78,19 @@
                     <h2 class="kicker" id="education-heading">Education</h2>
                 </div>
                 <div class="edu-entry">
-                    <h3 class="edu-degree">M.S. Computer Science</h3> <span class="edu-detail">&mdash; Northeastern University, San Jose, CA (May 2026)</span><br>
+                    <h3 class="edu-degree">M.S. Computer Science</h3> <span class="edu-detail">&middot; Northeastern University (May 2026)</span><br>
                     <span class="edu-courses">Algorithms, Distributed Systems, Computer Networking, Software Engineering, Machine Learning, Deep Learning</span>
                 </div>
                 <div class="edu-entry">
-                    <h3 class="edu-degree">B.A. Molecular and Cell Biology: Neurobiology</h3> <span class="edu-detail">&mdash; UC Berkeley (May 2021)</span><br>
-                    <span class="edu-courses">Data Structures, Machine Structure, Principles &amp; Techniques of Data Science</span>
+                    <h3 class="edu-degree">B.A. Molecular and Cell Biology: Neurobiology</h3> <span class="edu-detail">&middot; UC Berkeley (May 2021)</span><br>
+                    <span class="edu-courses"><span class="edu-courses-cat">Molecular &amp; Cell Biology</span> Biochemistry (MCB 102), Genetics, Genomics &amp; Cell Biology (MCB 104), Cellular &amp; Molecular Neurobiology (MCB 160), Neurobiology Lab (MCB 160L), Circuit, Systems &amp; Behavioral Neuroscience (MCB 161)</span>
+                    <span class="edu-courses"><span class="edu-courses-cat">Computer Science &amp; Engineering</span> Data Structures (CS 61B), Machine Structures (CS 61C), Designing Information Devices &amp; Systems (EE 16A/16B), BioMEMS (BioE 121), Principles &amp; Techniques of Data Science (Data 100), Discrete Mathematics, Intro to Programming in C++</span>
                 </div>
+
+                <p class="edu-pub-label">Publication</p>
+                <h3 class="pub-title">Accounting for longitudinal peak quality metrics with MSstats+ enhances differential analysis in proteomic experiments with data-independent acquisition</h3>
+                <p class="pub-authors">Kohler D, Dogu E, Karayel O, <strong>Magana M</strong>, Wu A, Bhattacharya M, Anania V, Vitek O</p>
+                <p class="pub-detail">Under review &middot; Nature Communications &middot; bioRxiv 2025 &middot; <a href="https://doi.org/10.1101/2025.09.11.675573">doi:10.1101/2025.09.11.675573</a></p>
             </div>
         </section>
 
@@ -108,19 +106,140 @@
                     <span class="skill-value">FastAPI, React, Next.js, pytest, JUnit, Cucumber, Docker, AWS, Git, Redis, MongoDB, PostgreSQL, DuckDB, Gradle, GitHub Actions, CI/CD</span>
                     <span class="skill-label">Libraries</span>
                     <span class="skill-value">pandas, PySpark, scikit-learn, PyTorch, TensorFlow/Keras</span>
-                    <span class="skill-label">Laboratory <em class="skill-aside">— I was a scientist at one point.</em></span>
+                    <span class="skill-label">Laboratory <em class="skill-aside">(I was a scientist at one point.)</em></span>
                     <span class="skill-value">HPLC, LC-MS, GC-MS, QQQ, RapidFire 400, PCR</span>
                 </div>
             </div>
         </section>
 
-        <section id="publication" class="band screen" aria-labelledby="publication-heading">
+        <section id="about-me" class="band screen life-panel" aria-labelledby="me-heading">
+            <div class="wrap">
+                <div class="section-head"><h2 class="kicker" id="me-heading">Off the clock</h2></div>
+                <p class="me-lead">Software engineer in Los Angeles, by way of a neurobiology degree at Berkeley and a few years at Genentech. When I'm not building, I'm shooting 35mm around the city, training no-gi jiu-jitsu, and keeping a running tab of films and records.</p>
+                <div class="me-photos">
+                    <img width="1200" height="795" src="static/media/img/me/web/webp/001191160005.webp" data-full="static/media/img/me/web/pngs/001191160005.png" alt="At UC Berkeley's Sather Gate in a graduation stole" loading="lazy">
+                    <img width="1200" height="807" src="static/media/img/me/web/webp/251123_184051.webp" data-full="static/media/img/me/web/pngs/251123_184051.png" alt="In a photobooth with friends" loading="lazy">
+                    <img width="900" height="1200" src="static/media/img/me/web/webp/IMG_3830.webp" data-full="static/media/img/me/web/pngs/IMG_3830.png" alt="" loading="lazy">
+                    <img width="1200" height="795" src="static/media/img/me/web/webp/001166620015.webp" data-full="static/media/img/me/web/pngs/001166620015.png" alt="On a log over a pond in a Berkeley graduation stole" loading="lazy">
+                    <img width="900" height="1200" src="static/media/img/me/web/webp/91F280BE-5BE5-4D8F-B228-874255FF6401.webp" data-full="static/media/img/me/web/pngs/91F280BE-5BE5-4D8F-B228-874255FF6401.png" alt="With a friend and balloons in a hallway" loading="lazy">
+                    <img width="900" height="1200" src="static/media/img/me/web/webp/IMG_3415.webp" data-full="static/media/img/me/web/pngs/IMG_3415.png" alt="" loading="lazy">
+                    <img width="960" height="1200" src="static/media/img/me/web/webp/IMG_1415.webp" data-full="static/media/img/me/web/pngs/IMG_1415.png" alt="" loading="lazy">
+                    <img width="900" height="1200" src="static/media/img/me/web/webp/IMG_3414.webp" data-full="static/media/img/me/web/pngs/IMG_3414.png" alt="" loading="lazy">
+                    <img width="3024" height="3024" src="static/media/img/me/web/webp/67849094958__7BDAFB8B-7BED-49F7-B054-66954E68F46B.fullsizerender.webp" data-full="static/media/img/me/web/pngs/67849094958__7BDAFB8B-7BED-49F7-B054-66954E68F46B.fullsizerender.png" alt="" loading="lazy">
+                    <img width="1080" height="810" src="static/media/img/me/web/webp/EB2AADA6-597E-4A71-87F6-9502D4CEE50D.webp" data-full="static/media/img/me/web/pngs/EB2AADA6-597E-4A71-87F6-9502D4CEE50D.png" alt="" loading="lazy">
+                    <img width="4032" height="3024" src="static/media/img/me/web/webp/IMG_0104.webp" data-full="static/media/img/me/web/pngs/IMG_0104.png" alt="" loading="lazy">
+                    <img width="3024" height="3024" src="static/media/img/me/web/webp/IMG_0386.webp" data-full="static/media/img/me/web/pngs/IMG_0386.png" alt="" loading="lazy">
+                    <img width="3024" height="3024" src="static/media/img/me/web/webp/IMG_0796.webp" data-full="static/media/img/me/web/pngs/IMG_0796.png" alt="" loading="lazy">
+                    <img width="3024" height="3024" src="static/media/img/me/web/webp/IMG_1175.webp" data-full="static/media/img/me/web/pngs/IMG_1175.png" alt="" loading="lazy">
+                    <img width="3024" height="4032" src="static/media/img/me/web/webp/IMG_1351.webp" data-full="static/media/img/me/web/pngs/IMG_1351.png" alt="" loading="lazy">
+                    <img width="1042" height="1390" src="static/media/img/me/web/webp/IMG_1645.webp" data-full="static/media/img/me/web/pngs/IMG_1645.png" alt="" loading="lazy">
+                    <img width="3024" height="4032" src="static/media/img/me/web/webp/IMG_1672.webp" data-full="static/media/img/me/web/pngs/IMG_1672.png" alt="" loading="lazy">
+                    <img width="3024" height="3024" src="static/media/img/me/web/webp/IMG_1854.webp" data-full="static/media/img/me/web/pngs/IMG_1854.png" alt="" loading="lazy">
+                    <img width="3024" height="4032" src="static/media/img/me/web/webp/IMG_1909.webp" data-full="static/media/img/me/web/pngs/IMG_1909.png" alt="" loading="lazy">
+                    <img width="3024" height="4032" src="static/media/img/me/web/webp/IMG_2328.webp" data-full="static/media/img/me/web/pngs/IMG_2328.png" alt="" loading="lazy">
+                    <img width="3024" height="4032" src="static/media/img/me/web/webp/IMG_2340.webp" data-full="static/media/img/me/web/pngs/IMG_2340.png" alt="" loading="lazy">
+                    <img width="3024" height="3024" src="static/media/img/me/web/webp/IMG_3750.webp" data-full="static/media/img/me/web/pngs/IMG_3750.png" alt="" loading="lazy">
+                    <img width="3024" height="4032" src="static/media/img/me/web/webp/IMG_3856.webp" data-full="static/media/img/me/web/pngs/IMG_3856.png" alt="" loading="lazy">
+                    <img width="4032" height="3024" src="static/media/img/me/web/webp/IMG_3858.webp" data-full="static/media/img/me/web/pngs/IMG_3858.png" alt="" loading="lazy">
+                    <img width="4284" height="5712" src="static/media/img/me/web/webp/IMG_3976.webp" data-full="static/media/img/me/web/pngs/IMG_3976.png" alt="" loading="lazy">
+                    <img width="3024" height="4032" src="static/media/img/me/web/webp/IMG_4059.webp" data-full="static/media/img/me/web/pngs/IMG_4059.png" alt="" loading="lazy">
+                    <img width="2316" height="3088" src="static/media/img/me/web/webp/IMG_5029.webp" data-full="static/media/img/me/web/pngs/IMG_5029.png" alt="" loading="lazy">
+                    <img width="1170" height="1256" src="static/media/img/me/web/webp/IMG_5259.webp" data-full="static/media/img/me/web/pngs/IMG_5259.png" alt="" loading="lazy">
+                    <img width="3024" height="3024" src="static/media/img/me/web/webp/IMG_5826.webp" data-full="static/media/img/me/web/pngs/IMG_5826.png" alt="" loading="lazy">
+                    <img width="3024" height="4032" src="static/media/img/me/web/webp/IMG_6094.webp" data-full="static/media/img/me/web/pngs/IMG_6094.png" alt="" loading="lazy">
+                    <img width="2316" height="3088" src="static/media/img/me/web/webp/IMG_6141.webp" data-full="static/media/img/me/web/pngs/IMG_6141.png" alt="" loading="lazy">
+                    <img width="3024" height="3024" src="static/media/img/me/web/webp/IMG_6250.webp" data-full="static/media/img/me/web/pngs/IMG_6250.png" alt="" loading="lazy">
+                    <img width="1170" height="1396" src="static/media/img/me/web/webp/IMG_6390.webp" data-full="static/media/img/me/web/pngs/IMG_6390.png" alt="" loading="lazy">
+                    <img width="3024" height="3024" src="static/media/img/me/web/webp/IMG_6436.webp" data-full="static/media/img/me/web/pngs/IMG_6436.png" alt="" loading="lazy">
+                    <img width="3024" height="4032" src="static/media/img/me/web/webp/IMG_6660.webp" data-full="static/media/img/me/web/pngs/IMG_6660.png" alt="" loading="lazy">
+                    <img width="1200" height="800" src="static/media/img/me/web/webp/Photo%20on%202-26-26%20at%2011.19%20PM.webp" data-full="static/media/img/me/web/pngs/Photo%20on%202-26-26%20at%2011.19%20PM.png" alt="" loading="lazy">
+                    <img width="1333" height="2000" src="static/media/img/me/web/webp/Untitled%20design.webp" data-full="static/media/img/me/web/pngs/Untitled%20design.png" alt="" loading="lazy">
+                    <img width="1200" height="1600" src="static/media/img/me/web/webp/64955635171__37290F1A-7CAA-40F3-AB65-13B4E5A1AB79.webp" data-full="static/media/img/me/web/pngs/64955635171__37290F1A-7CAA-40F3-AB65-13B4E5A1AB79.png" alt="A sunlit room with a bed made up on the floor" loading="lazy">
+                    <img width="1600" height="1200" src="static/media/img/me/web/webp/64955794886__9C0B06AE-064F-4382-8689-2BEF9DC93C7E.webp" data-full="static/media/img/me/web/pngs/64955794886__9C0B06AE-064F-4382-8689-2BEF9DC93C7E.png" alt="A wall of prints and zine art" loading="lazy">
+                    <img width="1200" height="1600" src="static/media/img/me/web/webp/67467207446__F65123BD-9720-475C-9605-556490DC85B2.webp" data-full="static/media/img/me/web/pngs/67467207446__F65123BD-9720-475C-9605-556490DC85B2.png" alt="A pipette resting in a beaker at the lab" loading="lazy">
+                    <img width="1600" height="901" src="static/media/img/me/web/webp/DSCF0510.webp" data-full="static/media/img/me/web/pngs/DSCF0510.png" alt="Jumping on the beach at sunset" loading="lazy">
+                    <img width="1203" height="1600" src="static/media/img/me/web/webp/F1673F04-E0AF-4228-99E6-9D485C14B62D.webp" data-full="static/media/img/me/web/pngs/F1673F04-E0AF-4228-99E6-9D485C14B62D.png" alt="With a friend at the jiu-jitsu gym, medal around my neck" loading="lazy">
+                    <img width="1600" height="1200" src="static/media/img/me/web/webp/IMG_0077.webp" data-full="static/media/img/me/web/pngs/IMG_0077.png" alt="Evening at a beer garden with friends" loading="lazy">
+                    <img width="1600" height="1600" src="static/media/img/me/web/webp/IMG_0780.webp" data-full="static/media/img/me/web/pngs/IMG_0780.png" alt="A mirror selfie" loading="lazy">
+                    <img width="1200" height="1600" src="static/media/img/me/web/webp/IMG_4461.webp" data-full="static/media/img/me/web/pngs/IMG_4461.png" alt="Sitting outside in a Coachella hoodie" loading="lazy">
+                    <img width="739" height="1600" src="static/media/img/me/web/webp/IMG_4538.webp" data-full="static/media/img/me/web/pngs/IMG_4538.png" alt="Mid-wink in the camera app" loading="lazy">
+                    <img width="1200" height="1600" src="static/media/img/me/web/webp/IMG_6602.webp" data-full="static/media/img/me/web/pngs/IMG_6602.png" alt="Grinning over two lattes at a cafe" loading="lazy">
+                    <img width="1200" height="1600" src="static/media/img/me/web/webp/IMG_6661.webp" data-full="static/media/img/me/web/pngs/IMG_6661.png" alt="Giving the dog her medicine" loading="lazy">
+                    <img width="1200" height="1600" src="static/media/img/me/web/webp/IMG_7023.webp" data-full="static/media/img/me/web/pngs/IMG_7023.png" alt="A blurry still of a laughing man with bleached hair" loading="lazy">
+                    <img width="1200" height="1600" src="static/media/img/me/web/webp/IMG_7435.webp" data-full="static/media/img/me/web/pngs/IMG_7435.png" alt="At a restaurant with hanging glass bottle lamps" loading="lazy">
+                    <img width="1125" height="624" src="static/media/img/me/web/webp/IMG_7492.webp" data-full="static/media/img/me/web/pngs/IMG_7492.png" alt="Friends on the beach at sunset" loading="lazy">
+                    <img width="1600" height="1600" src="static/media/img/me/web/webp/IMG_7762.webp" data-full="static/media/img/me/web/pngs/IMG_7762.png" alt="A Madrid train platform, next stop Aeropuerto T4" loading="lazy">
+                    <img width="1600" height="1600" src="static/media/img/me/web/webp/IMG_8386.webp" data-full="static/media/img/me/web/pngs/IMG_8386.png" alt="A mirror selfie on a bike by the Bay Bridge" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section id="photography" class="band screen life-panel" aria-labelledby="photography-heading">
             <div class="wrap">
                 <div class="section-head">
-                    <h2 class="kicker" id="publication-heading">Publication</h2>
+                    <h2 class="kicker" id="photography-heading">Photography</h2>
+                    <span class="life-note">35mm film &middot; California</span>
                 </div>
-                <h3 class="pub-title">MSstats+ enhances differential analysis in proteomic experiments</h3>
-                <p class="pub-detail">Co-author &middot; bioRxiv 2025 &middot; <a href="https://doi.org/10.1101/2025.09.11.675573">doi:10.1101/2025.09.11.675573</a></p>
+            </div>
+            <div class="photo-mosaic" id="photo-mosaic"></div>
+        </section>
+
+        <section id="jiujitsu" class="band screen life-panel" aria-labelledby="jj-heading">
+            <div class="wrap jj-wrap">
+                <h2 class="kicker jj-title" id="jj-heading">El Ni&ntilde;o Training Center</h2>
+                <div class="jj-figure">
+                    <div class="jj-photo-wrap" id="jj-photo">
+                        <img width="1125" height="1500" src="static/media/img/jiujitsu/web/IMG_4501-web.jpg" data-full="static/media/img/jiujitsu/web/pngs/IMG_4501.png" alt="After training at the jiu-jitsu gym with teammates" loading="lazy">
+                        <a class="jj-tag" style="left: 24%; top: 26%;" href="https://instagram.com/kennythaiger" target="_blank" rel="noopener">kennythaiger</a>
+                        <a class="jj-tag" style="left: 13%; top: 22%;" href="https://instagram.com/chtrnguy" target="_blank" rel="noopener">chtrnguy</a>
+                        <a class="jj-tag" style="left: 79%; top: 22%;" href="https://instagram.com/gio.cue" target="_blank" rel="noopener">gio.cue</a>
+                    </div>
+                    <a class="jj-credit" href="https://instagram.com/skrappack" target="_blank" rel="noopener" aria-label="Skrap Pack on Instagram">
+                        <img class="jj-logo" src="static/media/img/jiujitsu/web/skrappack.webp" alt="Skrap Pack" width="1500" height="844" loading="lazy">
+                    </a>
+                </div>
+                <div class="jj-meta">
+                    <span class="life-note">MMA | Jiu-Jitsu | Muay Thai | Wrestling | Boxing</span>
+                    <a class="jj-gym-link" href="https://instagram.com/gilbertmelendez" target="_blank" rel="noopener">Gilbert Melendez <span aria-hidden="true">&#8599;</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="listening" class="band screen life-panel" aria-labelledby="lw-heading">
+            <div class="wrap">
+                <div class="section-head">
+                    <h2 class="kicker" id="lw-heading">Listening &amp; Watching</h2>
+                </div>
+                <div class="lw-grid">
+                    <div class="lw-col">
+                        <div class="lw-col-head">
+                            <span class="lw-label">On repeat</span>
+                            <a class="lw-link" href="https://open.spotify.com/user/super_grool" target="_blank" rel="noopener">Spotify &rarr;</a>
+                        </div>
+                        <ol class="lw-list lw-list--img">
+                            <li><img class="lw-thumb" src="https://i.scdn.co/image/ab67616100005174c742fbc057bdbc64834a6cdc" alt="" loading="lazy"><span class="lw-name">Zach Bryan</span></li>
+                            <li><img class="lw-thumb" src="https://i.scdn.co/image/ab67616100005174b6ace408c5e1762b36061f23" alt="" loading="lazy"><span class="lw-name">Black Country, New Road</span></li>
+                            <li><img class="lw-thumb" src="https://i.scdn.co/image/ab67616100005174bf7a30d6fb51ae53c47868f1" alt="" loading="lazy"><span class="lw-name">Matt Maltese</span></li>
+                            <li><img class="lw-thumb" src="https://i.scdn.co/image/ab6761610000517473479e6db034c4a43d4aee04" alt="" loading="lazy"><span class="lw-name">Dijon</span></li>
+                            <li><img class="lw-thumb" src="https://i.scdn.co/image/ab676161000051742dc02311bf9829215cedd18d" alt="" loading="lazy"><span class="lw-name">Mk.gee</span></li>
+                            <li><img class="lw-thumb" src="https://i.scdn.co/image/ab67616100005174fe9486c9ef6d86b4f39805c8" alt="" loading="lazy"><span class="lw-name">ROLE MODEL</span></li>
+                            <li><img class="lw-thumb" src="https://i.scdn.co/image/ab67616100005174d324aac01e7b004a69dac3b3" alt="" loading="lazy"><span class="lw-name">Medium Build</span></li>
+                            <li><img class="lw-thumb" src="https://i.scdn.co/image/ab67616100005174fc13849ee1941d15f8f475a8" alt="" loading="lazy"><span class="lw-name">Holly Humberstone</span></li>
+                        </ol>
+                    </div>
+                    <div class="lw-col">
+                        <div class="lw-col-head">
+                            <span class="lw-label">Top films</span>
+                            <a class="lw-link" href="https://letterboxd.com/magana272/" target="_blank" rel="noopener">Letterboxd &rarr;</a>
+                        </div>
+                        <ol class="lw-list lw-list--img">
+                            <li><img class="lw-poster" src="https://a.ltrbxd.com/resized/film-poster/4/7/4/4/7/4/474474-everything-everywhere-all-at-once-0-150-0-225-crop.jpg" alt="" loading="lazy"><span class="lw-name">Everything Everywhere All at Once</span><span class="lw-year">2022</span></li>
+                            <li><img class="lw-poster" src="https://a.ltrbxd.com/resized/film-poster/4/3/2/0/0/4/432004-sound-of-metal-0-150-0-225-crop.jpg" alt="" loading="lazy"><span class="lw-name">Sound of Metal</span><span class="lw-year">2019</span></li>
+                            <li><img class="lw-poster" src="https://a.ltrbxd.com/resized/sm/upload/i7/li/tp/62/i0t7F6b4R1wURRESAiw9VJNuVoV-0-150-0-225-crop.jpg" alt="" loading="lazy"><span class="lw-name">Manchester by the Sea</span><span class="lw-year">2016</span></li>
+                            <li><img class="lw-poster" src="https://a.ltrbxd.com/resized/sm/upload/90/gn/c7/9k/qAwFbszz0kRyTuXmMeKQZCX3Q2O-0-150-0-225-crop.jpg" alt="" loading="lazy"><span class="lw-name">Moonlight</span><span class="lw-year">2016</span></li>
+                        </ol>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -129,18 +248,18 @@
         <div class="wrap footer-inner">
             <p class="footer-name">Manuel Magana</p>
             <p class="footer-contact">
-                <a href="mailto:manuel.ramon.magana@gmail.com">Email</a>
+                <span class="contact-email">manuel.ramon.magana@gmail.com</span>
                 <a href="https://github.com/magana272">GitHub</a>
                 <a href="https://linkedin.com/in/manuel-magana-359290160/">LinkedIn</a>
+                <a href="https://letterboxd.com/magana272/" target="_blank" rel="noopener">Letterboxd</a>
+                <a href="https://open.spotify.com/user/super_grool" target="_blank" rel="noopener">Spotify</a>
             </p>
             <a class="footer-top" href="#about">Back to top &uarr;</a>
         </div>
     </footer>
 
-    <script src="data/experience/experience.js"></script>
-    <script src="data/experience/experiences.js"></script>
-    <script src="data/project/project.js"></script>
-    <script src="data/project/projects.js"></script>
-    <script src="assets/site.js"></script>
+    <!-- One ES-module entry point; its imports pull in the rest of the graph
+         (core, models, content, features) in dependency order. -->
+    <script type="module" src="assets/js/pages/home.js"></script>
 </body>
 </html>

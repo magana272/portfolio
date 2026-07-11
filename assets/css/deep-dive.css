@@ -1,0 +1,297 @@
+/* ══════════════════════════════════════════════════════════
+   Deep dive page
+   ══════════════════════════════════════════════════════════ */
+
+/* Wash the whole page in the project's jewel colour, then remap the light-theme
+   tokens so every dd-* rule below reads as light-on-dark without being rewritten. */
+.dd-page {
+    background: var(--tint);
+    min-height: 100vh;
+    color: var(--on-dark);
+    --ink: #f4f0e8;
+    --ink-mid: #dbd6cc;
+    --ink-soft: #cdc8be;
+    --line: rgba(244, 240, 232, 0.16);
+    --surface: rgba(244, 240, 232, 0.07);
+    --pink: #f4f0e8;
+}
+
+/* No fixed nav bar anymore — just the floating orb, so a normal top breathing
+   space instead of the old --nav-h reserve. */
+.dd-page .page { max-width: 1040px; padding-top: clamp(24px, 4vw, 48px); }
+
+.dd-back {
+    display: inline-block;
+    margin: 20px 0 8px;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.03em;
+    color: var(--pink);
+    text-decoration: none;
+}
+
+.dd-back:hover { color: var(--accent-deep); }
+
+.dd-hero {
+    padding: clamp(24px, 5vw, 60px) 0 clamp(34px, 5vw, 56px);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: clamp(44px, 6vw, 68px);
+}
+
+.dd-eyebrow {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: clamp(16px, 3vw, 26px);
+}
+
+.dd-hero h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(2.6rem, 8vw, 5.25rem);
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+    margin-bottom: clamp(18px, 3vw, 26px);
+    max-width: 18ch;
+}
+
+.dd-lead {
+    font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+    color: var(--ink-mid);
+    max-width: 58ch;
+    margin-bottom: clamp(30px, 4vw, 44px);
+    line-height: 1.4;
+}
+
+/* Cover pulled up as a big framed hero visual — the moment that makes the page
+   feel like the project. A fixed aspect-ratio reserves its height before the
+   media loads, so nothing jumps in below it. */
+.dd-hero-media {
+    margin-bottom: clamp(32px, 5vw, 52px);
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: 0 40px 80px -50px rgba(0, 0, 0, 0.7);
+}
+
+.dd-hero-media img,
+.dd-hero-media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* Charts / figures letterbox on their own dark frame instead of cropping. */
+.dd-hero-media.is-contain { background: var(--media-bg, #111214); }
+.dd-hero-media.is-contain img,
+.dd-hero-media.is-contain video { object-fit: contain; object-position: center; }
+
+.dd-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 30px);
+}
+
+.dd-summary-label {
+    display: block;
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--pink);
+    margin-bottom: 8px;
+}
+
+.dd-summary-item p { font-size: 0.98rem; color: var(--ink-mid); line-height: 1.55; }
+
+.dd-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 232px;
+    gap: clamp(32px, 5vw, 56px);
+    align-items: start;
+}
+
+.dd-main { counter-reset: cs; }
+.dd-main > * + * { margin-top: clamp(44px, 6vw, 76px); }
+
+/* Media — compact framed gallery */
+.dd-media {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+    max-width: 640px;
+}
+
+.dd-media:has(> :only-child) { grid-template-columns: minmax(0, 440px); }
+
+.dd-media img,
+.dd-media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* Reserve space up front (uniform tiles) so lazy-loaded shots don't shift
+       the layout as they come in. */
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+}
+
+.dd-note {
+    background: rgba(244, 240, 232, 0.06);
+    border-left: 3px solid var(--pink);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 18px;
+}
+
+.dd-note-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 6px;
+}
+
+.dd-note p { font-size: 0.95rem; color: var(--ink-mid); }
+
+.dd-block { counter-increment: cs; }
+.dd-block h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.7rem, 3.4vw, 2.35rem);
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+}
+.dd-block h2::before {
+    content: counter(cs, decimal-leading-zero);
+    flex: none;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--ink-mid);
+    opacity: 0.75;
+}
+
+/* Highlights */
+.dd-highlights ul { list-style: none; padding: 0; margin: 0; }
+
+.dd-highlights li {
+    position: relative;
+    font-size: 1.02rem;
+    color: var(--ink-mid);
+    line-height: 1.55;
+    padding: 16px 0 16px 28px;
+    border-top: 1px solid var(--line);
+}
+
+.dd-highlights li:last-child { border-bottom: 1px solid var(--line); }
+
+.dd-highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 23px;
+    width: 14px;
+    height: 2px;
+    background: var(--pink);
+}
+
+.dd-section p { font-size: 1.02rem; color: var(--ink-mid); }
+.dd-section p + p { margin-top: 12px; }
+.dd-section ul { margin: 14px 0 0; padding-left: 20px; }
+.dd-section li { margin-bottom: 9px; font-size: 0.98rem; }
+
+.dd-links { list-style: none; padding-left: 0; }
+.dd-links li { margin-bottom: 8px; }
+.dd-links a { font-family: var(--mono); font-size: 0.85rem; color: var(--pink); font-weight: 500; text-decoration: none; }
+.dd-links a:hover { text-decoration: underline; }
+
+/* Sidebar */
+.dd-aside { position: sticky; top: clamp(20px, 4vh, 40px); font-size: 0.9rem; }
+.dd-aside > * + * { margin-top: 28px; }
+
+.dd-aside h3 {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+}
+
+.dd-glance dl { display: grid; grid-template-columns: auto 1fr; gap: 9px 14px; }
+.dd-glance dt { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); padding-top: 1px; }
+.dd-glance dd { color: var(--ink); text-align: right; font-size: 0.92rem; }
+
+.dd-stack ul { list-style: none; padding-left: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.dd-stack li {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 3px 9px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    color: var(--ink-mid);
+}
+
+.dd-outline ul { list-style: none; padding-left: 0; }
+.dd-outline li { margin-bottom: 8px; }
+.dd-outline a {
+    color: var(--ink-mid);
+    text-decoration: none;
+    border-left: 2px solid var(--line);
+    padding-left: 11px;
+    display: block;
+    font-size: 0.88rem;
+    transition: color 0.15s, border-color 0.15s;
+}
+.dd-outline a:hover { color: var(--pink); border-left-color: var(--pink); }
+
+.dd-notfound { padding: 80px 0; text-align: center; }
+.dd-notfound h1 { font-family: var(--display); font-weight: 600; font-size: 2.2rem; margin-bottom: 12px; }
+
+@media (max-width: 760px) {
+    .dd-layout { grid-template-columns: 1fr; gap: 34px; }
+    .dd-aside { position: static; order: -1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px; }
+    .dd-aside > * + * { margin-top: 0; }
+    .dd-outline { grid-column: 1 / -1; }
+    .dd-summary { grid-template-columns: 1fr; gap: 18px; }
+}
+
+@media (max-width: 560px) {
+    .dd-media { grid-template-columns: minmax(0, 360px); }
+    .dd-aside { grid-template-columns: 1fr; }
+}
+
+@media print {
+    .dd-page {
+        background: #fff;
+        --ink: #111214; --ink-mid: #56585c; --ink-soft: #636469;
+        --line: #e5e5e2; --surface: #f4f4f2; --pink: #111214;
+    }
+    .dd-aside, .dd-back { display: none; }
+    .dd-layout { grid-template-columns: 1fr; }
+}
+
+

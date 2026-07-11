@@ -1,0 +1,82 @@
+/* ── Education ── */
+
+.edu-entry { margin-bottom: 20px; }
+.edu-entry:last-child { margin-bottom: 0; }
+.edu-degree { display: inline; font-family: var(--display); font-weight: 600; font-size: 1.2rem; color: var(--on-dark); }
+.edu-detail { color: var(--on-dark-soft); font-size: 0.95rem; }
+.edu-courses {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--on-dark-soft);
+    margin-top: 6px;
+    line-height: 1.5;
+    max-width: 74ch;   /* hold course lists to a readable ~70-char measure */
+}
+
+.edu-courses + .edu-courses { margin-top: 10px; }
+
+.edu-courses-cat {
+    display: block;
+    color: var(--on-dark);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+}
+
+/* "Publication" sub-label separating the paper from the degrees above it */
+.edu-pub-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--on-dark-soft);
+    margin-top: clamp(32px, 5vw, 52px);
+    margin-bottom: 14px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(244, 240, 232, 0.16);
+}
+
+/* ── Skills ── */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: clamp(18px, 3.5vh, 40px) 32px;
+}
+
+/* Heading stays pinned at the top of the panel; the grid floats to the vertical
+   centre by soaking up the free space above and below it (the wrap is a
+   full-height flex column). */
+#skills .skills-grid { margin-block: auto; }
+
+.skill-label {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--on-dark);
+    padding-top: 2px;
+}
+
+.skill-value { color: var(--on-dark-soft); font-size: 1rem; line-height: 1.55; }
+
+.skill-aside {
+    font-family: var(--body);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--on-dark-soft);
+}
+
+/* ── Publication ── */
+
+.pub-title { font-family: var(--display); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; color: var(--on-dark); max-width: 34rem; }
+.pub-authors { font-family: var(--body); font-size: 0.92rem; color: var(--on-dark-soft); margin-top: 8px; line-height: 1.5; max-width: 34rem; }
+.pub-authors strong { color: var(--on-dark); font-weight: 600; }
+.pub-detail { font-family: var(--mono); font-size: 0.8rem; color: var(--on-dark-soft); margin-top: 8px; overflow-wrap: anywhere; max-width: 34rem; }
+.pub-detail a { color: var(--on-dark); text-decoration: none; border-bottom: 1px solid currentColor; }
+.pub-detail a:hover { opacity: 0.7; }
+

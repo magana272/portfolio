@@ -1,0 +1,66 @@
+/* ── Reduced motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .pcard, .feature-media img, .feature-media video,
+    .pcard-cover img, .pcard-cover video, .nav-overlay, .nav-menu-links a, .btn { transition: none; }
+    .nav-orb { animation: none; }
+    .pcard:hover { transform: none; }
+    .feature:hover .feature-media img, .pcard:hover .pcard-cover img { transform: none; }
+}
+
+/* ── Responsive: stack the Work panels on narrow screens ── */
+/* Below the desktop two-column grid, drop each project panel to a single
+   column: media on top, heading below, actions pinned to the bottom so the
+   panel still fills the screen the way the desktop grid's flexing middle row
+   does. The v1/v2 grid-column/grid-row placements go inert once the inner is a
+   flex column; only their align-self needs neutralising. */
+@media (max-width: 900px) {
+    .feature-inner {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(20px, 4vw, 30px);
+    }
+    .feature.v1 .f-head, .feature.v2 .f-head,
+    .feature.v1 .feature-media, .feature.v2 .feature-media { align-self: stretch; }
+    .feature-media { order: -1; aspect-ratio: 16 / 9; }
+    .f-head { order: 0; }
+    .f-actions { order: 2; align-self: stretch; margin-top: auto; justify-content: flex-start; gap: 16px 24px; }
+}
+
+/* Smaller orb on small screens — the clip-path centre follows automatically */
+@media (max-width: 820px) {
+    :root { --orb-size: 48px; --orb-inset: 14px; }
+}
+
+/* ── Touch targets — enlarge inline links to 44px on touch devices only,
+   leaving the desktop mouse layout visually unchanged ── */
+@media (pointer: coarse) {
+    .hero-links a,
+    .footer-contact a,
+    .footer-top,
+    .proj-ext,
+    .proj-more,
+    .pub-detail a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero h1 { font-size: clamp(2.6rem, 15vw, 3.4rem); }
+    .hero-actions { gap: 12px; }
+    .hero-links { margin-left: 0; }
+    /* Email on its own line so GitHub / LinkedIn / CV form a clean row below it */
+    .hero-links .contact-email { flex-basis: 100%; }
+    .skills-grid { grid-template-columns: 1fr; gap: 4px 0; }
+    .skill-label { margin-top: 12px; }
+    .project-grid { grid-template-columns: 1fr; }
+
+    /* Education holds two degrees + the publication — too much for one phone
+       screen. Let it grow to its content rather than being locked to 100vh. */
+    #education { min-height: auto; }
+    .edu-pub-label { margin-top: 26px; padding-top: 18px; }
+}
+

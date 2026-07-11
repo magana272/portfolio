@@ -1,0 +1,25 @@
+/* ── Footer ── */
+
+.band-foot { background: var(--ink); padding-block: clamp(44px, 6vw, 76px); scroll-snap-align: end; }
+
+.footer-inner {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px 24px;
+}
+
+.footer-name { font-family: var(--display); font-weight: 600; font-size: 1.25rem; color: #fff; }
+.footer-contact { display: flex; flex-wrap: wrap; gap: 8px 18px; font-family: var(--mono); font-size: 0.76rem; }
+.footer-contact a { color: #aaacb2; text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.18s, border-color 0.18s; }
+.footer-contact a:hover { color: #fff; border-bottom-color: #fff; }
+.footer-top { font-family: var(--mono); font-size: 0.76rem; color: #8b8d93; text-decoration: none; transition: color 0.15s; }
+.footer-top:hover { color: #fff; }
+
+/* Stack the footer on mobile so the contact links don't get squeezed/overflow */
+@media (max-width: 600px) {
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 18px; }
+    .footer-contact { gap: 6px 16px; }
+}
+

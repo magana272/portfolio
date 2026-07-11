@@ -1,0 +1,158 @@
+/* ── Experience (full-height colour bands, one per role) ── */
+
+.exp {
+    background: var(--band-exp);
+    color: var(--on-dark);
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    gap: clamp(20px, 4vw, 56px);
+    padding-block: clamp(80px, 12vh, 120px);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+/* Two halves: the box column and the aside. The box column stays flush to the
+   OUTER edge; even roles reverse so the box lands on the right. */
+.exp-layout { flex: 1; min-width: 0; }
+.exp-aside { flex: 1; min-width: 0; position: relative; }
+.exp.v2 { flex-direction: row-reverse; }
+
+/* Company: role heading sits above the box on the blue band (light text).
+   Its inline padding matches the box's so the text lines up. */
+.exp-head {
+    padding-inline: clamp(28px, 3.5vw, 52px);
+    margin-bottom: clamp(16px, 2vw, 24px);
+}
+
+.exp-kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--on-dark-soft);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.exp-index { color: var(--menu-bg); font-weight: 600; }
+
+.exp-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--on-dark);
+    margin-bottom: 10px;
+}
+
+.exp-role { color: var(--on-dark-soft); font-weight: 500; }
+
+.exp-meta {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+    color: var(--on-dark-soft);
+}
+
+/* The white box — bullets in dark text, flush to the edge, square corners. */
+.exp-inner {
+    background: var(--bg);
+    color: var(--ink);
+    padding: clamp(28px, 3.5vw, 52px);
+}
+
+.exp-takeaway {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--ink);
+    padding: 10px 16px;
+    margin-bottom: 18px;
+    border-left: 2px solid var(--accent);
+    background: rgba(17, 18, 20, 0.04);
+    border-radius: 0 8px 8px 0;
+}
+
+.exp-bullets { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+
+.exp-bullets li {
+    position: relative;
+    padding-left: 18px;
+    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+    color: var(--ink-mid);
+    line-height: 1.5;
+}
+
+/* Small accent dot in place of a bullet marker */
+.exp-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* Aside filling the empty half opposite the box: a huge ghosted index number
+   in faint blue (ties to the box) with the role's tech stack below it, centred
+   as a unit so it reads the same on either side. */
+.exp-aside {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-inline: clamp(20px, 3vw, 44px);
+}
+
+.exp-bignum {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(9rem, 26vw, 22rem);
+    line-height: 0.8;
+    letter-spacing: -0.04em;
+    color: color-mix(in srgb, var(--on-dark) 16%, transparent);
+    pointer-events: none;
+    user-select: none;
+}
+
+.exp-tech { margin-top: clamp(14px, 2vw, 22px); max-width: 34ch; }
+
+.exp-tech-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--menu-bg);
+    margin-bottom: 10px;
+}
+
+.exp-tech-list {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--on-dark-soft);
+}
+
+.exp-tech-list .t { white-space: nowrap; }
+.exp-tech-list .dot { color: var(--on-dark-soft); margin-inline: 7px; }
+
+@media (max-width: 760px) {
+    /* Stack on phones: box full-width edge to edge, tech list below it, drop
+       the giant number. */
+    .exp { flex-direction: column; align-items: stretch; gap: 0; }
+    .exp.v2 { flex-direction: column; }
+    .exp-aside { align-items: flex-start; text-align: left; padding-inline: clamp(16px, 5vw, 32px); margin-top: clamp(20px, 5vw, 32px); }
+    .exp-bignum { display: none; }
+    .exp-tech { margin: 0; max-width: none; }
+}
+

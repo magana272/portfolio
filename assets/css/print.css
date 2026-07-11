@@ -1,0 +1,21 @@
+/* ── Print ── */
+
+@media print {
+    body { background: #fff; }
+    .nav-orb, .nav-overlay, .section-pager, .skip-link, .band-foot, .section-note, .proj-more, .btn-accent { display: none; }
+    .page { max-width: none; padding: 0; }
+    .hero { padding: 0 0 20px; }
+    main > section { padding: 16px 0; border: none; }
+    .feature, .pcard { background: #fff; border: 1px solid #ccc; break-inside: avoid; box-shadow: none !important; transform: none !important; }
+    .feature { grid-template-columns: 1fr 1.4fr; }
+    /* Experience bands print as plain black-on-white text, no colour flood */
+    .exp { min-height: 0; background: #fff !important; color: #000; padding: 16px 0; break-inside: avoid; display: block; }
+    .exp-layout { width: 100%; }
+    .exp-inner { background: #fff !important; padding: 0; }
+    .exp-head, .exp-aside { padding: 0; }
+    .exp-bignum { display: none; }
+    .exp-title, .exp-role, .exp-bullets li, .exp-tech-list { color: #000; }
+    .exp-meta, .exp-kicker, .exp-tech-label { color: #333; }
+    a { color: var(--ink) !important; }
+}
+
