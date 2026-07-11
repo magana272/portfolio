@@ -39,6 +39,11 @@
     --orb-bg: var(--menu-bg);
     --orb-ink: var(--menu-ink);
     --orb-hot: var(--accent-deep);
+    /* Menu link hover + active colour, one per menu (the band accent). Defaults
+       to the same deep red as the numbers/tags; per-band values come from each
+       Section's theme via Menu.applyTheme(). */
+    --orb-hover: var(--accent-deep);
+    --orb-active: var(--accent-deep);
     --orb-size: 56px;
     --orb-inset: 20px;
     --orb-cx: calc(100% - var(--orb-inset) - var(--orb-size) / 2);

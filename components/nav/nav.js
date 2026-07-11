@@ -33,24 +33,20 @@ export class Menu {
         return this.prefix + '#' + section.id;
     }
 
-    // Each link carries --item-hover: its destination band's colour. nav.css
-    // blends it into the hover state, so hovering a link previews the section
-    // it leads to.
+    // Hover and active colours are one-per-menu, not per-link: they ride in on
+    // the current band's theme (--orb-hover / --orb-active, set by applyTheme),
+    // so every link builder is plain markup.
     sectionLink(section, inner) {
-        return '<a href="' + this.sectionHref(section) + '"' +
-            (section.background ? ' style="--item-hover:' + section.background + '"' : '') +
-            '>' + (inner || '') + esc(section.title) + '</a>';
+        return '<a href="' + this.sectionHref(section) + '">' + (inner || '') + esc(section.title) + '</a>';
     }
 
     // A section's nested jump-list (the Projects band lists its panels),
-    // rendered from the Section's sublist entries. Hover previews each entry's
-    // own colour (the project tint).
+    // rendered from the Section's sublist entries.
     sublistHtml(section) {
         var menu = this;
         if (!section.sublist.length) return '';
         return '<ul class="nav-menu-sub">' + section.sublist.map(function (item) {
-            return '<li><a href="' + menu.prefix + '#' + item.anchor + '"' +
-                    (item.hover ? ' style="--item-hover:' + item.hover + '"' : '') + '>' +
+            return '<li><a href="' + menu.prefix + '#' + item.anchor + '">' +
                     '<span class="nav-sub-num">' + item.num + '</span>' +
                     '<span class="nav-sub-name">' + esc(item.name) + '</span>' +
                     '<span class="nav-sub-tag">' + esc(item.tag) + '</span>' +
@@ -79,8 +75,7 @@ export class Menu {
             var offLinks = this.sections.filter(function (s) { return s.group === 'off'; });
             off.innerHTML =
                 (label
-                    ? '<a class="nav-menu-off-label" href="' + this.sectionHref(label) + '"' +
-                          (label.background ? ' style="--item-hover:' + label.background + '"' : '') + '>' +
+                    ? '<a class="nav-menu-off-label" href="' + this.sectionHref(label) + '">' +
                           esc(label.title) + '</a>'
                     : '') +
                 '<ul class="nav-menu-off-links">' +
@@ -90,10 +85,12 @@ export class Menu {
     }
 
     // ── Theming ──
-    // The one copy of the orb-theming logic. The triple: flood (orb +
-    // overlay), ink (links; also dimmed to 60% for the muted kicker/active
-    // tone), hot (list numbers and tags only). Missing keys fall back to the
-    // :root defaults (yellow flood, near-black ink, deep red hot).
+    // The one copy of the orb-theming logic, and the only writer of --orb-*.
+    // Per band: flood (orb + overlay), ink (links at rest), hot (list numbers +
+    // tags), and hover/active (the one-per-menu link interaction colour, the
+    // band accent). `muted` is ink dimmed to 60%, worn by the kicker and the
+    // off-cluster label at rest. Missing keys fall back to the :root defaults
+    // (yellow flood, near-black ink, deep red accent).
     applyTheme(theme) {
         theme = theme || {};
         var root = document.documentElement.style;
@@ -101,9 +98,13 @@ export class Menu {
             bg: theme.flood,
             ink: theme.ink,
             muted: theme.ink ? 'color-mix(in srgb, ' + theme.ink + ' 60%, transparent)' : null,
-            hot: theme.hot
+            hot: theme.hot,
+            // hover/active are one per menu (the band accent); default to the
+            // hot accent when a theme doesn't set them apart.
+            hover: theme.hover || theme.hot,
+            active: theme.active || theme.hot
         };
-        ['bg', 'ink', 'muted', 'hot'].forEach(function (key) {
+        ['bg', 'ink', 'muted', 'hot', 'hover', 'active'].forEach(function (key) {
             if (vals[key]) {
                 root.setProperty('--orb-' + key, vals[key]);
             } else {

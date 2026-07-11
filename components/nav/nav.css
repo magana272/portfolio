@@ -190,15 +190,13 @@ html.menu-open { overflow: hidden; }
     color: var(--orb-hot, var(--accent-deep));
 }
 
-/* Hover previews the destination: each link wears its own band's colour
-   (--item-hover, set by the Menu from its Section's background), blended with
-   the current ink so it stays readable on any flood. Active stays the ink
-   dimmed; the hot colour still belongs to the numbers and tags alone. */
+/* Hover and active wear the band accent — one colour per menu, from the
+   current Section's theme (--orb-hover / --orb-active, set by applyTheme). */
 .nav-menu-links a:hover {
-    color: color-mix(in srgb, var(--item-hover, var(--orb-muted, rgba(17, 18, 20, 0.62))) 75%, var(--orb-ink, var(--menu-ink)));
+    color: var(--orb-hover, var(--accent-deep));
     transform: translateX(-8px);
 }
-.nav-menu-links a.active { color: var(--orb-muted, rgba(17, 18, 20, 0.62)); }
+.nav-menu-links a.active { color: var(--orb-active, var(--accent-deep)); }
 
 /* Project jump-list nested under "Work" — smaller, right-aligned to match. */
 .nav-menu-sub {
@@ -240,9 +238,9 @@ html.menu-open { overflow: hidden; }
     color: var(--orb-hot, var(--accent-deep));
 }
 
-/* Project links preview their project: --item-hover carries the tint here. */
+/* Sub-links share the one-per-menu hover accent. */
 .nav-menu-sub a:hover {
-    color: color-mix(in srgb, var(--item-hover, var(--orb-muted, rgba(17, 18, 20, 0.62))) 75%, var(--orb-ink, var(--menu-ink)));
+    color: var(--orb-hover, var(--accent-deep));
     transform: translateX(-6px);
 }
 
@@ -285,12 +283,12 @@ html.menu-open { overflow: hidden; }
 
 .nav-menu-off-label:hover,
 .nav-menu-off-links a:hover {
-    color: color-mix(in srgb, var(--item-hover, var(--orb-muted, rgba(17, 18, 20, 0.62))) 75%, var(--orb-ink, var(--menu-ink)));
+    color: var(--orb-hover, var(--accent-deep));
     opacity: 1;
 }
 
 .nav-menu-off-label.active,
-.nav-menu-off-links a.active { color: var(--orb-muted, rgba(17, 18, 20, 0.62)); opacity: 1; }
+.nav-menu-off-links a.active { color: var(--orb-active, var(--accent-deep)); opacity: 1; }
 
 .nav-menu-foot {
     display: flex;
@@ -308,7 +306,7 @@ html.menu-open { overflow: hidden; }
     text-underline-offset: 3px;
 }
 
-.nav-menu-foot a:hover { color: var(--orb-muted, rgba(17, 18, 20, 0.62)); }
+.nav-menu-foot a:hover { color: var(--orb-hover, var(--accent-deep)); }
 
 /* ── Anchor offset ── */
 

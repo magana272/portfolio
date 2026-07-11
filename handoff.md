@@ -43,7 +43,7 @@ components/                         one folder per component, JS (+ CSS) co-loca
   nav/nav.html                      shell partial (orb + overlay + empty lists)
   nav/nav.js                        class Menu — builds links from sections, hold-to-open,
                                     applyTheme() (the ONLY writer of --orb-*)
-  nav/nav.css                       orb + overlay + menu styles (incl. --item-hover rules)
+  nav/nav.css                       orb + overlay + menu styles (uses --orb-hover/--orb-active)
   nav/scroll-spy.js                 active-section spy; themes the orb via menu.applyTheme()
   section/section.js + section.css  class Section (id, title, group, background, theme, sublist)
   project/project.js + project.css  class Project (data + renderFeature; href() → deep dive)
@@ -120,7 +120,21 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ---
 
-## What changed in the layout()/index.js pass (2026-07-10, latest)
+## What changed in the co-location + menu-colour pass (2026-07-10, latest)
+1. **Component CSS co-located:** `styles/education-skills.css` → `education/` +
+   `skills/`; `styles/life.css` → `me/` + `jiujitsu/` + `listening/`; shared
+   `.life-note` moved to `styles/base.css`. `styles/main.css` imports the
+   component sheets in band order; `styles/` keeps only global/page sheets.
+2. **Menu hover/active = one accent per menu.** Replaced the per-link
+   `--item-hover` "destination preview" rainbow with a single hover + active
+   colour per menu, sourced from each Section's theme (`hover`/`active`, set to
+   the band accent). `Menu.applyTheme()` now writes `--orb-hover` /
+   `--orb-active`; nav.css uses them for all menu links; `Section.themeFromTint`
+   computes them for tinted bands; the Menu's link builders no longer emit
+   per-link `style="--item-hover:…"`. Verified every band resolves to exactly
+   one hover and one active colour.
+
+## What changed in the layout()/index.js pass (2026-07-10, earlier)
 1. `pages/home/home.js` → `pages/index.js` (Next home-route convention);
    `index.html`'s script src and all comment refs updated.
 2. **`Page.layout()` added.** The lifecycle is now `layout()` (build DOM
@@ -168,11 +182,10 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
    single copy of the `--orb-*` theming (was duplicated in scroll-spy.js and
    pages/project.js; the deep dive's muted mix moved from 55% → 60% in the
    unification).
-4. **Nav hover previews the destination:** every generated link carries
-   `--item-hover` (its section's band background; project sub-links use the
-   project tint) and nav.css blends it 75/25 with the current ink on hover.
-   Resting menu still wears exactly the flood/ink/hot triple; active stays
-   muted ink.
+4. **Nav hover/active colour** (superseded — see the latest pass below): an
+   earlier iteration had per-link `--item-hover` previewing each link's
+   destination band. That rainbow was later replaced by a single hover +
+   active colour per menu (the band accent).
 5. **One stylesheet entry:** both pages link only `assets/css/main.css`, which
    `@import`s the 13 concern files (the duplicated 13-link `<head>` blocks are
    gone).
@@ -224,10 +237,13 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
   slow first load the bands could flash white for a beat before the module
   executes. If that's ever visible, the fix is inlining a tiny critical style
   or reverting the backgrounds to CSS while keeping them mirrored in SECTIONS.
-- **Hover preview vs the three-colour rule:** hover showing the destination
-  band's colour was this session's request; the *resting* menu still keeps the
-  strict flood/ink/hot triple. If the hover preview turns out to be unwanted,
-  revert the three `:hover` rules in nav.css to `color: var(--orb-muted, ...)`.
+- **Menu hover/active = one accent per menu.** Each Section's theme carries
+  `hover` and `active` colours (set to the band accent); `Menu.applyTheme()`
+  writes them to `--orb-hover` / `--orb-active`, and nav.css uses those for
+  every menu link's `:hover` and `.active`. They default to the accent (`hot`)
+  when a theme omits them, and to `--accent-deep` when a band has no accent
+  (skills, photography). To give a band a distinct interaction colour, set
+  `hover`/`active` on its theme in `content/sections.js`.
 - **Mobile:** the responsive fixes are in but were only reasoned from CSS —
   worth a visual pass on a real phone width.
 - An auto-formatter/linter has been actively editing files mid-session (e.g.

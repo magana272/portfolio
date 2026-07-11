@@ -15,11 +15,14 @@ export class Section {
         // cluster's heading link).
         this.group = opts.group || 'main';
         this.background = opts.background || '';  // the band's colour
-        // Orb triple {flood, ink, hot} for this band. Omitted → the :root
-        // defaults (yellow flood, near-black ink, deep red hot).
+        // Orb theme for this band: {flood, ink, hot, hover, active}. flood is
+        // the orb/overlay colour, ink the links at rest, hot the list numbers
+        // and tags, and hover/active the one-per-menu link interaction colour
+        // (the band accent). Omitted keys fall back to the :root defaults
+        // (yellow flood, near-black ink, deep red accent).
         this.theme = opts.theme || null;
         // Optional jump-list nested under the section's menu link: entries of
-        // {anchor, num, name, tag, hover} (the Projects band lists its panels).
+        // {anchor, num, name, tag} (the Projects band lists its panels).
         this.sublist = opts.sublist || [];
     }
 
@@ -34,11 +37,14 @@ export class Section {
         if (el && this.background) el.style.background = this.background;
     }
 
-    // Computed triple for tinted bands (projects, roles), which carry --tint
+    // Computed theme for tinted bands (projects, roles), which carry --tint
     // instead of a hand-tuned theme: the tint's complement floods, the tint
-    // itself inks the links, the triad's third hue runs hot.
+    // itself inks the links, and the triad's third hue is the accent — worn by
+    // the numbers/tags (hot) and, one per menu, the hover/active links.
     static themeFromTint(tint) {
         var flood = complement(tint);
-        return flood ? { flood: flood, ink: tint, hot: triad(tint) } : null;
+        if (!flood) return null;
+        var accent = triad(tint);
+        return { flood: flood, ink: tint, hot: accent, hover: accent, active: accent };
     }
 }
