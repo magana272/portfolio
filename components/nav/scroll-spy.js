@@ -1,10 +1,9 @@
 // Scroll spy (home page) — highlights the menu link for the section currently
 // on screen and themes the menu orb to match the band under it, through
-// menu.applyTheme(). The static bands' colour triples ride in on the Section
-// instances (content/sections.js); tinted bands (projects, roles) compute
-// theirs from their --tint. HomePage calls initScrollSpy(sections, menu) after
-// the panels are built and the nav partial has landed.
-import { Section } from '../section/section.js';
+// menu.applyTheme(). Each band's theme rides in on its Section (projects
+// included); bands with no Section theme (the experience roles) get the
+// default orb. HomePage calls initScrollSpy(sections, menu) after the panels
+// are built and the nav partial has landed.
 
 export function initScrollSpy(sections, menu) {
     // Scroll spy — when the orb menu opens, the link for the section currently
@@ -22,19 +21,15 @@ export function initScrollSpy(sections, menu) {
         if (s.theme) themeById[s.id] = s.theme;
     });
 
-    // Every colour band in document order, first-match-wins from the bottom:
-    // static sections carry their theme on their Section, tinted bands
-    // (projects, experience) get their computed complement. Panels are built
-    // before this runs (see pages/index.js), so the bands exist by now.
+    // Every colour band in document order, first-match-wins from the bottom.
+    // Sections (projects included) carry their theme on their Section, keyed by
+    // element id; a band with no Section theme (the experience roles) gets the
+    // default orb ({}). Panels are built before this runs (see pages/index.js),
+    // so the bands exist by now.
     var themeSpots = Array.prototype.slice.call(
         document.querySelectorAll('header[id], main section[id], #work .feature, #experience .exp')
     ).map(function (el) {
-        var theme = themeById[el.id];
-        if (!theme) {
-            var tint = el.style.getPropertyValue('--tint');
-            theme = (tint && Section.themeFromTint(tint)) || {};
-        }
-        return { el: el, theme: theme };
+        return { el: el, theme: themeById[el.id] || {} };
     });
 
     function updateActiveNav() {

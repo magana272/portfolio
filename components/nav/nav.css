@@ -117,7 +117,7 @@
     transition: clip-path 0.45s cubic-bezier(0.55, 0, 0.35, 1), visibility 0s, background-color 0.35s ease;
 }
 
-.nav-overlay.is-open { overflow-y: auto; }
+/* .nav-overlay.is-open { overflow-y: auto; } */
 
 html.menu-open { overflow: hidden; }
 

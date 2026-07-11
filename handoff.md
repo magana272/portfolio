@@ -62,9 +62,11 @@ lib/
   includes.js                       HTML-partial loader; exports `ready` (a Promise)
   media-loader.js                   on-screen video + progressive image upgrades (home)
 content/                            pure data
-  sections.js                       SECTIONS — the nav/band source of truth (labels, order,
-                                    backgrounds, orb themes); each project is a
+  sections.js                       SECTIONS — the nav/band source of truth (id, title,
+                                    cluster, background); each project is a
                                     group:'project' Section built from PROJECTS
+  sectionstheme.js                  SECTIONTHEME — the orb menu colour registry, one theme
+                                    per band keyed by name/title; models look theirs up here
   projects.js  experiences.js  deep-dives.js  photos.js
   education.js  skills.js  me.js  jiujitsu.js  listening.js   (the five content bands)
 styles/
@@ -75,9 +77,13 @@ static/                             images, video, PDFs
 
 Rules that keep it coherent:
 - **Dependencies point downward:** `pages → components / content → lib`.
-  Components never import `content/` (pages inject data — e.g.
+  Components mostly don't import `content/` (pages inject data — e.g.
   `initPhotoMosaic(PHOTOS)`, `renderEducation(EDUCATION)`); `content/`
-  constructs component classes (`content/projects.js` builds `Project`s).
+  constructs component classes (`content/projects.js` builds `Project`s). The
+  one deliberate exception: the `Project` and `Section` models import
+  `content/sectionstheme.js` (the SECTIONTHEME colour registry) and look their
+  theme up in it by name/title — a shared config table, so both models read
+  the same source. (No import cycle: sectionstheme.js imports nothing.)
 - **No `window.*` globals**; every page loads a single
   `<script type="module">` entry and the browser pulls in the import graph.
 - **Class layer — the Page lifecycle:** `Page.init()` runs `layout()` (build
@@ -120,25 +126,38 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ---
 
-## What changed in the project-theme pass (2026-07-10, latest)
-- Every project's `theme` (content/projects.js) is now a full hand-tuned
-  object with a distinct `hover`/`active` interaction accent separate from the
-  `hot` number accent (e.g. PayPath: raspberry numbers, teal hover). Contrast
-  of the links on the flood is ≥4:1 everywhere; the hover/active glow accents
-  are intentionally brighter/softer (a few are low-contrast by design).
-- **The deep-dive page now themes its menu from the project's own theme**
-  (`Section.theme(this.project.theme)` in `DeepDivePage.onNavReady`), instead
-  of the old hardcoded cream orb. So a project's orb looks identical on its
-  home band and its case-study page. The two `applyTheme` call sites (scroll
-  spy + deep dive) both source a Section/project theme now — no hardcoded
-  `{flood, ink, hot}` anywhere.
+## What changed in the SECTIONTHEME-registry pass (2026-07-10, latest)
+- **All orb menu colours moved into one registry**, `content/sectionstheme.js`,
+  exporting `SECTIONTHEME` — a map of band display-name → `{flood, ink, hot,
+  hover, active}` (8 projects keyed by name + 7 sections keyed by title; the
+  Projects/Experience headings have no entry → default orb). The `Project` and
+  `Section` models import it and look their theme up (`SECTIONTHEME[this.name]`
+  / `SECTIONTHEME[this.title]`); a project band's Section shares the project's
+  entry because its title IS the project name. The inline `theme:` blocks are
+  gone from `projects.js` and `sections.js`. Byte-identical to before — this
+  was a pure relocation.
+- The old tint→theme derivation (`complement`/`triad` colour-wheel math) is no
+  longer used anywhere; every theme is now explicit data. `complement`/`triad`
+  in `lib/core.js` are dead exports (safe to delete in a later cleanup). The
+  scroll spy dropped its `--tint` fallback (experience bands set no `--tint`,
+  so they were already getting the default orb).
+
+## What changed in the project-theme pass (2026-07-10, earlier)
+- Every project got a full hand-tuned theme with a distinct `hover`/`active`
+  interaction accent separate from the `hot` number accent (e.g. PayPath:
+  raspberry numbers, teal hover). Link-on-flood contrast is ≥4:1 everywhere;
+  the hover/active glow accents are intentionally brighter/softer (a few are
+  low-contrast by design). (These themes now live in SECTIONTHEME, see above.)
+- **The deep-dive page themes its menu from the project's own theme**
+  (`this.project.theme` in `DeepDivePage.onNavReady`), instead of the old
+  hardcoded cream orb. So a project's orb looks identical on its home band and
+  its case-study page. Both `applyTheme` call sites (scroll spy + deep dive)
+  source a real theme now — no hardcoded `{flood, ink, hot}` anywhere.
 
 ## What changed in the each-project-is-a-Section pass (2026-07-10, earlier)
-0. Each project carries its own orb `theme` (`Project.theme`, defaulting to its
-   tint but overridable with a full `{flood, ink, hot, hover, active}` object).
-   `Section.theme(spec)` accepts either a theme object (used as-is) or a tint
-   string (expanded via `themeFromTint`); the project Section is built with
-   `Section.theme(p.theme)`.
+0. Each project got its own orb `theme` (`Project.theme`). *(Superseded: the
+   `Section.theme(spec)` / `themeFromTint` factory this pass introduced was
+   later replaced by the SECTIONTHEME registry — see the latest pass above.)*
 1. Each project band is its own `Section` (`group: 'project'`, id
    `work-<slug>`, theme from `Project.theme`, tagline as its `tag`), built from
    `PROJECTS` in `content/sections.js`.
@@ -160,10 +179,9 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
    `--item-hover` "destination preview" rainbow with a single hover + active
    colour per menu, sourced from each Section's theme (`hover`/`active`, set to
    the band accent). `Menu.applyTheme()` now writes `--orb-hover` /
-   `--orb-active`; nav.css uses them for all menu links; `Section.themeFromTint`
-   computes them for tinted bands; the Menu's link builders no longer emit
-   per-link `style="--item-hover:…"`. Verified every band resolves to exactly
-   one hover and one active colour.
+   `--orb-active`; nav.css uses them for all menu links; the Menu's link
+   builders no longer emit per-link `style="--item-hover:…"`. Verified every
+   band resolves to exactly one hover and one active colour.
 
 ## What changed in the layout()/index.js pass (2026-07-10, earlier)
 1. `pages/home/home.js` → `pages/index.js` (Next home-route convention);

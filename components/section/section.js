@@ -6,7 +6,7 @@
 // that data exists. Each project band is itself a Section (group 'project'),
 // so the projects heading nests them as its jump-list rather than duplicating
 // them as a separate array.
-import { complement, triad } from '../../lib/core.js';
+import { SECTIONTHEME } from '../../content/sectionstheme.js';
 
 export class Section {
     constructor(opts) {
@@ -18,12 +18,13 @@ export class Section {
         // projects heading).
         this.group = opts.group || 'main';
         this.background = opts.background || '';  // the band's colour
-        // Orb theme for this band: {flood, ink, hot, hover, active}. flood is
-        // the orb/overlay colour, ink the links at rest, hot the list numbers
-        // and tags, and hover/active the one-per-menu link interaction colour
-        // (the band accent). Omitted keys fall back to the :root defaults
-        // (yellow flood, near-black ink, deep red accent).
-        this.theme = opts.theme || null;
+        // Orb theme for this band — looked up in the SECTIONTHEME registry
+        // (content/sectionstheme.js) by title, or null → the :root default orb.
+        // A theme is {flood, ink, hot, hover, active}: flood on the orb/overlay,
+        // ink the links at rest, hot the numbers/tags, hover/active the
+        // one-per-menu link interaction colour. Project bands share the entry
+        // keyed by their name (their Section's title is the project name).
+        this.theme = SECTIONTHEME[this.title] || null;
         // Small tag shown beside this section's name when it appears as a
         // nested sub-link (a project's tagline / category).
         this.tag = opts.tag || '';
@@ -42,27 +43,5 @@ export class Section {
     applyBackground() {
         var el = this.el();
         if (el && this.background) el.style.background = this.background;
-    }
-
-    // Orb theme from a spec: a full {flood, ink, hot, hover, active} object is
-    // used as-is (hand-tuned menu colours), a tint colour string is expanded
-    // via themeFromTint, and anything falsy yields no theme (the :root default
-    // orb). This is what a project band's Section is built from —
-    // Section.theme(project.theme) — so a project can either hand-tune its orb
-    // or fall back to its tint.
-    static theme(spec) {
-        if (!spec) return null;
-        return typeof spec === 'string' ? Section.themeFromTint(spec) : spec;
-    }
-
-    // Computed theme for a tinted band from a single tint colour: the tint's
-    // complement floods, the tint itself inks the links, and the triad's third
-    // hue is the accent — worn by the numbers/tags (hot) and, one per menu, the
-    // hover/active links.
-    static themeFromTint(tint) {
-        var flood = complement(tint);
-        if (!flood) return null;
-        var accent = triad(tint);
-        return { flood: flood, ink: tint, hot: accent, hover: accent, active: accent };
     }
 }
