@@ -36,7 +36,7 @@ export const SECTIONS = [
     new Section({
         id: 'about', title: 'About',
         background: 'var(--band-about)',   // cream band → royal blue flood, yellow accent
-        theme: { flood: '#2528a6', ink: '#ecdcc0', hot: '#ffd21e', hover: '#ffd21e', active: '#ffd21e' }
+        theme: { flood: '#2528a6', ink: '#ecdcc0', hot: '#8dfaa1', hover: '#ffd21e', active: '#ffd21e' }
     }),
     new Section({
         id: 'projects-section', title: 'Projects',
@@ -53,12 +53,12 @@ export const SECTIONS = [
     new Section({
         id: 'education', title: 'Education',
         background: 'var(--band-edu)',     // emerald band → rose pink flood, white accent
-        theme: { flood: '#ff5f8f', ink: '#0a5c3e', hot: '#ffffff', hover: '#ffffff', active: '#ffffff' }
+        theme: { flood: '#ff5f8f', ink: '#0a5c3e', hot: '#ffffff', hover: 'var(--band-edu)', active: 'var(--band-edu)'}
     }),
     new Section({
         id: 'skills', title: 'Skills',
         background: 'var(--band-skills)',  // violet band → lime flood; accent falls back to the default
-        theme: { flood: '#c8f542', ink: '#5b21c0' }
+        theme: { flood: '#c8f542', ink: '#5b21c0', hot: '#173404', hover: 'var(--band-skills)', active: 'var(--band-skills)'  }
     }),
     new Section({
         id: 'about-me', title: 'Off the clock', group: 'off-label',

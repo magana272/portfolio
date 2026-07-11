@@ -120,7 +120,20 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ---
 
-## What changed in the each-project-is-a-Section pass (2026-07-10, latest)
+## What changed in the project-theme pass (2026-07-10, latest)
+- Every project's `theme` (content/projects.js) is now a full hand-tuned
+  object with a distinct `hover`/`active` interaction accent separate from the
+  `hot` number accent (e.g. PayPath: raspberry numbers, teal hover). Contrast
+  of the links on the flood is ≥4:1 everywhere; the hover/active glow accents
+  are intentionally brighter/softer (a few are low-contrast by design).
+- **The deep-dive page now themes its menu from the project's own theme**
+  (`Section.theme(this.project.theme)` in `DeepDivePage.onNavReady`), instead
+  of the old hardcoded cream orb. So a project's orb looks identical on its
+  home band and its case-study page. The two `applyTheme` call sites (scroll
+  spy + deep dive) both source a Section/project theme now — no hardcoded
+  `{flood, ink, hot}` anywhere.
+
+## What changed in the each-project-is-a-Section pass (2026-07-10, earlier)
 0. Each project carries its own orb `theme` (`Project.theme`, defaulting to its
    tint but overridable with a full `{flood, ink, hot, hover, active}` object).
    `Section.theme(spec)` accepts either a theme object (used as-is) or a tint
@@ -255,13 +268,15 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
   slow first load the bands could flash white for a beat before the module
   executes. If that's ever visible, the fix is inlining a tiny critical style
   or reverting the backgrounds to CSS while keeping them mirrored in SECTIONS.
-- **Menu hover/active = one accent per menu.** Each Section's theme carries
-  `hover` and `active` colours (set to the band accent); `Menu.applyTheme()`
-  writes them to `--orb-hover` / `--orb-active`, and nav.css uses those for
-  every menu link's `:hover` and `.active`. They default to the accent (`hot`)
-  when a theme omits them, and to `--accent-deep` when a band has no accent
-  (skills, photography). To give a band a distinct interaction colour, set
-  `hover`/`active` on its theme in `content/sections.js`.
+- **Menu hover/active = one interaction colour per menu**, and it may be its
+  own colour, distinct from the `hot` number/tag accent. Each theme can carry
+  `hover` and `active`; `Menu.applyTheme()` writes them to `--orb-hover` /
+  `--orb-active`, and nav.css uses those for every menu link's `:hover` and
+  `.active`. They fall back to `hot`, then to `--accent-deep`, when omitted.
+  The project themes (content/projects.js) set a distinct interaction accent
+  per project; the static bands mostly leave them = `hot`. It's still ONE
+  hover + ONE active per menu (never a per-link rainbow) — the palette is now
+  up to four colours (flood, ink, hot, hover/active), one of each.
 - **Mobile:** the responsive fixes are in but were only reasoned from CSS —
   worth a visual pass on a real phone width.
 - An auto-formatter/linter has been actively editing files mid-session (e.g.

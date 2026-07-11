@@ -8,6 +8,7 @@
 import { PROJECTS } from '../../content/projects.js';
 import { DEEP_DIVES } from '../../content/deep-dives.js';
 import { SECTIONS } from '../../content/sections.js';
+import { Section } from '../../components/section/section.js';
 import { DeepDive } from '../../components/deep-dive/deep-dive.js';
 import { Page } from '../page.js';
 import { esc } from '../../lib/core.js';
@@ -75,17 +76,14 @@ class DeepDivePage extends Page {
         });
     }
 
-    // Theme the menu for this project once the orb exists: a cream orb/flood
-    // that pops against the dark jewel page, with the menu text in the
-    // project's signature colour.
+    // Theme the menu once the orb exists with the SAME theme this project's
+    // band wears on the home page (Section.theme(project.theme)), so the orb
+    // matches everywhere the project appears. The deep-dive page is washed in
+    // the project's dark tint, so the theme's bright flood pops just as it does
+    // over the home band.
     onNavReady() {
-        if (this.project && this.project.tint) {
-            this.menu.applyTheme({
-                flood: 'var(--on-dark)',
-                ink: this.project.tint,
-                hot: 'var(--accent-deep)'
-            });
-        }
+        var theme = this.project && Section.theme(this.project.theme);
+        if (theme) this.menu.applyTheme(theme);
     }
 }
 
