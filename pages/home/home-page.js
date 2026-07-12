@@ -10,25 +10,25 @@
 //   render()   — wire the behaviours over that structure (mosaic, media
 //                loader, pager).
 //   onNavReady — the scroll spy, which needs the injected menu.
-import { PROJECTS } from '../content/projects.js';
-import { EXPERIENCES } from '../content/experiences.js';
-import { SECTIONS } from '../content/sections.js';
-import { PHOTOS } from '../content/photos.js';
-import { EDUCATION } from '../content/education.js';
-import { SKILLS } from '../content/skills.js';
-import { ME } from '../content/me.js';
-import { JIUJITSU } from '../content/jiujitsu.js';
-import { LISTENING } from '../content/listening.js';
-import { Page } from './page.js';
-import { renderEducation } from '../features/education/education.js';
-import { renderSkills } from '../features/skills/skills.js';
-import { renderMe } from '../features/off-the-clock/me.js';
-import { renderJiujitsu } from '../features/off-the-clock/jiujitsu.js';
-import { renderListening } from '../features/off-the-clock/listening.js';
-import { initScrollSpy } from '../components/shared/nav/scroll-spy.js';
-import { initMediaLoader } from '../lib/media-loader.js';
-import { initPhotoMosaic } from '../features/off-the-clock/photo-mosaic.js';
-import { initPager } from '../components/shared/pager/pager.js';
+import { PROJECTS } from '../../content/projects.js';
+import { EXPERIENCES } from '../../content/experiences.js';
+import { SECTIONS } from '../../content/sections.js';
+import { PHOTOS } from '../../content/photos.js';
+import { EDUCATION } from '../../content/education.js';
+import { SKILLS } from '../../content/skills.js';
+import { ME } from '../../content/me.js';
+import { JIUJITSU } from '../../content/jiujitsu.js';
+import { LISTENING } from '../../content/listening.js';
+import { Page } from '../page.js';
+import { renderEducation } from '../../features/education/education.js';
+import { renderSkills } from '../../features/skills/skills.js';
+import { renderMe } from '../../features/off-the-clock/me.js';
+import { renderJiujitsu } from '../../features/off-the-clock/jiujitsu.js';
+import { renderListening } from '../../features/off-the-clock/listening.js';
+import { initScrollSpy } from '../../components/shared/nav/scroll-spy.js';
+import { initMediaLoader } from '../../lib/media-loader.js';
+import { initPhotoMosaic } from '../../features/off-the-clock/photo-mosaic.js';
+import { initPager } from '../../components/shared/pager/pager.js';
 
 class HomePage extends Page {
     constructor() {

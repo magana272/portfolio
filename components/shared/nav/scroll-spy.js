@@ -24,7 +24,7 @@ export function initScrollSpy(sections, menu) {
     // Every colour band in document order, first-match-wins from the bottom.
     // Sections (projects included) carry their theme on their Section, keyed by
     // element id; a band with no Section theme (the experience roles) gets the
-    // default orb ({}). Panels are built before this runs (see pages/index.js),
+    // default orb ({}). Panels are built before this runs (see pages/home/home-page.js),
     // so the bands exist by now.
     var themeSpots = Array.prototype.slice.call(
         document.querySelectorAll('header[id], main section[id], #work .feature, #experience .exp')

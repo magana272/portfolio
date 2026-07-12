@@ -1,6 +1,6 @@
 // Project content — pure data. Each entry is a Project (see features/projects/project.js);
 // long-form case-study copy lives in content/deep-dives.js, keyed by slug. The
-// home page renders these in pages/index.js. `tagline` is the short label shown
+// home page renders these in pages/home/home-page.js. `tagline` is the short label shown
 // in the menu jump-list.
 //
 // The orb menu's colours for a project's band are NOT here — they live in the
