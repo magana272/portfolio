@@ -61,17 +61,19 @@
     color: var(--sec-ink-soft, var(--on-dark-soft));
 }
 
-/* The white box — bullets in dark text, flush to the edge, square corners. */
+/* The white box — bullets in dark text, flush to the edge, square corners.
+   Card-internal text reads the GLOBAL ink, not the band's --sec-ink: the box
+   stays white whatever the band theme says, so its text must too. */
 .exp-inner {
     background: var(--bg);
-    color: var(--sec-ink, var(--ink));
+    color: var(--ink);
     padding: clamp(28px, 3.5vw, 52px);
 }
 
 .exp-takeaway {
     font-size: 1rem;
     line-height: 1.55;
-    color: var(--sec-ink, var(--ink));
+    color: var(--ink);
     padding: 10px 16px;
     margin-bottom: 18px;
     border-left: 2px solid var(--accent);

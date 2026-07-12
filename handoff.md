@@ -139,11 +139,20 @@ which runs as `npm test`'s pretest):
   `--pink`). `band.pink` is the project panel's card accent, applied by
   `Project.styleVars()` only (the old per-project `ink` field in
   content/projects.js moved here). CSS holds every rule that consumes the
-  vars, always with a :root-token fallback
-  (`var(--sec-ink, var(--on-dark))`, `var(--sec-line, var(--line))`), so a
-  band with no theme keys renders from the global tokens. JS never
-  hard-codes a colour or picks a fallback anywhere else; to retune a band,
-  edit its theme entry, not a stylesheet and not a controller.
+  vars (each keeps a :root-token fallback as a safety net for unthemed
+  elements). JS never hard-codes a colour or picks a fallback anywhere else;
+  to retune a band, edit its theme entry, not a stylesheet and not a
+  controller.
+  **Explicitness contract:** every entry fills every key of its groups —
+  sections carry orb + band, projects carry orb + band (with pink) + a full
+  dd tone set; `scripts/check-theme.mjs` (npm pretest) fails the build on a
+  missing, unknown, or wrong-case key (the bridge matches keys exactly, so
+  `inksoft` instead of `inkSoft` would otherwise be a silent no-op). The
+  shared LIGHT_BAND / DARK_BAND / DD_CREAM sets in lib/theme.js spell out
+  the default tones; override per entry after the spread. One consumer rule
+  to know: text on a light card INSIDE a band (the experience white box, the
+  pcard) reads the global `--ink`, not `--sec-ink` — the card stays light
+  whatever the band theme says.
 - **Every section owns its CSS:** to change a section's format, open its dir
   (`components/section/experience-section/experience-section.css`, ...). The
   hero lives in `about-section/about-section.css`. To change ONE project
@@ -184,7 +193,23 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ---
 
-## What changed in the deep-dive-channels pass (2026-07-11, latest)
+## What changed in the explicit-registry pass (2026-07-11, latest)
+- **Every SECTIONTHEME entry now fills every key** — no colour hides in a
+  CSS fallback. Projects: full orb + band (accent, light tones, pink) + dd
+  (accent + the cream page tones, via the shared DD_CREAM set). Sections:
+  full orb + band (LIGHT_BAND on the cream hero, DARK_BAND on the jewel and
+  near-black bands). Photography's orb hot/hover/active and a brand-new
+  `Experience` entry state the previous :root defaults explicitly.
+- **scripts/check-theme.mjs** (npm pretest) enforces the contract: missing
+  keys, unknown keys, wrong-case keys (`inksoft` vs `inkSoft`), and dd on a
+  non-project all fail the build.
+- **Card-internal ink rule:** the experience white box (`.exp-inner`,
+  `.exp-takeaway`) unwrapped from `--sec-ink` back to the global `--ink` —
+  it sits on a white card that ignores the band theme, and the new explicit
+  `Experience.band.ink` (cream, for the band itself) must not bleed into it.
+- Pixel-identical: every explicit value equals what its fallback resolved to.
+
+## What changed in the deep-dive-channels pass (2026-07-11, earlier)
 - **The `.dd-page` block in deep-dive.css is now the one place to retune the
   deep-dive page:** tone channels (`--ink`, `--ink-mid`, `--ink-soft`,
   `--line`, `--surface`, `--pink`) plus element channels that say which tone
