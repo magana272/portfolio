@@ -5,7 +5,9 @@ pages:
   stage: deploy
   script:
     - mkdir -p public
-    - find . -mindepth 1 -maxdepth 1 ! -name public ! -name .git -exec cp -r {} public/ \;
+    # Copy the site into public/, excluding dev-only tooling (tests, Playwright
+    # config, npm files) so none of it gets published.
+    - find . -mindepth 1 -maxdepth 1 ! -name public ! -name .git ! -name node_modules ! -name tests ! -name scripts ! -name test-results ! -name playwright-report ! -name package.json ! -name package-lock.json ! -name playwright.config.js ! -name .nvmrc -exec cp -r {} public/ \;
   artifacts:
     paths:
       - public

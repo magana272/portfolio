@@ -15,75 +15,89 @@ The JS is **ES modules** and the shared nav is loaded as an **HTML partial via
 Always serve it:
 
 ```bash
-python3 -m http.server 5500      # then open http://127.0.0.1:5500/
-# or VS Code Live Server (the repo is set up for it), or GitHub Pages
+node scripts/serve.mjs 5500      # then open http://127.0.0.1:5500/
+# or python3 -m http.server 5500, VS Code Live Server, or GitHub Pages
 ```
 
 There is still no build/bundler — the browser loads the modules directly.
 
 ---
 
-## Architecture (Next-style layout, zero dependencies)
+## Architecture (pages / features / shared, zero dependencies)
 
-The tree is shaped like a Next.js app — routes under `pages/`, co-located
-components under `components/<name>/` (JS + CSS + markup together), shared
-helpers in `lib/`, pure data in `content/`, global styles in `styles/` — but
-it is plain buildless ESM; there is no framework or bundler.
+Three tiers: routes under `pages/` compose the site, one folder per feature
+under `features/` renders it (JS + CSS co-located), and `components/shared/`
+holds the few cross-page primitives (nav, Section model, pager). Shared
+helpers live in `lib/`, pure data in `content/`, global styles in `styles/`.
+It is plain buildless ESM; there is no framework or bundler.
 
 ```
 index.html                          home route (root; GitHub Pages requirement)
-pages/
+pages/                              route controllers, one folder per route
   page.js                           class Page — the shared boot sequence (base class)
-  index.js                          class HomePage extends Page — mounts the bands, panels, spy
-  project/project.html              deep-dive route (<base href="../../">)
-  project/project.js                class DeepDivePage extends Page — pairs ?id with
+  home/home-page.js                 class HomePage extends Page — mounts the bands, panels, spy
+  deep-dive/deep-dive.html          deep-dive route (<base href="../../">)
+  deep-dive/deep-dive-page.js       class DeepDivePage extends Page — pairs ?id with
                                     its copy, delegates markup to the DeepDive model
-  project.html                      redirect stub → project/project.html (+ query)
-components/                         one folder per component, JS (+ CSS) co-located
+  project.html                      redirect stub → deep-dive/deep-dive.html (+ query)
+  project/project.html              redirect stub at the older co-located URL, same target
+features/                           one folder per feature, JS + CSS co-located
+  projects/project.js + .css        class Project (data + renderFeature; href() → deep dive)
+  experience/experience.js + .css   class Experience (data + render, split into
+                                    headHtml/bodyHtml/asideHtml)
+  education/education.js + .css     renderEducation(EDUCATION) → #education body
+  skills/skills.js + .css           renderSkills(SKILLS) → #skills body
+  off-the-clock/                    the four off-the-clock bands, flat in one feature
+    me.js + .css                    renderMe(ME) → #about-me collage body
+    photo-mosaic.js + .css          masonry + FLIP expand + JJ tags (photos injected by HomePage)
+    jiujitsu.js + .css              renderJiujitsu(JIUJITSU) → #jiujitsu body
+    listening.js + .css             renderListening(LISTENING) → #listening body
+  deep-dive/deep-dive.js + .css     class DeepDive (case study → markup, one method per block)
+components/shared/                  cross-page primitives only
   nav/nav.html                      shell partial (orb + overlay + empty lists)
   nav/nav.js                        class Menu — builds links from sections, hold-to-open,
                                     applyTheme() (the ONLY writer of --orb-*)
   nav/nav.css                       orb + overlay + menu styles (uses --orb-hover/--orb-active)
   nav/scroll-spy.js                 active-section spy; themes the orb via menu.applyTheme()
   section/section.js + section.css  class Section (id, title, group, background, theme, tag, sublistGroup)
-  project/project.js + project.css  class Project (data + renderFeature; href() → deep dive)
-  experience/experience.js + .css   class Experience (data + render)
-  deep-dive/deep-dive.js + .css     class DeepDive (case study → markup, one method per block)
   pager/pager.js + pager.css        section pager triangles (home)
-  photo-mosaic/photo-mosaic.js+.css masonry + FLIP expand + JJ tags (photos injected by HomePage)
-  education/education.js            renderEducation(EDUCATION) → #education body
-  skills/skills.js                 renderSkills(SKILLS) → #skills body
-  me/me.js                         renderMe(ME) → #about-me collage body
-  jiujitsu/jiujitsu.js             renderJiujitsu(JIUJITSU) → #jiujitsu body
-  listening/listening.js           renderListening(LISTENING) → #listening body
 lib/
   core.js                           shared helpers (esc, slugify, padNum, complement, triad,
                                     isVideo, reducedMotion, formatTechList)
+  theme.js                          SECTIONTHEME — the orb/band colour registry, one theme
+                                    per band keyed by name/title; models look theirs up here
   includes.js                       HTML-partial loader; exports `ready` (a Promise)
   media-loader.js                   on-screen video + progressive image upgrades (home)
 content/                            pure data
   sections.js                       SECTIONS — the nav/band source of truth (id, title,
                                     cluster, background); each project is a
                                     group:'project' Section built from PROJECTS
-  sectionstheme.js                  SECTIONTHEME — the orb menu colour registry, one theme
-                                    per band keyed by name/title; models look theirs up here
   projects.js  experiences.js  deep-dives.js  photos.js
   education.js  skills.js  me.js  jiujitsu.js  listening.js   (the five content bands)
 styles/
   main.css                          the only <link>; @imports everything in cascade order
   base.css  hero.css  footer.css  responsive.css  print.css   global / page sheets only
 static/                             images, video, PDFs
+tests/ + playwright.config.js       Playwright suite: visual baselines + smoke (npm test)
+scripts/
+  serve.mjs                         keep-alive static server for dev/tests (node scripts/serve.mjs)
+  check-boundaries.mjs              import-tier lint, wired as npm pretest
 ```
 
-Rules that keep it coherent:
-- **Dependencies point downward:** `pages → components / content → lib`.
-  Components mostly don't import `content/` (pages inject data — e.g.
-  `initPhotoMosaic(PHOTOS)`, `renderEducation(EDUCATION)`); `content/`
-  constructs component classes (`content/projects.js` builds `Project`s). The
-  one deliberate exception: the `Project` and `Section` models import
-  `content/sectionstheme.js` (the SECTIONTHEME colour registry) and look their
-  theme up in it by name/title — a shared config table, so both models read
-  the same source. (No import cycle: sectionstheme.js imports nothing.)
+Rules that keep it coherent (lint-enforced by `scripts/check-boundaries.mjs`,
+which runs as `npm test`'s pretest):
+- **Tiers point downward only:** `pages` may import anything below it;
+  `features` may import `components/shared`, `content`, and `lib`, never
+  another feature (promote shared code to `components/shared/`);
+  `components/shared` imports only `lib`; `lib` imports only `lib`.
+  `content/` is pure data but constructs the model classes it holds data for
+  (`content/projects.js` builds `Project`s), so `content → features/shared`
+  is the one allowed upward-looking edge (no cycle: the models never import
+  `content`). Features don't reach into `content/` themselves; pages inject
+  data (e.g. `initPhotoMosaic(PHOTOS)`, `renderEducation(EDUCATION)`). The
+  SECTIONTHEME colour registry lives in `lib/theme.js` precisely so the
+  `Project` and `Section` models can look their theme up without a
+  feature/shared → content import.
 - **No `window.*` globals**; every page loads a single
   `<script type="module">` entry and the browser pulls in the import graph.
 - **Class layer — the Page lifecycle:** `Page.init()` runs `layout()` (build
@@ -101,21 +115,32 @@ Rules that keep it coherent:
   bodies `HomePage.layout()` mounts from their components + `content/` data —
   the same pattern as the project/experience panels. Only photography keeps a
   small static head in the HTML (its mosaic is JS-filled).
-- **Component CSS is co-located:** each band's styles live next to its JS
-  (`components/education/education.css`, `skills/`, `me/`, `jiujitsu/`,
-  `listening/`). `styles/` now holds only genuinely global/page sheets (base,
-  hero, footer, responsive, print) plus the shared `.life-note` utility (moved
-  into `base.css`, since photography's static head and the jiu-jitsu component
-  both use it). `styles/main.css` `@import`s the component sheets in band
-  order.
+- **Feature CSS is co-located:** each band's styles live next to its JS
+  (`features/education/education.css`, `skills/`, `off-the-clock/`, ...).
+  `styles/` holds only genuinely global/page sheets (base, hero, footer,
+  responsive, print) plus the shared `.life-note` utility (in `base.css`,
+  since photography's static head and the jiu-jitsu feature both use it).
+  `styles/main.css` `@import`s the feature sheets in band order.
 - **CSS:** `styles/main.css` `@import`s global files from `styles/` and each
-  component's stylesheet from its folder, in the same cascade order as the old
-  13-link set (photo-mosaic.css sits where its rules sat inside life.css).
+  feature's stylesheet from its folder. The order is load-bearing (base → nav
+  → hero → section → the band sheets → footer → responsive → print →
+  deep-dive → pager): change only paths when moving files, never the order.
   Band backgrounds are Section data, not per-id CSS rules; the `--band-*`
   palette tokens stay in `styles/base.css`.
-- **Routes:** the deep-dive URL moved to `pages/project/project.html`;
-  `Project.href()` points there, and the stub at `pages/project.html`
-  redirects old links, preserving `?id=` and `#hash`.
+- **Routes:** the canonical deep-dive URL is
+  `pages/deep-dive/deep-dive.html?id=<slug>`; `Project.href()` points there.
+  A moved route always leaves a `location.replace(... + location.search +
+  location.hash)` stub at the old path: both `pages/project.html` and
+  `pages/project/project.html` redirect old links, preserving `?id=` and
+  `#hash`.
+- **Tests are the move-safety net:** every import/`@import`/`src`/`href`/
+  `data-include` is a literal relative path, so a missed path after a file
+  move is a silent runtime 404. Before committing a move, run `npm test`
+  (Node 18+, see `.nvmrc`): the boundary lint checks every import resolves,
+  the assets spec fails on any local response >= 400, and the visual specs
+  diff both pages against committed baselines (`npm run test:update`
+  re-captures them after an intended visual change; snapshots are
+  darwin-specific, so treat the visual gate as local-only).
 
 ### Static assets
 Images, videos, and PDFs live under `static/`:
@@ -126,7 +151,46 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ---
 
-## What changed in the SECTIONTHEME-registry pass (2026-07-10, latest)
+## What changed in the pages/features/shared pass (2026-07-11, latest)
+- **Three-tier layout.** Feature code moved out of `components/` into
+  `features/` (`projects`, `experience`, `education`, `skills`,
+  `off-the-clock` holding me/photo-mosaic/jiujitsu/listening flat, and
+  `deep-dive`); `components/` now holds only `shared/` (nav, section, pager).
+  `pages/index.js` → `pages/home/home-page.js`. All moves were `git mv`, one
+  commit per feature, paths-only (plus the Experience.render() split into
+  headHtml/bodyHtml/asideHtml helpers, markup unchanged).
+- **Deep-dive route renamed to match its feature:** `pages/project/*` →
+  `pages/deep-dive/deep-dive.html` + `deep-dive-page.js`; `Project.href()`
+  updated; redirect stubs left at `pages/project.html` AND
+  `pages/project/project.html` (query + hash preserved).
+- **`content/sectionstheme.js` → `lib/theme.js`** so the Section model in
+  `components/shared/` imports only `lib` (the shared tier no longer touches
+  `content/`).
+- **Playwright suite added** (`tests/`, `npm test`, Node 18+): full-page
+  visual baselines for the home page and all 8 deep dives (slug-keyed names,
+  so they survived the URL move with zero pixel diffs), smoke specs (section
+  mounting, orb menu, scroll-spy theming, deep-dive rendering, redirects),
+  and an assets spec that fails on any local response >= 400. Tests run
+  against `scripts/serve.mjs` (python http.server drops connections under
+  parallel load; videos are masked/aborted in screenshot specs because their
+  metadata resizes layout nondeterministically).
+- **`scripts/check-boundaries.mjs`** lint-enforces the tier rules and that
+  every relative import resolves; wired as npm pretest.
+- **Deploy hygiene:** `.gitlab-ci.yml` now excludes node_modules, tests,
+  scripts, and the npm/Playwright config files from the published `public/`.
+- Verified: the whole suite green after every step; final visual diffs vs the
+  pre-refactor baselines are zero.
+
+## What changed in the band-accent pass (2026-07-11, earlier)
+- **`--sec-accent`:** every band's own content (kickers, labels, list
+  numerals, panel indexes) can wear an in-band accent from its SECTIONTHEME
+  entry, set by `Section.applyBackground()` and `Project.styleVars()` from a
+  new optional `band` key (defaulting to the flood). Theme values retuned for
+  WCAG 4.5:1 against their floods; the deep-dive `--dd-accent` rides the same
+  key. The stray duplicate `<section id="about">` shell was removed from
+  `index.html`.
+
+## What changed in the SECTIONTHEME-registry pass (2026-07-10)
 - **All orb menu colours moved into one registry**, `content/sectionstheme.js`,
   exporting `SECTIONTHEME` — a map of band display-name → `{flood, ink, hot,
   hover, active}` (8 projects keyed by name + 7 sections keyed by title; the
@@ -312,6 +376,10 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 - Voice: software-engineer-first (don't frame Manuel as a scientist who found code).
 
 ## Deploy
-GitHub Pages. CI (`.gitlab-ci.yml`, if used) copies every top-level directory
-into `public/`, so `pages/`, `components/`, `lib/`, `content/`, `styles/`, and
-`static/` deploy automatically — no path allowlist to maintain.
+GitHub Pages. CI (`.gitlab-ci.yml`, if used) copies every top-level entry
+into `public/` except the dev-only tooling (node_modules, tests, scripts,
+test-results, playwright-report, package.json, package-lock.json,
+playwright.config.js, .nvmrc), so `pages/`, `components/`, `features/`,
+`lib/`, `content/`, `styles/`, and `static/` deploy automatically with no
+path allowlist to maintain. When adding a new top-level dev directory, add it
+to the exclusion list or it gets published.

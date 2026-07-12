@@ -2,6 +2,7 @@
   "name": "portfolio",
   "private": true,
   "scripts": {
+    "pretest": "node scripts/check-boundaries.mjs",
     "test": "playwright test",
     "test:update": "playwright test --update-snapshots"
   },
