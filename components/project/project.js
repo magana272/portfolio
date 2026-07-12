@@ -137,6 +137,10 @@ export class Project {
 
     styleVars() {
         var vars = '--tint:' + this.tint + ';--pink:' + this.ink + ';--panel-fg:' + this.fg;
+        // The in-band accent (theme `band`, defaulting to the flood — the
+        // tint's complement), worn by the panel's index number and hover
+        // states so the panel echoes its orb theme.
+        if (this.theme) vars += ';--sec-accent:' + (this.theme.band || this.theme.flood);
         if (this.mediaBg) vars += ';--media-bg:' + this.mediaBg;
         return vars;
     }

@@ -38,7 +38,9 @@
     margin-bottom: 14px;
 }
 
-.exp-index { color: var(--menu-bg); font-weight: 600; }
+/* Falls back to the default orb yellow — Experience has no SECTIONTHEME
+   entry, so --sec-accent is unset on this band today. */
+.exp-index { color: var(--sec-accent, var(--menu-bg)); font-weight: 600; }
 
 .exp-title {
     font-family: var(--display);
@@ -132,7 +134,7 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--menu-bg);
+    color: var(--sec-accent, var(--menu-bg));
     margin-bottom: 10px;
 }
 

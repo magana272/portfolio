@@ -17,13 +17,14 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--on-dark);
+    /* The band's own theme accent (--sec-accent, set per band by
+       Section.applyBackground() from SECTIONTHEME) — the small mono heading
+       wears the band accent the way the menu's numbers wear `hot`. */
+    color: var(--sec-accent, var(--on-dark));
     display: inline-flex;
     align-items: baseline;
     gap: 10px;
 }
-
-.kicker-num { color: var(--accent-ink); }
 
 .section-note {
     font-family: var(--mono);

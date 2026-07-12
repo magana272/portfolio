@@ -39,9 +39,14 @@ export class Section {
     }
 
     // The band paints itself — the background is Section data, not a per-id
-    // CSS rule. A no-op on pages that don't carry the band.
+    // CSS rule. A no-op on pages that don't carry the band. Alongside the
+    // background it exposes the theme's in-band accent (`band`, defaulting to
+    // the flood) as --sec-accent, so the band's own content — kicker, labels,
+    // list numerals — wears the same per-band colour story as the orb menu.
     applyBackground() {
         var el = this.el();
-        if (el && this.background) el.style.background = this.background;
+        if (!el) return;
+        if (this.background) el.style.background = this.background;
+        if (this.theme) el.style.setProperty('--sec-accent', this.theme.band || this.theme.flood);
     }
 }

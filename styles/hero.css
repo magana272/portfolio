@@ -12,7 +12,9 @@
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--ink-mid);
+    /* The About band's theme accent (royal blue on cream), set on #about by
+       Section.applyBackground(). */
+    color: var(--sec-accent, var(--ink-mid));
     margin-bottom: clamp(20px, 4vw, 34px);
 }
 

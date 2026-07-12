@@ -18,7 +18,8 @@
 
 .edu-courses-cat {
     display: block;
-    color: var(--on-dark);
+    /* Category heads wear the band accent (light rose on the emerald band). */
+    color: var(--sec-accent, var(--on-dark));
     font-weight: 600;
     letter-spacing: 0.03em;
     margin-bottom: 6px;
@@ -41,7 +42,7 @@
 
 .pub-title { font-family: var(--display); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; color: var(--on-dark); max-width: 34rem; }
 .pub-authors { font-family: var(--body); font-size: 0.92rem; color: var(--on-dark-soft); margin-top: 8px; line-height: 1.5; max-width: 34rem; }
-.pub-authors strong { color: var(--on-dark); font-weight: 600; }
+.pub-authors strong { color: var(--sec-accent, var(--on-dark)); font-weight: 600; }
 .pub-detail { font-family: var(--mono); font-size: 0.8rem; color: var(--on-dark-soft); margin-top: 8px; overflow-wrap: anywhere; max-width: 34rem; }
 .pub-detail a { color: var(--on-dark); text-decoration: none; border-bottom: 1px solid currentColor; }
 .pub-detail a:hover { opacity: 0.7; }

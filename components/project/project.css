@@ -217,6 +217,16 @@
 .feature .proj-more,
 .feature .proj-ext { color: var(--panel-fg); }
 
+/* The index number and link hovers wear the project's in-band accent
+   (--sec-accent, set from its SECTIONTHEME entry by styleVars()) — the same
+   accent its orb and deep-dive page wear. Hovered ext links drop the opacity
+   dim so the accent keeps its contrast on the tint. */
+.feature .feature-index { color: var(--sec-accent, var(--panel-fg)); }
+.feature .feature-title a:hover,
+.feature .proj-more:hover,
+.feature .proj-ext:hover { color: var(--sec-accent, var(--panel-fg)); }
+.feature .proj-ext:hover { opacity: 1; }
+
 .feature .gen-mono,
 .feature .gen-label,
 .feature .gen-motif--swe rect,

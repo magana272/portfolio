@@ -41,20 +41,18 @@ class DeepDivePage extends Page {
         document.title = project.name + ' · Deep Dive';
 
         // Wash the whole deep dive in the project's signature jewel colour, then
-        // pull its orb theme onto the page accents so the deep dive wears the
+        // pull its orb theme onto the page accent so the deep dive wears the
         // same palette as its home band and orb, not a flat cream accent. The
-        // bright flood is the accent that pops on the dark tint (--dd-accent
-        // feeds --pink, which drives every dd-* accent); the band's hover/active
-        // colour rides the "back" link. The menu orb is themed in onNavReady().
+        // in-band accent (theme `band`, defaulting to the bright flood) pops on
+        // the dark tint; --dd-accent feeds --pink, which drives every dd-*
+        // accent, while body copy keeps the .dd-page cream inks. The menu orb
+        // is themed in onNavReady().
         var page = document.body.style;
         if (project.tint) {
             page.setProperty('--tint', project.tint);
         }
         if (project.theme) {
-            if (project.theme.accent) page.setProperty('--dd-accent', project.theme.accent);
-            var accent = project.theme.hover || project.theme.accent;
-            page.setProperty("--ink", project.theme.flood)
-            page.setProperty("--ink-mid", project.theme.flood)
+            page.setProperty('--dd-accent', project.theme.band || project.theme.flood);
         }
 
         this.root.innerHTML = new DeepDive(project, cs).html();

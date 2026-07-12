@@ -29,7 +29,7 @@
     transition: color 0.15s;
 }
 
-.jj-gym-link:hover { color: var(--on-dark); }
+.jj-gym-link:hover { color: var(--sec-accent, var(--on-dark)); }
 
 .jj-figure {
     /* The vh term shrinks the photo on short screens so the whole poster —
