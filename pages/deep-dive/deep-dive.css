@@ -314,6 +314,16 @@
         background: #fff;
         --ink: #111214; --ink-mid: #56585c; --ink-soft: #636469;
         --line: #e5e5e2; --surface: #f4f4f2; --pink: #111214;
+        /* Re-pin the element channels with !important: the theme's dd
+           overrides land inline on <body>, and only an important declaration
+           outranks an inline style — print stays ink-on-white regardless. */
+        --dd-hero-ink: var(--ink) !important;
+        --dd-eyebrow-ink: var(--ink-mid) !important;
+        --dd-label-ink: var(--pink) !important;
+        --dd-heading-ink: var(--ink) !important;
+        --dd-heading-num: var(--ink-mid) !important;
+        --dd-note-accent: var(--pink) !important;
+        --dd-copy-ink: var(--ink-mid) !important;
     }
     .dd-aside, .dd-back { display: none; }
     .dd-layout { grid-template-columns: 1fr; }

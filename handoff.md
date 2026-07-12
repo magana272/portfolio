@@ -192,11 +192,13 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
   `--dd-label-ink`, `--dd-heading-ink`, `--dd-heading-num`,
   `--dd-note-accent`, `--dd-copy-ink`). Every dd-* rule reads a channel,
   never a literal.
-- **Themes gain an optional `dd` group** ({accent, ink, inkMid, inkSoft,
-  line, surface}) so a project can override the page tones from lib/theme.js;
-  `ddVars()`/`applyDdVars()` deliver it as the `--dd-*` vars the tone
-  channels prefer. Print re-declares the tones directly and stays
-  ink-on-white regardless.
+- **Themes gain an optional `dd` group** with tone keys ({accent, ink,
+  inkMid, inkSoft, line, surface}) and element-channel keys ({heroInk,
+  eyebrowInk, labelInk, headingInk, headingNum, noteAccent, copyInk}) so a
+  project can retint the page or repaint one element kind straight from
+  lib/theme.js; `ddVars()`/`applyDdVars()` deliver both as `--dd-*` vars.
+  Print re-pins every channel (with !important, since the overrides land
+  inline on body) and stays ink-on-white regardless.
 - Pixel-identical: channels default to the previous values.
 
 ## What changed in the theme-schema pass (2026-07-11, earlier)
