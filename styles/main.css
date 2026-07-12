@@ -17,5 +17,5 @@
 @import url('footer.css');
 @import url('responsive.css');
 @import url('print.css');
-@import url('../components/deep-dive/deep-dive.css');
+@import url('../features/deep-dive/deep-dive.css');
 @import url('../components/shared/pager/pager.css');
