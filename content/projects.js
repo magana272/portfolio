@@ -12,7 +12,6 @@ export const PROJECTS = [
     new Project({
         name: 'PayPath',
         tint: '#0e6b47',   /* emerald — finance/growth */
-        ink: '#0d5f40',
         category: 'swe',
         lang: 'go',
         tech: 'Go, Next.js 16, React 19, MongoDB, Docker',
@@ -36,7 +35,6 @@ export const PROJECTS = [
     new Project({
         name: 'DADA-85',
         tint: '#963c12',   /* burnt ember — the retro room and its fire */
-        ink: '#8a3609',
         category: 'swe',
         lang: 'typescript',
         tech: 'TypeScript, React 19, three.js, Tailwind, Vite',
@@ -57,7 +55,6 @@ export const PROJECTS = [
     new Project({
         name: 'Trak',
         tint: '#1c4fa1',   /* cobalt — dependable planning tool */
-        ink: '#1a4489',
         category: 'swe',
         lang: 'java',
         tech: 'Java, Swing, DuckDB, Redis, MongoDB, Gradle',
@@ -74,7 +71,6 @@ export const PROJECTS = [
     new Project({
         name: 'WhatToDo',
         tint: '#5a22ad',   /* grape — playful AI discovery */
-        ink: '#4c1e93',
         category: 'swe',
         lang: 'python',
         tech: 'Python, FastAPI, PostgreSQL, Docker, Render',
@@ -95,7 +91,6 @@ export const PROJECTS = [
     new Project({
         name: 'Physiological Signal Analytics Platform',
         tint: '#9d1049',   /* crimson — heartbeats and biosignals */
-        ink: '#8a0e40',
         category: 'swe',
         lang: 'python',
         tech: 'Python, FastAPI, DuckDB, Pydantic',
@@ -115,7 +110,6 @@ export const PROJECTS = [
     new Project({
         name: 'Paxos Key-Value Store',
         tint: '#0b5e63',   /* deep teal — steady under failure */
-        ink: '#0a5257',
         category: 'swe',
         lang: 'java',
         tech: 'Java, RPC, Paxos',
@@ -131,7 +125,6 @@ export const PROJECTS = [
     new Project({
         name: 'Cell Type Classification from scRNA-seq',
         tint: '#8a1a86',   /* vivid plum — stained cells under a scope */
-        ink: '#781575',
         category: 'ml',
         lang: 'python',
         tech: 'Python, PyTorch, NumPy, Pandas',
@@ -147,7 +140,6 @@ export const PROJECTS = [
     new Project({
         name: 'Emotion Recognition from Physiological Signals',
         tint: '#8a5407',   /* golden bronze — warmth and emotion */
-        ink: '#7a4a06',
         category: 'ml',
         lang: 'python',
         tech: 'Python, TensorFlow/Keras, scikit-learn',

@@ -19,7 +19,7 @@
     letter-spacing: 0.06em;
     /* Label column wears the band accent (lime on the violet band), so the
        grid scans by colour the way the menu separates numbers from links. */
-    color: var(--sec-accent, var(--on-dark));
+    color: var(--sec-accent, var(--sec-ink, var(--on-dark)));
     padding-top: 2px;
 }
 

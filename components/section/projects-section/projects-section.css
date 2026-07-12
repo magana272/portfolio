@@ -67,7 +67,7 @@
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
     display: flex;
     align-items: center;
     gap: 10px;
@@ -85,13 +85,13 @@
     margin-bottom: 16px;
 }
 
-.feature-title a { color: var(--ink); text-decoration: none; }
+.feature-title a { color: var(--sec-ink, var(--ink)); text-decoration: none; }
 .feature-title a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 .feature-desc {
     font-size: clamp(1.02rem, 1.4vw, 1.2rem);
     line-height: 1.45;
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
     max-width: 42ch;
 }
 
@@ -103,7 +103,7 @@
     font-family: var(--mono);
     font-size: 0.74rem;
     letter-spacing: 0.01em;
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
     margin-top: 20px;
     line-height: 1.4;
     max-width: 40ch;
@@ -146,7 +146,7 @@
     font-family: var(--mono);
     font-size: 0.66rem;
     letter-spacing: 0.02em;
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
     background: rgba(255, 255, 255, 0.42);
     border: 1px solid rgba(17, 18, 20, 0.22);
     border-radius: 5px;
@@ -167,7 +167,7 @@
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -185,7 +185,7 @@
 .proj-ext {
     font-family: var(--mono);
     font-size: 0.74rem;
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -297,7 +297,7 @@
     margin-bottom: 8px;
 }
 
-.pcard-title a { color: var(--ink); text-decoration: none; }
+.pcard-title a { color: var(--sec-ink, var(--ink)); text-decoration: none; }
 .pcard-title a:hover { color: var(--pink); }
 
 .pcard-desc {

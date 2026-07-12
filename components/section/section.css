@@ -20,7 +20,7 @@
     /* The band's own theme accent (--sec-accent, set per band by
        Section.applyBackground() from SECTIONTHEME) — the small mono heading
        wears the band accent the way the menu's numbers wear `hot`. */
-    color: var(--sec-accent, var(--on-dark));
+    color: var(--sec-accent, var(--sec-ink, var(--on-dark)));
     display: inline-flex;
     align-items: baseline;
     gap: 10px;
@@ -44,5 +44,5 @@
     gap: 14px;
 }
 
-.subhead::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.subhead::after { content: ''; flex: 1; height: 1px; background: var(--sec-line, var(--line)); }
 

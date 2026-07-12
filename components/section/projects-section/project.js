@@ -16,7 +16,6 @@ export class Project {
         // registry (lib/theme.js) by name, or null → the default
         // orb. The project band's Section and the deep-dive menu use this.
         this.theme = SECTIONTHEME[this.name] || null;
-        this.ink = opts.ink || '#111214';       // dark accent, used on the light deep-dive page
         this.fg = opts.fg || '#f4f0e8';          // light text on the dark jewel panel (index)
         this.category = opts.category;
         this.lang = opts.lang;
@@ -136,10 +135,15 @@ export class Project {
     }
 
     styleVars() {
-        // Project data as vars (--tint/--pink/--panel-fg/--media-bg), plus the
+        // Project data as vars (--tint/--panel-fg/--media-bg), plus the
         // theme's band vars from the one theme → CSS mapping in lib/theme.js —
-        // the panel echoes its orb theme without deciding any colours here.
-        var vars = '--tint:' + this.tint + ';--pink:' + this.ink + ';--panel-fg:' + this.fg;
+        // the panel decides no colours itself. --pink (the card accent) comes
+        // from the theme's band group too; it is panel-scoped, so it rides
+        // here rather than in applyThemeVars() (the deep-dive page derives its
+        // --pink from --sec-accent instead).
+        var vars = '--tint:' + this.tint + ';--panel-fg:' + this.fg;
+        var band = (this.theme && this.theme.band) || {};
+        if (band.pink) vars += ';--pink:' + band.pink;
         var theme = themeVars(this.theme);
         for (var key in theme) vars += ';' + key + ':' + theme[key];
         if (this.mediaBg) vars += ';--media-bg:' + this.mediaBg;

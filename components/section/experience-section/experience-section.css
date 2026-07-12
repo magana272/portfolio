@@ -2,7 +2,7 @@
 
 .exp {
     background: var(--band-exp);
-    color: var(--on-dark);
+    color: var(--sec-ink, var(--on-dark));
     min-height: 100vh;
     min-height: 100dvh;
     display: flex;
@@ -48,7 +48,7 @@
     font-size: clamp(1.6rem, 3vw, 2.6rem);
     line-height: 1.02;
     letter-spacing: -0.02em;
-    color: var(--on-dark);
+    color: var(--sec-ink, var(--on-dark));
     margin-bottom: 10px;
 }
 
@@ -64,14 +64,14 @@
 /* The white box — bullets in dark text, flush to the edge, square corners. */
 .exp-inner {
     background: var(--bg);
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
     padding: clamp(28px, 3.5vw, 52px);
 }
 
 .exp-takeaway {
     font-size: 1rem;
     line-height: 1.55;
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
     padding: 10px 16px;
     margin-bottom: 18px;
     border-left: 2px solid var(--accent);
@@ -120,7 +120,7 @@
     font-size: clamp(9rem, 26vw, 22rem);
     line-height: 0.8;
     letter-spacing: -0.04em;
-    color: color-mix(in srgb, var(--on-dark) 16%, transparent);
+    color: color-mix(in srgb, var(--sec-ink, var(--on-dark)) 16%, transparent);
     pointer-events: none;
     user-select: none;
 }

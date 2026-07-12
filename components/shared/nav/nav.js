@@ -96,17 +96,19 @@ export class Menu {
     // off-cluster label at rest. Missing keys fall back to the :root defaults
     // (yellow flood, near-black ink, deep red accent).
     applyTheme(theme) {
-        theme = theme || {};
+        // The orb reads a theme's orb group ({flood, ink, hot, hover, active});
+        // the band group is delivered to CSS by lib/theme.js instead.
+        var orb = (theme && theme.orb) || {};
         var root = document.documentElement.style;
         var vals = {
-            bg: theme.flood,
-            ink: theme.ink,
-            muted: theme.ink ? 'color-mix(in srgb, ' + theme.ink + ' 60%, transparent)' : null,
-            hot: theme.hot,
+            bg: orb.flood,
+            ink: orb.ink,
+            muted: orb.ink ? 'color-mix(in srgb, ' + orb.ink + ' 60%, transparent)' : null,
+            hot: orb.hot,
             // hover/active are one per menu (the band accent); default to the
             // hot accent when a theme doesn't set them apart.
-            hover: theme.hover || theme.hot,
-            active: theme.active || theme.hot
+            hover: orb.hover || orb.hot,
+            active: orb.active || orb.hot
         };
         ['bg', 'ink', 'muted', 'hot', 'hover', 'active'].forEach(function (key) {
             if (vals[key]) {

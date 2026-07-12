@@ -18,12 +18,12 @@ export class Section {
         // projects heading).
         this.group = opts.group || 'main';
         this.background = opts.background || '';  // the band's colour
-        // Orb theme for this band — looked up in the SECTIONTHEME registry
-        // (lib/theme.js) by title, or null → the :root default orb.
-        // A theme is {flood, ink, hot, hover, active}: flood on the orb/overlay,
-        // ink the links at rest, hot the numbers/tags, hover/active the
-        // one-per-menu link interaction colour. Project bands share the entry
-        // keyed by their name (their Section's title is the project name).
+        // Theme for this band — looked up in the SECTIONTHEME registry
+        // (lib/theme.js) by title, or null → the defaults. A theme has an
+        // orb group (worn by the menu while the band is on screen) and a
+        // band group (the band's own content tones; see lib/theme.js for the
+        // full schema). Project bands share the entry keyed by their name
+        // (their Section's title is the project name).
         this.theme = SECTIONTHEME[this.title] || null;
         // Small tag shown beside this section's name when it appears as a
         // nested sub-link (a project's tagline / category).

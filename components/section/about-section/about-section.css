@@ -24,7 +24,7 @@
     font-size: clamp(3rem, 11vw, 6.75rem);
     line-height: 0.9;
     letter-spacing: -0.035em;
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
     margin-bottom: clamp(26px, 4vw, 40px);
 }
 
@@ -54,14 +54,14 @@
     font-weight: 500;
     letter-spacing: 0.02em;
     text-decoration: none;
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
     background: transparent;
-    border: 1px solid var(--ink);
+    border: 1px solid var(--sec-ink, var(--ink));
     border-radius: 999px;
     transition: background 0.18s, color 0.18s, border-color 0.18s;
 }
 
-.btn:hover { background: var(--ink); color: #fff; }
+.btn:hover { background: var(--sec-ink, var(--ink)); color: #fff; }
 .btn:active { transform: translateY(1px); }
 
 .btn-accent {
@@ -98,5 +98,5 @@
 .lead-key {
     font-family: var(--display);
     font-weight: 600;
-    color: var(--ink);
+    color: var(--sec-ink, var(--ink));
 }

@@ -127,20 +127,23 @@ which runs as `npm test`'s pretest):
   the same pattern as the project/experience panels. Only photography keeps a
   small static head in the HTML (its mosaic is JS-filled).
 - **Theming flows one way: registry → vars → rules.** A band's whole colour
-  story lives in its SECTIONTHEME entry (`lib/theme.js`): the orb quintet
-  (flood/ink/hot/hover/active) plus the band-content keys `secAccent`,
-  `inkMid`, `inkSoft`. `themeVars()`/`applyThemeVars()` in the same file are
-  the ONLY mapping from theme keys to the band-level custom properties
-  (`--sec-accent`, `--sec-ink-mid`, `--sec-ink-soft`), applied by
-  `Section.applyBackground()`, `Project.styleVars()`, and the deep-dive page
-  (where `--sec-accent` feeds `--pink`). CSS holds every rule that consumes
-  them, always with a :root-token fallback
-  (`var(--sec-ink-soft, var(--on-dark-soft))`), so a band with no theme keys
-  renders from the global tokens. JS never hard-codes a colour or picks a
-  fallback anywhere else; to retune a band, edit its theme entry, not a
-  stylesheet and not a controller. (The orb's `--orb-*` vars have their own
-  single writer, `Menu.applyTheme()`, because they live on `<html>` and
-  follow the scroll.)
+  story lives in its SECTIONTHEME entry (`lib/theme.js`), in two groups:
+  `orb: {flood, ink, hot, hover, active}` for the menu (consumed only by
+  `Menu.applyTheme()`, the single writer of `--orb-*`), and
+  `band: {accent, ink, inkMid, inkSoft, line, pink}` for the band's own
+  content, every key optional. `themeVars()`/`applyThemeVars()` in the same
+  file are the ONLY mapping from band keys to the band-level custom
+  properties (`--sec-accent`, `--sec-ink`, `--sec-ink-mid`, `--sec-ink-soft`,
+  `--sec-line`), applied by `Section.applyBackground()`,
+  `Project.styleVars()`, and the deep-dive page (where `--sec-accent` feeds
+  `--pink`). `band.pink` is the project panel's card accent, applied by
+  `Project.styleVars()` only (the old per-project `ink` field in
+  content/projects.js moved here). CSS holds every rule that consumes the
+  vars, always with a :root-token fallback
+  (`var(--sec-ink, var(--on-dark))`, `var(--sec-line, var(--line))`), so a
+  band with no theme keys renders from the global tokens. JS never
+  hard-codes a colour or picks a fallback anywhere else; to retune a band,
+  edit its theme entry, not a stylesheet and not a controller.
 - **Every section owns its CSS:** to change a section's format, open its dir
   (`components/section/experience-section/experience-section.css`, ...). The
   hero lives in `about-section/about-section.css`. To change ONE project
@@ -181,7 +184,24 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ---
 
-## What changed in the theme-bridge pass (2026-07-11, latest)
+## What changed in the theme-schema pass (2026-07-11, latest)
+- **SECTIONTHEME entries restructured into `orb` + `band` groups.** The orb
+  quintet keeps its keys inside `orb: {...}`; the band group grows to
+  `{accent, ink, inkMid, inkSoft, line, pink}` (all optional), delivered to
+  CSS as `--sec-accent`, `--sec-ink`, `--sec-ink-mid`, `--sec-ink-soft`,
+  `--sec-line` by the same single bridge. The grouping also unambiguates
+  `ink`: `orb.ink` is menu links, `band.ink` is the band's own primary text.
+- **`--pink` is theme data now:** each project's card accent moved from the
+  `ink` field in `content/projects.js` into its theme's `band.pink`
+  (values unchanged). It is panel-scoped, so `Project.styleVars()` applies
+  it; `applyThemeVars()` doesn't, because the deep-dive page derives its
+  `--pink` from `--sec-accent`.
+- **Section CSS consumes the new vars with fallbacks** (`var(--sec-ink,
+  var(--on-dark))` on dark bands, `var(--sec-ink, var(--ink))` on light,
+  `var(--sec-line, var(--line))` for rules), so the pass is pixel-identical;
+  the keys are opt-in knobs.
+
+## What changed in the theme-bridge pass (2026-07-11, earlier)
 - **SECTIONTHEME entries can now carry the band's full colour story:**
   `secAccent` (renamed from `band`), plus new optional `inkMid` and `inkSoft`
   for the band's secondary text tones. All still fall back to the :root
