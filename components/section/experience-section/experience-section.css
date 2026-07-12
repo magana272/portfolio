@@ -31,7 +31,7 @@
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--on-dark-soft);
+    color: var(--sec-ink-soft, var(--on-dark-soft));
     display: flex;
     align-items: center;
     gap: 10px;
@@ -52,13 +52,13 @@
     margin-bottom: 10px;
 }
 
-.exp-role { color: var(--on-dark-soft); font-weight: 500; }
+.exp-role { color: var(--sec-ink-soft, var(--on-dark-soft)); font-weight: 500; }
 
 .exp-meta {
     font-family: var(--mono);
     font-size: 0.74rem;
     letter-spacing: 0.02em;
-    color: var(--on-dark-soft);
+    color: var(--sec-ink-soft, var(--on-dark-soft));
 }
 
 /* The white box — bullets in dark text, flush to the edge, square corners. */
@@ -149,11 +149,11 @@
     font-family: var(--mono);
     font-size: 0.82rem;
     line-height: 1.7;
-    color: var(--on-dark-soft);
+    color: var(--sec-ink-soft, var(--on-dark-soft));
 }
 
 .exp-tech-list .t { white-space: nowrap; }
-.exp-tech-list .dot { color: var(--on-dark-soft); }
+.exp-tech-list .dot { color: var(--sec-ink-soft, var(--on-dark-soft)); }
 
 @media (max-width: 760px) {
     /* Stack on phones: box full-width edge to edge, tech list below it, drop

@@ -14,7 +14,7 @@
     letter-spacing: 0.14em;
     /* The About band's theme accent (royal blue on cream), set on #about by
        Section.applyBackground(). */
-    color: var(--sec-accent, var(--ink-mid));
+    color: var(--sec-accent, var(--sec-ink-mid, var(--ink-mid)));
     margin-bottom: clamp(20px, 4vw, 34px);
 }
 
@@ -31,7 +31,7 @@
 .hero-lead {
     font-size: clamp(1.05rem, 1.8vw, 1.3rem);
     line-height: 1.5;
-    color: var(--ink-mid);
+    color: var(--sec-ink-mid, var(--ink-mid));
     max-width: 60ch;
     margin-bottom: clamp(28px, 4vw, 40px);
 }
@@ -82,7 +82,7 @@
 .hero-links a {
     font-family: var(--mono);
     font-size: 0.78rem;
-    color: var(--ink-mid);
+    color: var(--sec-ink-mid, var(--ink-mid));
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: color 0.15s, border-color 0.15s;
@@ -91,7 +91,7 @@
 .hero-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* Plain-text email (not a link), styled to sit in the same rows */
-.contact-email { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-mid); }
+.contact-email { font-family: var(--mono); font-size: 0.78rem; color: var(--sec-ink-mid, var(--ink-mid)); }
 .footer-contact .contact-email { font-size: 0.76rem; color: #aaacb2; }
 
 /* Key phrases in the hero lead, set in the display face so they pop out of the body text */

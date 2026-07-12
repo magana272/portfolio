@@ -29,7 +29,7 @@
 .section-note {
     font-family: var(--mono);
     font-size: 0.72rem;
-    color: var(--ink-soft);
+    color: var(--sec-ink-soft, var(--ink-soft));
 }
 
 .subhead {
@@ -37,7 +37,7 @@
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--ink-soft);
+    color: var(--sec-ink-soft, var(--ink-soft));
     margin: clamp(40px, 6vw, 68px) 0 24px;
     display: flex;
     align-items: center;

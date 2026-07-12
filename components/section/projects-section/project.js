@@ -2,7 +2,7 @@
 // full-height panel on the home page. Content lives in content/projects.js;
 // long-form case-study copy lives in content/deep-dives.js.
 import { esc, slugify, padNum, isVideo, formatTechList } from '../../../lib/core.js';
-import { SECTIONTHEME } from '../../../lib/theme.js';
+import { SECTIONTHEME, themeVars } from '../../../lib/theme.js';
 
 var CATEGORY_LABEL = { swe: 'Software', ml: 'Machine Learning' };
 
@@ -136,11 +136,12 @@ export class Project {
     }
 
     styleVars() {
+        // Project data as vars (--tint/--pink/--panel-fg/--media-bg), plus the
+        // theme's band vars from the one theme → CSS mapping in lib/theme.js —
+        // the panel echoes its orb theme without deciding any colours here.
         var vars = '--tint:' + this.tint + ';--pink:' + this.ink + ';--panel-fg:' + this.fg;
-        // The in-band accent (theme `band`, defaulting to the flood — the
-        // tint's complement), worn by the panel's index number and hover
-        // states so the panel echoes its orb theme.
-        if (this.theme) vars += ';--sec-accent:' + (this.theme.band || this.theme.flood);
+        var theme = themeVars(this.theme);
+        for (var key in theme) vars += ';' + key + ':' + theme[key];
         if (this.mediaBg) vars += ';--media-bg:' + this.mediaBg;
         return vars;
     }

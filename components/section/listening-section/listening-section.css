@@ -23,7 +23,7 @@
     font-size: 0.74rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--on-dark-soft);
+    color: var(--sec-ink-soft, var(--on-dark-soft));
 }
 
 .lw-link {
@@ -60,7 +60,7 @@
     font-size: 0.8rem;
     font-weight: 500;
     /* Ranked numerals wear the band accent (lime), like the menu's numbers. */
-    color: var(--sec-accent, var(--on-dark-soft));
+    color: var(--sec-accent, var(--sec-ink-soft, var(--on-dark-soft)));
     transform: translateY(-0.15em);
 }
 
@@ -69,7 +69,7 @@
     font-size: 0.8rem;
     font-weight: 400;
     letter-spacing: 0.02em;
-    color: var(--on-dark-soft);
+    color: var(--sec-ink-soft, var(--on-dark-soft));
     align-self: center;
 }
 

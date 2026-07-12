@@ -126,6 +126,21 @@ which runs as `npm test`'s pretest):
   bodies `HomePage.layout()` mounts from their components + `content/` data —
   the same pattern as the project/experience panels. Only photography keeps a
   small static head in the HTML (its mosaic is JS-filled).
+- **Theming flows one way: registry → vars → rules.** A band's whole colour
+  story lives in its SECTIONTHEME entry (`lib/theme.js`): the orb quintet
+  (flood/ink/hot/hover/active) plus the band-content keys `secAccent`,
+  `inkMid`, `inkSoft`. `themeVars()`/`applyThemeVars()` in the same file are
+  the ONLY mapping from theme keys to the band-level custom properties
+  (`--sec-accent`, `--sec-ink-mid`, `--sec-ink-soft`), applied by
+  `Section.applyBackground()`, `Project.styleVars()`, and the deep-dive page
+  (where `--sec-accent` feeds `--pink`). CSS holds every rule that consumes
+  them, always with a :root-token fallback
+  (`var(--sec-ink-soft, var(--on-dark-soft))`), so a band with no theme keys
+  renders from the global tokens. JS never hard-codes a colour or picks a
+  fallback anywhere else; to retune a band, edit its theme entry, not a
+  stylesheet and not a controller. (The orb's `--orb-*` vars have their own
+  single writer, `Menu.applyTheme()`, because they live on `<html>` and
+  follow the scroll.)
 - **Every section owns its CSS:** to change a section's format, open its dir
   (`components/section/experience-section/experience-section.css`, ...). The
   hero lives in `about-section/about-section.css`. To change ONE project
@@ -166,7 +181,28 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ---
 
-## What changed in the per-section pass (2026-07-11, latest)
+## What changed in the theme-bridge pass (2026-07-11, latest)
+- **SECTIONTHEME entries can now carry the band's full colour story:**
+  `secAccent` (renamed from `band`), plus new optional `inkMid` and `inkSoft`
+  for the band's secondary text tones. All still fall back to the :root
+  tokens when omitted.
+- **One JS → CSS bridge:** `themeVars()` / `applyThemeVars()` in
+  `lib/theme.js` are the single mapping from theme keys to `--sec-accent` /
+  `--sec-ink-mid` / `--sec-ink-soft`. The three call sites
+  (`Section.applyBackground()`, `Project.styleVars()`, `DeepDivePage`) no
+  longer make their own colour decisions — the duplicated
+  `theme.band || theme.flood` fallback logic is gone from all of them.
+- **`--dd-accent` retired:** the deep-dive accent channel is the same
+  `--sec-accent` the home band uses (`--pink: var(--sec-accent, ...)` in
+  deep-dive.css). The deep dive keeps its own cream `--ink-mid`/`--ink-soft`
+  remap in CSS — its dark wash needs different tones than the home band, so
+  theme `inkMid`/`inkSoft` deliberately do NOT flow there.
+- **Section stylesheets consume the tone vars** with their old values as
+  fallbacks (`var(--sec-ink-soft, var(--on-dark-soft))` on dark bands,
+  `var(--sec-ink-mid, var(--ink-mid))` on light ones), so this pass is
+  pixel-identical; the keys are opt-in knobs from here on.
+
+## What changed in the per-section pass (2026-07-11, earlier)
 - **One directory per section, each owning its CSS**, replacing the features/
   tree from earlier the same day: `components/section/<name>-section/` holds
   each home band's JS + stylesheet (about-section takes the hero styles out

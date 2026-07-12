@@ -3,12 +3,12 @@
 .edu-entry { margin-bottom: 20px; }
 .edu-entry:last-child { margin-bottom: 0; }
 .edu-degree { display: inline; font-family: var(--display); font-weight: 600; font-size: 1.2rem; color: var(--on-dark); }
-.edu-detail { color: var(--on-dark-soft); font-size: 0.95rem; }
+.edu-detail { color: var(--sec-ink-soft, var(--on-dark-soft)); font-size: 0.95rem; }
 .edu-courses {
     display: block;
     font-family: var(--mono);
     font-size: 0.74rem;
-    color: var(--on-dark-soft);
+    color: var(--sec-ink-soft, var(--on-dark-soft));
     margin-top: 6px;
     line-height: 1.5;
     max-width: 74ch;   /* hold course lists to a readable ~70-char measure */
@@ -31,7 +31,7 @@
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--on-dark-soft);
+    color: var(--sec-ink-soft, var(--on-dark-soft));
     margin-top: clamp(32px, 5vw, 52px);
     margin-bottom: 14px;
     padding-top: 20px;
@@ -41,8 +41,8 @@
 /* ── Publication ── */
 
 .pub-title { font-family: var(--display); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; color: var(--on-dark); max-width: 34rem; }
-.pub-authors { font-family: var(--body); font-size: 0.92rem; color: var(--on-dark-soft); margin-top: 8px; line-height: 1.5; max-width: 34rem; }
+.pub-authors { font-family: var(--body); font-size: 0.92rem; color: var(--sec-ink-soft, var(--on-dark-soft)); margin-top: 8px; line-height: 1.5; max-width: 34rem; }
 .pub-authors strong { color: var(--sec-accent, var(--on-dark)); font-weight: 600; }
-.pub-detail { font-family: var(--mono); font-size: 0.8rem; color: var(--on-dark-soft); margin-top: 8px; overflow-wrap: anywhere; max-width: 34rem; }
+.pub-detail { font-family: var(--mono); font-size: 0.8rem; color: var(--sec-ink-soft, var(--on-dark-soft)); margin-top: 8px; overflow-wrap: anywhere; max-width: 34rem; }
 .pub-detail a { color: var(--on-dark); text-decoration: none; border-bottom: 1px solid currentColor; }
 .pub-detail a:hover { opacity: 0.7; }

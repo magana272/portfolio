@@ -11,6 +11,7 @@ import { SECTIONS } from '../../content/sections.js';
 import { DeepDive } from './deep-dive.js';
 import { Page } from '../page.js';
 import { esc } from '../../lib/core.js';
+import { applyThemeVars } from '../../lib/theme.js';
 
 class DeepDivePage extends Page {
     constructor() {
@@ -40,20 +41,16 @@ class DeepDivePage extends Page {
         this.project = project;
         document.title = project.name + ' · Deep Dive';
 
-        // Wash the whole deep dive in the project's signature jewel colour, then
-        // pull its orb theme onto the page accent so the deep dive wears the
-        // same palette as its home band and orb, not a flat cream accent. The
-        // in-band accent (theme `band`, defaulting to the bright flood) pops on
-        // the dark tint; --dd-accent feeds --pink, which drives every dd-*
-        // accent, while body copy keeps the .dd-page cream inks. The menu orb
-        // is themed in onNavReady().
-        var page = document.body.style;
+        // Wash the whole deep dive in the project's signature jewel colour,
+        // then hand its theme to applyThemeVars() (lib/theme.js), the same
+        // bridge the home band uses — --sec-accent feeds --pink, which drives
+        // every dd-* accent, while body copy keeps the .dd-page cream inks
+        // (the dark wash needs its own tones, remapped in deep-dive.css). The
+        // menu orb is themed in onNavReady().
         if (project.tint) {
-            page.setProperty('--tint', project.tint);
+            document.body.style.setProperty('--tint', project.tint);
         }
-        if (project.theme) {
-            page.setProperty('--dd-accent', project.theme.band || project.theme.flood);
-        }
+        applyThemeVars(document.body, project.theme);
 
         this.root.innerHTML = new DeepDive(project, cs).html();
     }

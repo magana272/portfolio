@@ -6,7 +6,7 @@
 // that data exists. Each project band is itself a Section (group 'project'),
 // so the projects heading nests them as its jump-list rather than duplicating
 // them as a separate array.
-import { SECTIONTHEME } from '../../lib/theme.js';
+import { SECTIONTHEME, applyThemeVars } from '../../lib/theme.js';
 
 export class Section {
     constructor(opts) {
@@ -40,13 +40,14 @@ export class Section {
 
     // The band paints itself — the background is Section data, not a per-id
     // CSS rule. A no-op on pages that don't carry the band. Alongside the
-    // background it exposes the theme's in-band accent (`band`, defaulting to
-    // the flood) as --sec-accent, so the band's own content — kicker, labels,
-    // list numerals — wears the same per-band colour story as the orb menu.
+    // background it hands the theme to applyThemeVars() (lib/theme.js), which
+    // sets the band-level custom properties (--sec-accent, --sec-ink-mid,
+    // --sec-ink-soft) the section stylesheets consume — the colour decisions
+    // stay in the theme registry, the rules stay in CSS.
     applyBackground() {
         var el = this.el();
         if (!el) return;
         if (this.background) el.style.background = this.background;
-        if (this.theme) el.style.setProperty('--sec-accent', this.theme.band || this.theme.flood);
+        applyThemeVars(el, this.theme);
     }
 }
