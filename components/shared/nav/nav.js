@@ -10,7 +10,7 @@
 // the scroll spy and the deep-dive page both recolour the menu through it.
 //   HOLD_MS must match the .nav-overlay.is-holding clip-path transition
 //   duration in nav.css.
-import { esc, padNum, reducedMotion } from '../../lib/core.js';
+import { esc, padNum, reducedMotion } from '../../../lib/core.js';
 
 export class Menu {
     constructor(opts) {

@@ -14,7 +14,7 @@
 // control through onNavReady(). Subclasses declare their data (sections, link
 // prefix) and these hooks; this class owns the order.
 import { ready as includesReady } from '../lib/includes.js';
-import { Menu } from '../components/nav/nav.js';
+import { Menu } from '../components/shared/nav/nav.js';
 
 export class Page {
     constructor(opts) {

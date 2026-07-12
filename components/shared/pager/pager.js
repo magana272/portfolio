@@ -3,7 +3,7 @@
 // panel's top when you're scrolled past it, then to the previous panel — so
 // scrolling up always lands flush at a section top. pages/index.js calls
 // initPager().
-import { reducedMotion } from '../../lib/core.js';
+import { reducedMotion } from '../../../lib/core.js';
 
 export function initPager() {
     var pager = document.querySelector('.section-pager');

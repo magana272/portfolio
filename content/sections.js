@@ -6,7 +6,7 @@
 // title, so the menu colours live there, not here. Adding a band is the whole
 // job: give it an id, title, cluster, and background, and (optionally) an entry
 // in SECTIONTHEME.
-import { Section } from '../components/section/section.js';
+import { Section } from '../components/shared/section/section.js';
 import { PROJECTS } from './projects.js';
 
 // Each project band is its own Section (group 'project'), built from the

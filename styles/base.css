@@ -34,7 +34,7 @@
     --menu-bg: #ffd21e;
     --menu-ink: #111214;
     /* Defaults for the per-band menu theme; Menu.applyTheme()
-       (components/nav/nav.js) overrides these on <html> and removes them
+       (components/shared/nav/nav.js) overrides these on <html> and removes them
        to fall back here. */
     --orb-bg: var(--menu-bg);
     --orb-ink: var(--menu-ink);

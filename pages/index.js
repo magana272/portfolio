@@ -25,10 +25,10 @@ import { renderSkills } from '../components/skills/skills.js';
 import { renderMe } from '../components/me/me.js';
 import { renderJiujitsu } from '../components/jiujitsu/jiujitsu.js';
 import { renderListening } from '../components/listening/listening.js';
-import { initScrollSpy } from '../components/nav/scroll-spy.js';
+import { initScrollSpy } from '../components/shared/nav/scroll-spy.js';
 import { initMediaLoader } from '../lib/media-loader.js';
 import { initPhotoMosaic } from '../components/photo-mosaic/photo-mosaic.js';
-import { initPager } from '../components/pager/pager.js';
+import { initPager } from '../components/shared/pager/pager.js';
 
 class HomePage extends Page {
     constructor() {
