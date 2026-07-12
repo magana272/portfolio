@@ -1,4 +1,4 @@
-// Technical-skills content — pure data. components/skills/skills.js renders the
+// Technical-skills content — pure data. features/skills/skills.js renders the
 // #skills band from these rows (label + value grid). `note` is the small italic
 // aside that trails the Laboratory label; HTML in the strings is intentional.
 export const SKILLS = [
