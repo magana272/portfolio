@@ -9,29 +9,31 @@ publication — with a full case-study page behind every project.
 
 The JavaScript is written as **ES modules**: each file has one responsibility
 and `import`s exactly what it needs, so dependencies point downward only
-(`pages` → `features` / `components/shared` / `content` → `lib`) with no
-global state or load order to keep straight. Each HTML page loads a single
-`<script type="module">` entry point and the browser pulls in the rest of the
-graph.
+(`pages` → `components/section` / `components/shared` / `content` → `lib`)
+with no global state or load order to keep straight. Each HTML page loads a
+single `<script type="module">` entry point and the browser pulls in the rest
+of the graph.
 
 ```
 index.html                     Home page (thin shell of empty section bands)
 pages/                         Route controllers
   page.js                      Page base class (layout → render → nav → onNavReady)
   home/home-page.js            Home entry point: mounts every band and panel
-  deep-dive/deep-dive.html     Case-study page (?id=<slug>)
-  deep-dive/deep-dive-page.js  Case-study entry point
+  deep-dive/                   Case-study page (?id=<slug>): html shell, page
+                               controller, and the renderer (.dd-*) co-located
   project.html, project/       Redirect stubs for the old case-study URLs
-features/                      One folder per feature, JS + CSS together
-  projects/                    Project model + home panels ("Learn more" → deep dive)
-  experience/                  Experience model + bands
-  education/  skills/          Band renderers
-  off-the-clock/               me collage, photo mosaic, jiu-jitsu, listening
-  deep-dive/                   Case-study renderer (.dd-*)
-components/shared/             Cross-page primitives only
-  nav/                         Orb + overlay menu, scroll spy, nav partial
-  section/                     Section model (band id, title, background, theme)
-  pager/                       Section pager triangles
+components/
+  section/                     One folder per home section, each owning its CSS:
+    section.js + section.css   the Section primitive (band id, title, background, theme)
+    about-section/             hero band styles
+    projects-section/          Project model + shared panel template + one
+                               override sheet per project (whattodo.css, ...)
+    experience-section/        Experience model + band styles
+    education-section/  skills-section/
+    about-me-section/  photography-section/  jiujitsu-section/  listening-section/
+  shared/                      Cross-page primitives only
+    nav/                       Orb + overlay menu, scroll spy, nav partial
+    pager/                     Section pager triangles
 lib/                           Shared helpers: core.js, theme.js (SECTIONTHEME),
                                includes.js (HTML partials), media-loader.js
 content/                       Pure data: sections, projects, experiences,
