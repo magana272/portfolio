@@ -76,7 +76,7 @@ export class Project {
             if (isVideo(src)) {
                 var poster = this.poster ? ' poster="' + esc(this.poster) + '"' : '';
                 // No `autoplay` attribute and preload="none": playback is driven by
-                // features/media-loader.js only when motion is allowed and the clip
+                // lib/media-loader.js only when motion is allowed and the clip
                 // is on screen, so reduced-motion users see the poster and never
                 // fetch the heavy file.
                 return '<video src="' + encodeURI(src) + '"' + poster + ' muted loop playsinline preload="none"></video>';

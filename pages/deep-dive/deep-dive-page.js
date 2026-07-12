@@ -1,14 +1,14 @@
 // Deep-dive route controller and entry point: DeepDivePage extends Page.
 // Looks up the project from the ?id=<slug> query param, pairs it with its
 // case-study copy, and hands the rendering to the DeepDive model
-// (features/deep-dive/deep-dive.js). The base Page owns the shared boot
+// (pages/deep-dive/deep-dive.js, co-located with this controller). The base Page owns the shared boot
 // order; the menu is built from the same SECTIONS list with links prefixed
 // back to index.html, and once the orb exists onNavReady() washes it in the
 // project's colours via Menu.applyTheme().
 import { PROJECTS } from '../../content/projects.js';
 import { DEEP_DIVES } from '../../content/deep-dives.js';
 import { SECTIONS } from '../../content/sections.js';
-import { DeepDive } from '../../features/deep-dive/deep-dive.js';
+import { DeepDive } from './deep-dive.js';
 import { Page } from '../page.js';
 import { esc } from '../../lib/core.js';
 
