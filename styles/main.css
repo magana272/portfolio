@@ -7,7 +7,7 @@
 @import url('hero.css');
 @import url('../components/shared/section/section.css');
 @import url('../features/projects/project.css');
-@import url('../components/experience/experience.css');
+@import url('../features/experience/experience.css');
 @import url('../components/education/education.css');
 @import url('../components/skills/skills.css');
 @import url('../components/photo-mosaic/photo-mosaic.css');

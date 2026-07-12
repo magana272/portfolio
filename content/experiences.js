@@ -1,5 +1,5 @@
 
-import { Experience } from '../components/experience/experience.js';
+import { Experience } from '../features/experience/experience.js';
 
 export const EXPERIENCES = [
     new Experience({
