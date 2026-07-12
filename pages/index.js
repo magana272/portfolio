@@ -22,12 +22,12 @@ import { LISTENING } from '../content/listening.js';
 import { Page } from './page.js';
 import { renderEducation } from '../features/education/education.js';
 import { renderSkills } from '../features/skills/skills.js';
-import { renderMe } from '../components/me/me.js';
-import { renderJiujitsu } from '../components/jiujitsu/jiujitsu.js';
-import { renderListening } from '../components/listening/listening.js';
+import { renderMe } from '../features/off-the-clock/me.js';
+import { renderJiujitsu } from '../features/off-the-clock/jiujitsu.js';
+import { renderListening } from '../features/off-the-clock/listening.js';
 import { initScrollSpy } from '../components/shared/nav/scroll-spy.js';
 import { initMediaLoader } from '../lib/media-loader.js';
-import { initPhotoMosaic } from '../components/photo-mosaic/photo-mosaic.js';
+import { initPhotoMosaic } from '../features/off-the-clock/photo-mosaic.js';
 import { initPager } from '../components/shared/pager/pager.js';
 
 class HomePage extends Page {

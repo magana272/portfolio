@@ -1,4 +1,4 @@
-// Jiu-jitsu content — pure data. components/jiujitsu/jiujitsu.js renders the
+// Jiu-jitsu content — pure data. features/off-the-clock/jiujitsu.js renders the
 // #jiujitsu band from this: the gym-name poster, the tagged training photo, the
 // Skrap Pack credit logo, and the disciplines line. Tag coordinates are percent
 // offsets over the photo; HTML entities are preserved verbatim.

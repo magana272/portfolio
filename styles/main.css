@@ -10,10 +10,10 @@
 @import url('../features/experience/experience.css');
 @import url('../features/education/education.css');
 @import url('../features/skills/skills.css');
-@import url('../components/photo-mosaic/photo-mosaic.css');
-@import url('../components/me/me.css');
-@import url('../components/jiujitsu/jiujitsu.css');
-@import url('../components/listening/listening.css');
+@import url('../features/off-the-clock/photo-mosaic.css');
+@import url('../features/off-the-clock/me.css');
+@import url('../features/off-the-clock/jiujitsu.css');
+@import url('../features/off-the-clock/listening.css');
 @import url('footer.css');
 @import url('responsive.css');
 @import url('print.css');
