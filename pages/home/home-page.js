@@ -20,14 +20,14 @@ import { ME } from '../../content/me.js';
 import { JIUJITSU } from '../../content/jiujitsu.js';
 import { LISTENING } from '../../content/listening.js';
 import { Page } from '../page.js';
-import { renderEducation } from '../../features/education/education.js';
-import { renderSkills } from '../../features/skills/skills.js';
-import { renderMe } from '../../features/off-the-clock/me.js';
-import { renderJiujitsu } from '../../features/off-the-clock/jiujitsu.js';
-import { renderListening } from '../../features/off-the-clock/listening.js';
+import { renderEducation } from '../../components/section/education-section/education.js';
+import { renderSkills } from '../../components/section/skills-section/skills.js';
+import { renderMe } from '../../components/section/about-me-section/me.js';
+import { renderJiujitsu } from '../../components/section/jiujitsu-section/jiujitsu.js';
+import { renderListening } from '../../components/section/listening-section/listening.js';
 import { initScrollSpy } from '../../components/shared/nav/scroll-spy.js';
 import { initMediaLoader } from '../../lib/media-loader.js';
-import { initPhotoMosaic } from '../../features/off-the-clock/photo-mosaic.js';
+import { initPhotoMosaic } from '../../components/section/photography-section/photo-mosaic.js';
 import { initPager } from '../../components/shared/pager/pager.js';
 
 class HomePage extends Page {

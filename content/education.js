@@ -1,4 +1,4 @@
-// Education content — pure data. features/education/education.js renders the
+// Education content — pure data. components/section/education-section/education.js renders the
 // #education band from this: degree entries (with course groupings) plus one
 // publication. HTML entities in the source strings are preserved verbatim so
 // the rendered markup matches the hand-authored original byte for byte.

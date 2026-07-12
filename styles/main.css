@@ -1,19 +1,29 @@
 /* Single stylesheet entry point — both pages link only this file. Global and
-   page-band styles live here in styles/; each component's stylesheet lives
-   next to its JS under components/<name>/. Imports are listed in cascade
-   order (base first), matching the order the bands appear on the page. */
+   page-band styles live in styles/; each section's stylesheet lives next to
+   its JS under components/section/<name>-section/. Imports are listed in
+   cascade order (base first), matching the order the bands appear on the
+   page; the per-project override sheets load right after the shared projects
+   template so they win ties. */
 @import url('base.css');
 @import url('../components/shared/nav/nav.css');
-@import url('hero.css');
-@import url('../components/shared/section/section.css');
-@import url('../features/projects/project.css');
-@import url('../features/experience/experience.css');
-@import url('../features/education/education.css');
-@import url('../features/skills/skills.css');
-@import url('../features/off-the-clock/photo-mosaic.css');
-@import url('../features/off-the-clock/me.css');
-@import url('../features/off-the-clock/jiujitsu.css');
-@import url('../features/off-the-clock/listening.css');
+@import url('../components/section/about-section/about-section.css');
+@import url('../components/section/section.css');
+@import url('../components/section/projects-section/projects-section.css');
+@import url('../components/section/projects-section/paypath.css');
+@import url('../components/section/projects-section/dada-85.css');
+@import url('../components/section/projects-section/trak.css');
+@import url('../components/section/projects-section/whattodo.css');
+@import url('../components/section/projects-section/physiological-signal-analytics-platform.css');
+@import url('../components/section/projects-section/paxos-key-value-store.css');
+@import url('../components/section/projects-section/cell-type-classification-from-scrna-seq.css');
+@import url('../components/section/projects-section/emotion-recognition-from-physiological-signals.css');
+@import url('../components/section/experience-section/experience-section.css');
+@import url('../components/section/education-section/education-section.css');
+@import url('../components/section/skills-section/skills-section.css');
+@import url('../components/section/photography-section/photography-section.css');
+@import url('../components/section/about-me-section/about-me-section.css');
+@import url('../components/section/jiujitsu-section/jiujitsu-section.css');
+@import url('../components/section/listening-section/listening-section.css');
 @import url('footer.css');
 @import url('responsive.css');
 @import url('print.css');

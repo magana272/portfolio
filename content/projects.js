@@ -1,4 +1,4 @@
-// Project content — pure data. Each entry is a Project (see features/projects/project.js);
+// Project content — pure data. Each entry is a Project (see components/section/projects-section/project.js);
 // long-form case-study copy lives in content/deep-dives.js, keyed by slug. The
 // home page renders these in pages/home/home-page.js. `tagline` is the short label shown
 // in the menu jump-list.
@@ -6,7 +6,7 @@
 // The orb menu's colours for a project's band are NOT here — they live in the
 // SECTIONTHEME registry (lib/theme.js), keyed by the project name,
 // which the Project model looks up.
-import { Project } from '../features/projects/project.js';
+import { Project } from '../components/section/projects-section/project.js';
 
 export const PROJECTS = [
     new Project({

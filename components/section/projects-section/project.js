@@ -1,8 +1,8 @@
 // Project model: one project's data plus the logic to render it as a
 // full-height panel on the home page. Content lives in content/projects.js;
 // long-form case-study copy lives in content/deep-dives.js.
-import { esc, slugify, padNum, isVideo, formatTechList } from '../../lib/core.js';
-import { SECTIONTHEME } from '../../lib/theme.js';
+import { esc, slugify, padNum, isVideo, formatTechList } from '../../../lib/core.js';
+import { SECTIONTHEME } from '../../../lib/theme.js';
 
 var CATEGORY_LABEL = { swe: 'Software', ml: 'Machine Learning' };
 

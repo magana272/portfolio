@@ -1,4 +1,4 @@
-// Off-the-clock content — pure data. The me collage that features/off-the-clock/me.js
+// Off-the-clock content — pure data. The me collage that components/section/about-me-section/me.js
 // renders into the #about-me band.
 //   n = file stem under static/media/img/me/web/ (same stem for the light
 //   webp/ thumb and the full/ webp the media loader swaps in); w/h = pixel

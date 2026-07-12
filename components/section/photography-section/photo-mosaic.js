@@ -2,7 +2,7 @@
 // a photo expands it in place, and the grid reflows while the other photos
 // animate to their new positions (FLIP). Also wires the jiu-jitsu photo's tag
 // toggle. pages/home/home-page.js calls initPhotoMosaic(PHOTOS).
-import { reducedMotion } from '../../lib/core.js';
+import { reducedMotion } from '../../../lib/core.js';
 
 var FULL = 'static/media/img/photography/web/full/';
 var WEBP = 'static/media/img/photography/web/webp/';

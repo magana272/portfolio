@@ -1,4 +1,4 @@
-// Photography mosaic content — pure data. features/off-the-clock/photo-mosaic.js builds the
+// Photography mosaic content — pure data. components/section/photography-section/photo-mosaic.js builds the
 // grid from this array.
 //   n = file stem (no extension); s = optional feature-tile size class;
 //   a = optional alt text; w/h = webp pixel dims, so tiles get their aspect

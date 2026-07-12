@@ -1,4 +1,4 @@
-// Listening & Watching content — pure data. features/off-the-clock/listening.js
+// Listening & Watching content — pure data. components/section/listening-section/listening.js
 // renders the #listening band as two ranked columns. Each column has a label, a
 // source link, and rows; artist rows carry a square thumb, film rows a poster
 // plus a year. Image URLs point at Spotify / Letterboxd CDNs.

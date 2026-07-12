@@ -1,34 +1,40 @@
-// Import-boundary check for the pages/features/shared tier rules (see
+// Import-boundary check for the pages/sections/shared tier rules (see
 // handoff.md). Tiers point downward only:
 //
-//   pages    → features | components/shared | content | lib | pages
-//   content  → features | components/shared | content | lib   (it constructs
-//              the model classes it holds data for)
-//   features → components/shared | content | lib — and never ANOTHER feature
+//   pages    → components/section | components/shared | content | lib | pages
+//   content  → components/section | components/shared | content | lib   (it
+//              constructs the model classes it holds data for)
+//   section  → lib — one dir per page section; a section may import the
+//              Section primitive (components/section/section.js) but never
+//              ANOTHER section's directory
 //   shared   → lib
 //   lib      → lib
 //
 // Also fails on any relative import that doesn't resolve to a file — in a
 // buildless site that's a runtime 404. Run via `npm test` (pretest) or
 // directly: node scripts/check-boundaries.mjs
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve, dirname, relative } from 'node:path';
 
 const ROOT = process.cwd();
-const SCAN = ['lib', 'content', 'components', 'features', 'pages'];
+const SCAN = ['lib', 'content', 'components', 'features', 'pages'].filter(function (d) {
+    return existsSync(join(ROOT, d));
+});
 
 const ALLOWED = {
     lib: ['lib'],
     shared: ['lib'],
-    features: ['shared', 'content', 'lib', 'features'], // same-feature only, checked below
-    content: ['features', 'shared', 'content', 'lib'],
-    pages: ['pages', 'features', 'shared', 'content', 'lib']
+    section: ['section', 'lib'], // same-section / tier-root only, checked below
+    features: ['section', 'shared', 'content', 'lib'],
+    content: ['section', 'features', 'shared', 'content', 'lib'],
+    pages: ['pages', 'section', 'features', 'shared', 'content', 'lib']
 };
 
 function tierOf(relPath) {
     const p = relPath.split('\\').join('/');
     if (p.startsWith('lib/')) return 'lib';
     if (p.startsWith('components/shared/')) return 'shared';
+    if (p.startsWith('components/section/')) return 'section';
     if (p.startsWith('components/')) return 'components-other';
     if (p.startsWith('features/')) return 'features';
     if (p.startsWith('content/')) return 'content';
@@ -36,8 +42,10 @@ function tierOf(relPath) {
     return null;
 }
 
-function featureOf(relPath) {
-    const m = /^features\/([^/]+)\//.exec(relPath.split('\\').join('/'));
+// The <name>-section directory a file belongs to, or null for tier-root files
+// like the Section primitive itself.
+function sectionDirOf(relPath) {
+    const m = /^components\/section\/([^/]+)\//.exec(relPath.split('\\').join('/'));
     return m ? m[1] : null;
 }
 
@@ -57,7 +65,7 @@ for (const file of files) {
     const rel = relative(ROOT, file);
     const tier = tierOf(rel);
     if (tier === 'components-other') {
-        errors.push(rel + ': components/ may only contain shared/ — feature code belongs in features/');
+        errors.push(rel + ': components/ may only contain shared/ and section/');
         continue;
     }
     const src = readFileSync(file, 'utf8');
@@ -77,9 +85,12 @@ for (const file of files) {
         const targetTier = tierOf(relTarget);
         if (!targetTier || !ALLOWED[tier].includes(targetTier)) {
             errors.push(rel + ' (' + tier + ') may not import ' + relTarget + ' (' + targetTier + ')');
-        } else if (tier === 'features' && targetTier === 'features' &&
-                   featureOf(rel) !== featureOf(relTarget)) {
-            errors.push(rel + ': cross-feature import of ' + relTarget + ' — promote shared code to components/shared/');
+        } else if (tier === 'section' && targetTier === 'section') {
+            const from = sectionDirOf(rel);
+            const to = sectionDirOf(relTarget);
+            if (to && to !== from) {
+                errors.push(rel + ': cross-section import of ' + relTarget + ' — promote shared code to components/shared/ or lib/');
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-import { slugify, padNum, formatTechList } from '../../lib/core.js';
+import { slugify, padNum, formatTechList } from '../../../lib/core.js';
 
 export class Experience {
     constructor(opts) {

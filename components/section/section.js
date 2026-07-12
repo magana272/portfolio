@@ -6,7 +6,7 @@
 // that data exists. Each project band is itself a Section (group 'project'),
 // so the projects heading nests them as its jump-list rather than duplicating
 // them as a separate array.
-import { SECTIONTHEME } from '../../../lib/theme.js';
+import { SECTIONTHEME } from '../../lib/theme.js';
 
 export class Section {
     constructor(opts) {
