@@ -1,11 +1,11 @@
-// Shared test constants. DD_PATH is the canonical deep-dive URL — the refactor
-// moves it once (pages/project/project.html → pages/deep-dive/deep-dive.html),
-// and updating it here retargets every spec. Screenshot names key off the slug
-// so the visual baselines survive that move.
-const DD_PATH = 'pages/project/project.html';
+// Shared test constants. DD_PATH is the canonical deep-dive URL (moved here
+// from pages/project/project.html by the refactor) — updating it here
+// retargets every spec. Screenshot names key off the slug so the visual
+// baselines survive that move.
+const DD_PATH = 'pages/deep-dive/deep-dive.html';
 
-// Old public URLs that must keep resolving to the canonical page (via redirect
-// stubs once the page moves).
+// Old public URLs that must keep resolving to the canonical page via the
+// redirect stubs left at each.
 const LEGACY_DD_PATHS = ['pages/project.html', 'pages/project/project.html'];
 
 // Every project with a deep dive (content/projects.js all set deepDive: true).

@@ -54,7 +54,7 @@ export class Project {
     }
 
     href() {
-        if (this.deepDive) return 'pages/project.html?id=' + encodeURIComponent(this.slug);
+        if (this.deepDive) return 'pages/deep-dive/deep-dive.html?id=' + encodeURIComponent(this.slug);
         return (this.links[0] && this.links[0].url) || '#';
     }
 

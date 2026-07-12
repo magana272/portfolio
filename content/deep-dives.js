@@ -1,6 +1,6 @@
 // Long-form deep-dive copy for the "Learn more" pages, keyed by project slug
 // (see slugify() in core.js). Kept out of content/projects.js so the home page
-// never parses ~25 KB of text it doesn't render; only pages/project/project.html loads
+// never parses ~25 KB of text it doesn't render; only pages/deep-dive/deep-dive.html loads
 // this file. A project opts in by setting `deepDive: true` in projects.js.
 export const DEEP_DIVES = {
     'paypath': {
