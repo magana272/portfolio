@@ -2,7 +2,7 @@
 // full-height panel on the home page. Content lives in content/projects.js;
 // long-form case-study copy lives in content/deep-dives.js.
 import { esc, slugify, padNum, isVideo, formatTechList } from '../../lib/core.js';
-import { SECTIONTHEME } from '../../content/sectionstheme.js';
+import { SECTIONTHEME } from '../../lib/theme.js';
 
 var CATEGORY_LABEL = { swe: 'Software', ml: 'Machine Learning' };
 
@@ -13,7 +13,7 @@ export class Project {
         this.name = opts.name;
         this.tint = opts.tint || '#f10202';
         // Orb theme for this project's band — looked up in the SECTIONTHEME
-        // registry (content/sectionstheme.js) by name, or null → the default
+        // registry (lib/theme.js) by name, or null → the default
         // orb. The project band's Section and the deep-dive menu use this.
         this.theme = SECTIONTHEME[this.name] || null;
         this.ink = opts.ink || '#111214';       // dark accent, used on the light deep-dive page

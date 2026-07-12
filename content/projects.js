@@ -4,7 +4,7 @@
 // in the menu jump-list.
 //
 // The orb menu's colours for a project's band are NOT here — they live in the
-// SECTIONTHEME registry (content/sectionstheme.js), keyed by the project name,
+// SECTIONTHEME registry (lib/theme.js), keyed by the project name,
 // which the Project model looks up.
 import { Project } from '../components/project/project.js';
 

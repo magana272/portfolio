@@ -6,7 +6,7 @@
 // that data exists. Each project band is itself a Section (group 'project'),
 // so the projects heading nests them as its jump-list rather than duplicating
 // them as a separate array.
-import { SECTIONTHEME } from '../../content/sectionstheme.js';
+import { SECTIONTHEME } from '../../lib/theme.js';
 
 export class Section {
     constructor(opts) {
@@ -19,7 +19,7 @@ export class Section {
         this.group = opts.group || 'main';
         this.background = opts.background || '';  // the band's colour
         // Orb theme for this band — looked up in the SECTIONTHEME registry
-        // (content/sectionstheme.js) by title, or null → the :root default orb.
+        // (lib/theme.js) by title, or null → the :root default orb.
         // A theme is {flood, ink, hot, hover, active}: flood on the orb/overlay,
         // ink the links at rest, hot the numbers/tags, hover/active the
         // one-per-menu link interaction colour. Project bands share the entry

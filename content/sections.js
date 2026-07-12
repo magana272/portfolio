@@ -2,7 +2,7 @@
 // order. This is the single source of truth the nav hangs off: the Menu builds
 // its link list from it (both pages), the scroll spy themes the orb from it,
 // and each Section paints its own band background. Each Section's orb theme is
-// looked up from the SECTIONTHEME registry (content/sectionstheme.js) by its
+// looked up from the SECTIONTHEME registry (lib/theme.js) by its
 // title, so the menu colours live there, not here. Adding a band is the whole
 // job: give it an id, title, cluster, and background, and (optionally) an entry
 // in SECTIONTHEME.
