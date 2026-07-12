@@ -11,7 +11,7 @@ import { SECTIONS } from '../../content/sections.js';
 import { DeepDive } from './deep-dive.js';
 import { Page } from '../page.js';
 import { esc } from '../../lib/core.js';
-import { applyThemeVars } from '../../lib/theme.js';
+import { applyThemeVars, applyDdVars } from '../../lib/theme.js';
 
 class DeepDivePage extends Page {
     constructor() {
@@ -42,15 +42,16 @@ class DeepDivePage extends Page {
         document.title = project.name + ' · Deep Dive';
 
         // Wash the whole deep dive in the project's signature jewel colour,
-        // then hand its theme to applyThemeVars() (lib/theme.js), the same
-        // bridge the home band uses — --sec-accent feeds --pink, which drives
-        // every dd-* accent, while body copy keeps the .dd-page cream inks
-        // (the dark wash needs its own tones, remapped in deep-dive.css). The
-        // menu orb is themed in onNavReady().
+        // then hand its theme to the lib/theme.js bridges: applyThemeVars()
+        // (the same one the home band uses — --sec-accent feeds --pink, which
+        // drives every dd-* accent) and applyDdVars() (the theme's dd group,
+        // overriding the .dd-page cream tone channels per project when set).
+        // The menu orb is themed in onNavReady().
         if (project.tint) {
             document.body.style.setProperty('--tint', project.tint);
         }
         applyThemeVars(document.body, project.theme);
+        applyDdVars(document.body, project.theme);
 
         this.root.innerHTML = new DeepDive(project, cs).html();
     }

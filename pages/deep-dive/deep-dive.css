@@ -3,22 +3,41 @@
    ══════════════════════════════════════════════════════════ */
 
 /* Wash the whole page in the project's jewel colour, then remap the light-theme
-   tokens so every dd-* rule below reads as light-on-dark without being rewritten. */
+   tokens so every dd-* rule below reads as light-on-dark without being rewritten.
+
+   THE one place to retune this page's colours:
+   - Tone channels: the cream light-on-dark palette. Override globally by
+     editing the literals here, or per project from the theme's dd group
+     (lib/theme.js), which lands as the --dd-* vars each tone prefers.
+   - Element channels: which tone each identity element wears (hero h1,
+     eyebrow, labels, headings, note, copy). Every dd-* rule below reads one
+     of these or a tone channel — never a literal. */
 .dd-page {
     background: var(--tint);
     min-height: 100vh;
     color: var(--on-dark);
-    --ink: #f4f0e8;
-    --ink-mid: #dbd6cc;
-    --ink-soft: #cdc8be;
-    --line: rgba(244, 240, 232, 0.16);
-    --surface: rgba(244, 240, 232, 0.07);
+
+    /* Tone channels */
+    --ink: var(--dd-ink, #f4f0e8);
+    --ink-mid: var(--dd-ink-mid, #dbd6cc);
+    --ink-soft: var(--dd-ink-soft, #cdc8be);
+    --line: var(--dd-line, rgba(244, 240, 232, 0.16));
+    --surface: var(--dd-surface, rgba(244, 240, 232, 0.07));
     /* The single accent channel for every dd-* accent (labels, links, the
-       section rule, the note bar). applyThemeVars() sets --sec-accent on body from
-       project's orb theme (its bright flood, which pops on the dark tint); with
-       no theme it stays cream. The print rule below overrides --pink to black
-       directly, so it wins there regardless of --sec-accent. */
-    --pink: var(--sec-accent, #f4f0e8);
+       section rule, the note bar): the theme's dd.accent if set, else the
+       band accent applyThemeVars() put on body (the bright flood, which pops
+       on the dark tint), else cream. The print rule below overrides --pink
+       to black directly, so it wins there regardless. */
+    --pink: var(--dd-accent, var(--sec-accent, #f4f0e8));
+
+    /* Element channels */
+    --dd-hero-ink: var(--ink);         /* .dd-hero h1 */
+    --dd-eyebrow-ink: var(--ink-mid);  /* .dd-eyebrow kicker */
+    --dd-label-ink: var(--pink);       /* .dd-summary-label, .dd-note-label */
+    --dd-heading-ink: var(--ink);      /* section h2s */
+    --dd-heading-num: var(--ink-mid);  /* the 01/02 counter before each h2 */
+    --dd-note-accent: var(--pink);     /* the note's left bar */
+    --dd-copy-ink: var(--ink-mid);     /* body copy: lead, summaries, note, sections */
 }
 
 /* No fixed nav bar anymore — just the floating orb, so a normal top breathing
@@ -49,7 +68,7 @@
     font-size: 0.74rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--ink-mid);
+    color: var(--dd-eyebrow-ink);
     margin-bottom: clamp(16px, 3vw, 26px);
 }
 
@@ -61,12 +80,12 @@
     letter-spacing: -0.035em;
     margin-bottom: clamp(18px, 3vw, 26px);
     max-width: 18ch;
-    color: var(--ink)
+    color: var(--dd-hero-ink);
 }
 
 .dd-lead {
     font-size: clamp(1.2rem, 2.2vw, 1.55rem);
-    color: var(--ink-mid);
+    color: var(--dd-copy-ink);
     max-width: 58ch;
     margin-bottom: clamp(30px, 4vw, 44px);
     line-height: 1.4;
@@ -112,11 +131,11 @@
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--pink);
+    color: var(--dd-label-ink);
     margin-bottom: 8px;
 }
 
-.dd-summary-item p { font-size: 0.98rem; color: var(--ink-mid); line-height: 1.55; }
+.dd-summary-item p { font-size: 0.98rem; color: var(--dd-copy-ink); line-height: 1.55; }
 
 .dd-layout {
     display: grid;
@@ -156,7 +175,7 @@
 
 .dd-note {
     background: rgba(244, 240, 232, 0.06);
-    border-left: 3px solid var(--pink);
+    border-left: 3px solid var(--dd-note-accent);
     border-radius: 0 8px 8px 0;
     padding: 16px 18px;
 }
@@ -167,11 +186,11 @@
     font-size: 0.66rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--pink);
+    color: var(--dd-label-ink);
     margin-bottom: 6px;
 }
 
-.dd-note p { font-size: 0.95rem; color: var(--ink-mid); }
+.dd-note p { font-size: 0.95rem; color: var(--dd-copy-ink); }
 
 .dd-block { counter-increment: cs; }
 .dd-block h2 {
@@ -179,7 +198,7 @@
     font-weight: 600;
     font-size: clamp(1.7rem, 3.4vw, 2.35rem);
     letter-spacing: -0.025em;
-    color: var(--ink);
+    color: var(--dd-heading-ink);
     margin-bottom: 20px;
     display: flex;
     align-items: baseline;
@@ -192,7 +211,7 @@
     font-size: 0.82rem;
     font-weight: 500;
     letter-spacing: 0.06em;
-    color: var(--ink-mid);
+    color: var(--dd-heading-num);
     opacity: 0.75;
 }
 
@@ -202,7 +221,7 @@
 .dd-highlights li {
     position: relative;
     font-size: 1.02rem;
-    color: var(--ink-mid);
+    color: var(--dd-copy-ink);
     line-height: 1.55;
     padding: 16px 0 16px 28px;
     border-top: 1px solid var(--line);
@@ -220,7 +239,7 @@
     background: var(--pink);
 }
 
-.dd-section p { font-size: 1.02rem; color: var(--ink-mid); }
+.dd-section p { font-size: 1.02rem; color: var(--dd-copy-ink); }
 .dd-section p + p { margin-top: 12px; }
 .dd-section ul { margin: 14px 0 0; padding-left: 20px; }
 .dd-section li { margin-bottom: 9px; font-size: 0.98rem; }

@@ -184,7 +184,22 @@ Paths in the HTML/JS/meta-tags are all `static/media/…` / `static/resumes_and_
 
 ---
 
-## What changed in the theme-schema pass (2026-07-11, latest)
+## What changed in the deep-dive-channels pass (2026-07-11, latest)
+- **The `.dd-page` block in deep-dive.css is now the one place to retune the
+  deep-dive page:** tone channels (`--ink`, `--ink-mid`, `--ink-soft`,
+  `--line`, `--surface`, `--pink`) plus element channels that say which tone
+  each identity element wears (`--dd-hero-ink`, `--dd-eyebrow-ink`,
+  `--dd-label-ink`, `--dd-heading-ink`, `--dd-heading-num`,
+  `--dd-note-accent`, `--dd-copy-ink`). Every dd-* rule reads a channel,
+  never a literal.
+- **Themes gain an optional `dd` group** ({accent, ink, inkMid, inkSoft,
+  line, surface}) so a project can override the page tones from lib/theme.js;
+  `ddVars()`/`applyDdVars()` deliver it as the `--dd-*` vars the tone
+  channels prefer. Print re-declares the tones directly and stays
+  ink-on-white regardless.
+- Pixel-identical: channels default to the previous values.
+
+## What changed in the theme-schema pass (2026-07-11, earlier)
 - **SECTIONTHEME entries restructured into `orb` + `band` groups.** The orb
   quintet keeps its keys inside `orb: {...}`; the band group grows to
   `{accent, ink, inkMid, inkSoft, line, pink}` (all optional), delivered to
