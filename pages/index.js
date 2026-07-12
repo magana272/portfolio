@@ -20,7 +20,7 @@ import { ME } from '../content/me.js';
 import { JIUJITSU } from '../content/jiujitsu.js';
 import { LISTENING } from '../content/listening.js';
 import { Page } from './page.js';
-import { renderEducation } from '../components/education/education.js';
+import { renderEducation } from '../features/education/education.js';
 import { renderSkills } from '../components/skills/skills.js';
 import { renderMe } from '../components/me/me.js';
 import { renderJiujitsu } from '../components/jiujitsu/jiujitsu.js';
